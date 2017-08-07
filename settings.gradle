@@ -1,2 +1,5 @@
 rootProject.name = 'enjoy-algorithm'
+include 'algospot'
+include 'baekjoon'
+include 'codingdojang'
 
