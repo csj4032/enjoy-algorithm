@@ -1,7 +1,5 @@
 package p1546;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -12,22 +10,17 @@ import java.util.Scanner;
  * 세준이의 성적을 위의 방법대로 새로 계산했을 때, 새로운 평균을 구하는 프로그램을 작성하시오.
  **/
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        List<Integer> scores = new ArrayList();
-        int m = 0, max = 0;
-        float sum = 0;
-        for (int i = 0; i < n; i++) {
-            scores.add(sc.nextInt());
-            if (max < scores.get(i)) {
-                max = scores.get(i);
-            }
-        }
-        for (int i = 0; i < n; i++) {
-            System.out.println(Math.round(Float.valueOf(scores.get(i)) / max * 10000f) / 100f);
-            sum += Float.valueOf(scores.get(i)) / Float.valueOf(max) * 100f;
-        }
-        System.out.println(Math.round(sum / n * 100f) / 100f);
-    }
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		float max = 0;
+		float sum = 0;
+		for (int i = 0; i < n; i++) {
+			float tmp = sc.nextFloat();
+			sum += tmp;
+			if (max < tmp)
+				max = tmp;
+		}
+		System.out.printf("%.2f",Math.round(sum / (n * max) * 10000f) / 100f);
+	}
 }
