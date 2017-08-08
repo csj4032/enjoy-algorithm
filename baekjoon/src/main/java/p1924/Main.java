@@ -1,4 +1,4 @@
-package baekjoon.p1924;
+package p1924;
 
 import java.util.Scanner;
 

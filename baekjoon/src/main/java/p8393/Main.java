@@ -1,4 +1,4 @@
-package baekjoon.p8393;
+package p8393;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;

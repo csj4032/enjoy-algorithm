@@ -1,4 +1,4 @@
-package baekjoon.p11721;
+package p11721;
 
 import java.util.Scanner;
 import java.util.stream.IntStream;
