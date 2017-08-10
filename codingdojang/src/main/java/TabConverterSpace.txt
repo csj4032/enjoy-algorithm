@@ -1,0 +1,16 @@
+public class TabConverterSpace {
+
+	public static void main(String[] args) throws IOException {
+		String path = TabConverterSpace.class.getResource("").getPath();
+		Scanner sc = new Scanner(path + "txt");
+
+		StringBuffer sb = new StringBuffer();
+		while (sc.hasNext()) {
+			String a = sc.next();
+			sb.append(a.replaceAll("	", "    "));
+		}
+
+		FileWriter fileWriter = new FileWriter(new File(path + "_Converter.txt"));
+		fileWriter.write(sb.toString());
+	}
+}
