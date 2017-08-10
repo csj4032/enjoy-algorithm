@@ -11,4 +11,8 @@ public class Main {
 			Arrays.stream(String.valueOf(i).split(""));
 		}
 	}
+
+	private static void arithmetical() {
+
+	}
 }
