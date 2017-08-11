@@ -1,22 +1,21 @@
 package p2448;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.System.in;
 
 public class Main {
 
+	private static List<String> list = new ArrayList<>();
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(in);
-		int n = sc.nextInt();
-		star(n);
+		solved(sc.nextInt());
 	}
 
-	private static void star(int n) {
-		System.out.println("  *  ");
-		System.out.println("     ");
-		System.out.println(" * * ");
-		System.out.println("     ");
-		System.out.println("*****");
+	private static void solved(int n) {
+
 	}
 }
