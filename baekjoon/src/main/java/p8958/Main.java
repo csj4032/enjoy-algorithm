@@ -18,4 +18,3 @@ public class Main {
 		list.forEach(System.out::println);
 	}
 }
-//7441
