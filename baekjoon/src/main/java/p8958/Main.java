@@ -8,16 +8,14 @@ import java.util.stream.Stream;
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		List<String> list = new ArrayList();
+		List<Integer> list = new ArrayList();
 		int n = sc.nextInt();
 		for (int i = 0; i < n; i++) {
-			int c = 0;
-			Stream.of(sc.next().split("")).reduce((a, b) -> {
-				if (a.equals("O") && b.equals(a)) {
-
-				}
-				return b;
-			});
+			list.add(Stream.of(sc.next().split("X")).filter(e -> !e.equals("")).map(e -> {
+				return Stream.iterate(1, k -> k + 1).mapToInt(Integer::valueOf).limit(e.length()).sum();
+			}).mapToInt(Integer::valueOf).sum());
 		}
+		list.forEach(System.out::println);
 	}
 }
+//7441
