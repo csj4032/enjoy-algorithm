@@ -1,6 +1,6 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.LongStream;
 
 public class UglyNumbers {
 	public static void main(String[] args) {
@@ -20,6 +20,6 @@ public class UglyNumbers {
 			i++;
 		}
 
-		LongStream.iterate(1L, x -> x < 15001, x -> x + 1).forEach(System.out::println);
+		//LongStream.iterate(1L, x -> x < 15001, x -> x + 1).forEach(System.out::println);
 	}
 }
