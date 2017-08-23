@@ -2,6 +2,7 @@ package p1978;
 
 import java.util.Scanner;
 
+//http://hahahoho5915.tistory.com/14
 public class Main {
 
 	public static void main(String[] args) {
