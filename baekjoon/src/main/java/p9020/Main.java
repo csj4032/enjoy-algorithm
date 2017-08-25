@@ -4,6 +4,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 제목 : 골드바흐의 추측
+ * 단계 : 소수 구하기
+ */
 public class Main {
 
 	public static void main(String[] args) throws IOException {
