@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * 제목 : 골드바흐의 추측
  * 단계 : 소수 구하기
+ * 힌트 :
  */
 public class Main {
 
