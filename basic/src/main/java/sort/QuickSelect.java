@@ -1,0 +1,48 @@
+package sort;
+
+public class QuickSelect {
+
+	public static void main(String[] args) {
+		System.out.println(quickSelect(new int[]{5, 1, 3, 4, 2}, 2));
+	}
+
+	public static int quickSelect(int[] array, int k) {
+		int len = array.length;
+		if (array == null || len <= k) {
+			return -1;
+		}
+
+		int start = 0;
+		int end = len - 1;
+
+		while (start < end) {
+
+			int i = start;
+			int j = end;
+			int mid = array[(i + j) / 2];
+
+			while (i < j) {
+				if (array[i] >= mid) {
+					int tmp = array[j];
+					array[j] = array[i];
+					array[i] = tmp;
+					j--;
+				} else {
+					i++;
+				}
+			}
+
+			if(array[i] > mid) {
+				i--;
+			}
+
+			if (k <= i) {
+				end = i;
+			} else {
+				start = i + 1;
+			}
+		}
+
+		return array[k];
+	}
+}
