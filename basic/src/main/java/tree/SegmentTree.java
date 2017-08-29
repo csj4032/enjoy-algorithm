@@ -1,5 +1,10 @@
 package tree;
 
+/**
+ * 참고 :
+ * 		1. https://www.acmicpc.net/blog/view/9
+ * 		2. https://m.blog.naver.com/kks227/220791986409
+ */
 public class SegmentTree {
 
 	static int[] tree;
