@@ -1,69 +1,53 @@
 package p9426;
 
-import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
- * 제목 : 골드바흐의 추측
- * 단계 : 소수 구하기
- * 힌트 : Fenwick Tree
+ * 제목 : 중앙값 측정
+ * 단계 : 정렬
+ * 힌트 : Segment Tree, Fenwick Tree
  */
 public class Main {
+
+	static int[] ARRAY;
+	static int[] TREE;
+	static int MAX_N = 250001;
+	static int MAX = 65536;
+	static int N = 0;
+	static int K = 0;
+	static long RESULT = 0;
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		int k = sc.nextInt();
-		int[] arr = new int[n];
-		int[] subArr;
+		N = sc.nextInt();
+		K = sc.nextInt();
 
-		for (int i = 0; i < n; i++) {
-			arr[i] = sc.nextInt();
+		ARRAY = new int[MAX_N];
+		TREE = new int[MAX_N * 8];
+
+		for (int i = 0; i < N; i++) ARRAY[i] = sc.nextInt();
+		for (int i = 0; i < K - 1; i++) update(ARRAY[i], 1, 1, 0, MAX - 1);
+
+		for (int i = K - 1; i < N; i++) {
+			update(ARRAY[i], 1, 1, 0, MAX - 1);
+			RESULT += query((K + 1) / 2, 1, 0, MAX - 1);
+			update(ARRAY[i - K + 1], -1, 1, 0, MAX - 1);
 		}
 
-		long sum = 0;
-		int m = ((k + 1) / 2);
-		for (int i = 0; i < (n - k + 1); i++) {
-			subArr = Arrays.copyOfRange(arr, i, i + k);
-			sum += quickSelect(subArr, m-1);
-		}
-		System.out.println(sum);
+		System.out.println(RESULT);
 	}
 
-	private static Integer quickSelect(int[] array, int k) {
-		int left = 0;
-		int right = array.length - 1;
-		Random rand = new Random();
-		while (right >= left) {
-			int pivotIndex = partition(array, left, right, rand.nextInt(right - left + 1) + left);
-			if (pivotIndex == k) {
-				return array[pivotIndex];
-			} else if (pivotIndex < k) {
-				left = pivotIndex + 1;
-			} else {
-				right = pivotIndex - 1;
-			}
-		}
-		return null;
+	public static int update(long pos, long val, int node, long x, long y) {
+		if (y < pos || pos < x) return TREE[node];
+		if (x == y) return TREE[node] += val;
+		long mid = (x + y) >> 1;
+		return TREE[node] = update(pos, val, node * 2, x, mid) + update(pos, val, node * 2 + 1, mid + 1, y);
 	}
 
-	private static int partition(int[] array, int left, int right, int pivot) {
-		int pivotVal = array[pivot];
-		swap(array, pivot, right);
-		int storeIndex = left;
-		for (int i = left; i < right; i++) {
-			if (array[i] < pivotVal) {
-				swap(array, i, storeIndex);
-				storeIndex++;
-			}
-		}
-		swap(array, right, storeIndex);
-		return storeIndex;
-	}
-
-	public static void swap(int[] array, int index1, int index2) {
-		int temp = array[index1];
-		array[index1] = array[index2];
-		array[index2] = temp;
+	public static long query(int val, int node, int x, int y) {
+		int mid = (x + y) >> 1;
+		if (x == y) return x;
+		if (TREE[node * 2] >= val) return query(val, node * 2, x, mid);
+		return query(val - TREE[node * 2], node * 2 + 1, mid + 1, y);
 	}
 }
