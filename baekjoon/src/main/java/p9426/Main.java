@@ -37,17 +37,17 @@ public class Main {
 		System.out.println(RESULT);
 	}
 
-	public static int update(long pos, long val, int node, long x, long y) {
-		if (y < pos || pos < x) return TREE[node];
-		if (x == y) return TREE[node] += val;
-		long mid = (x + y) >> 1;
-		return TREE[node] = update(pos, val, node * 2, x, mid) + update(pos, val, node * 2 + 1, mid + 1, y);
+	public static int update(long pos, long val, int node, int start, int end) {
+		if (end < pos || pos < start) return TREE[node];
+		if (start == end) return TREE[node] += val;
+		int mid = (start + end) >> 1;
+		return TREE[node] = update(pos, val, node * 2, start, mid) + update(pos, val, node * 2 + 1, mid + 1, end);
 	}
 
-	public static long query(int val, int node, int x, int y) {
-		int mid = (x + y) >> 1;
-		if (x == y) return x;
-		if (TREE[node * 2] >= val) return query(val, node * 2, x, mid);
-		return query(val - TREE[node * 2], node * 2 + 1, mid + 1, y);
+	public static long query(int val, int node, int start, int end) {
+		int mid = (start + end) >> 1;
+		if (start == end) return start;
+		if (TREE[node * 2] >= val) return query(val, node * 2, start, mid);
+		return query(val - TREE[node * 2], node * 2 + 1, mid + 1, end);
 	}
 }
