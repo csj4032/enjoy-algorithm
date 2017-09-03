@@ -1,4 +1,4 @@
-package p2447;
+package p1932;
 
 import java.util.Scanner;
 
@@ -7,15 +7,12 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
+		int[][] m = new int[n][n];
+
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				if (((i / 3) * (j / 3) % 2 != 0)) {
-					System.out.print(" ");
-				} else {
-					System.out.print("*");
-				}
+				m[i][j] = sc.nextInt();
 			}
-			System.out.println("");
 		}
 	}
 }
