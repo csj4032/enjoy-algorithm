@@ -1,4 +1,4 @@
-object s2750 {
+object S2750 {
 
 	def main(args: Array[String]): Unit = {
 		val N = readByte
