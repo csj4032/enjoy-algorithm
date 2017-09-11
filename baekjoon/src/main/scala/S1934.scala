@@ -1,4 +1,4 @@
-object s1934 {
+object S1934 {
 
 	def main(args: Array[String]): Unit = {
 		for (i <- 1 to readLine.toInt) {

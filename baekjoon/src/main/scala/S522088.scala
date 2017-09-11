@@ -1,4 +1,4 @@
-object s522088 {
+object S522088 {
 
   def main(args: Array[String]): Unit = {
     val n = readInt;
