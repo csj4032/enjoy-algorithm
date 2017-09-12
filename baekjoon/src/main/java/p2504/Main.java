@@ -8,21 +8,49 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String[] s = sc.next().split("");
-		Stack<String> stack1 = new Stack<>();
-		Stack<String> stack2 = new Stack<>();
-		Stack<String> stack3 = new Stack<>();
-		String prev = "";
-		String cur = "";
+		Stack<String> stack = new Stack<>();
+		String cur;
+		Integer k = 0;
+		boolean f = true;
 		for (int i = 0; i < s.length; i++) {
 			cur = s[i];
-			if (cur.equals("(")) {
-				stack1.push(cur);
+			if (cur.equals("(") || cur.equals("[")) {
+				stack.push(cur);
 			} else {
-				stack2.push("2");
-				prev = cur;
+				if (stack.isEmpty()) {
+					f = false;
+					break;
+				}
+				String c = stack.pop();
+				if (cur.equals(")")) {
+					if (!stack.empty()) {
+						k += calculator(2, stack, i, s, cur);
+					} else if (s[i - 1].equals("(") && stack.empty()) {
+						k += 2;
+					}
+				} else if (cur.equals("]")) {
+					if (!stack.empty()) {
+						k += calculator(3, stack, i, s, cur);
+					} else if (s[i - 1].equals("[") && stack.empty()) {
+						k += 3;
+					}
+				}
+				if (c.equals("[") && cur.equals(")")) f = false;
+				if (c.equals("(") && cur.equals("]")) f = false;
 			}
 		}
+		if (stack.isEmpty() && f) {
+			System.out.println(k);
+		} else {
+			System.out.println(0);
+		}
+	}
 
-		System.out.println(stack2);
+	private static Integer calculator(int k, Stack<String> stack, int i, String[] s, String cur) {
+		if (s[i - 1].equals(cur)) return 0;
+		for (int j = 0; j < stack.size(); j++) {
+			k = k * (stack.get(j).equals("[") ? 3 : 2);
+		}
+		return k;
 	}
 }
