@@ -6,8 +6,10 @@ import java.util.Stack;
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		String[] s = sc.next().split("");
+		//Scanner sc = new Scanner(System.in);
+		//String[] s = sc.next().split("");
+		//String[] s = new String[]{"(", "(", ")", "[", "[", "]", "]", ")", "(", "[", "]", ")"};
+		String[] s = new String[]{"(", "(", ")", ")"};
 		Stack<String> stack = new Stack<>();
 		String cur;
 		Integer k = 0;
@@ -21,36 +23,40 @@ public class Main {
 					f = false;
 					break;
 				}
-				String c = stack.pop();
 				if (cur.equals(")")) {
-					if (!stack.empty()) {
-						k += calculator(2, stack, i, s, cur);
-					} else if (s[i - 1].equals("(") && stack.empty()) {
-						k += 2;
+					if (stack.peek().equals("(")) {
+						stack.pop();
+						stack.push("2");
+					} else {
+						calculator(stack, 2);
 					}
-				} else if (cur.equals("]")) {
-					if (!stack.empty()) {
-						k += calculator(3, stack, i, s, cur);
-					} else if (s[i - 1].equals("[") && stack.empty()) {
-						k += 3;
+				} else {
+					if (stack.peek().equals("[")) {
+						stack.pop();
+						stack.push("3");
+					} else {
+						//System.out.println(stack.peek());
 					}
 				}
-				if (c.equals("[") && cur.equals(")")) f = false;
-				if (c.equals("(") && cur.equals("]")) f = false;
 			}
 		}
-		if (stack.isEmpty() && f) {
-			System.out.println(k);
-		} else {
-			System.out.println(0);
-		}
+
+		System.out.println(stack);
 	}
 
-	private static Integer calculator(int k, Stack<String> stack, int i, String[] s, String cur) {
-		if (s[i - 1].equals(cur)) return 0;
-		for (int j = 0; j < stack.size(); j++) {
-			k = k * (stack.get(j).equals("[") ? 3 : 2);
+	private static int calculator(Stack<String> stack, int value) {
+		int result = 0;
+		while (!stack.isEmpty()) {
+			String top = stack.peek();
+			if (top.equals("(")) {
+				stack.pop();
+				result *= value;
+				stack.push(String.valueOf(result));
+				break;
+			} else {
+				result += Integer.parseInt(stack.pop());
+			}
 		}
-		return k;
+		return result;
 	}
 }
