@@ -1,6 +1,7 @@
 .idea/
-algospot/out
-baekjoon/out
-basic/out
-codingdojang/out
+algospot/out/
+baekjoon/out/
+basic/out/
+codingdojang/out/
+codility/out/
 *.iml
