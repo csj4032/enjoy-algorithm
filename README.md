@@ -1,3 +1,4 @@
-# algospot : 
+# algospot : https://algospot.com/
 # baekjoon : https://www.acmicpc.net
-# codingdojang : 
+# codility : https://codility.com/programmers/
+# codingdojang : http://codingdojang.com/
