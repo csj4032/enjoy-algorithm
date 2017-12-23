@@ -3,6 +3,7 @@ package sorting;
 import java.util.ArrayList;
 import java.util.List;
 
+//https://app.codility.com/demo/results/trainingQR2BJB-VZ8/
 public class MaxProductOfThree {
 
 	private static int[] T = new int[2001];
