@@ -94,10 +94,6 @@ class Node {
 		this.next = next;
 	}
 
-	public void setPrev(Node prev) {
-		this.prev = prev;
-	}
-
 	public int getValue() {
 		return value;
 	}
