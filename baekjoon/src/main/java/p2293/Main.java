@@ -12,7 +12,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		n = sc.nextInt();
 		k = sc.nextInt();
-		m = new int[n + 1];
+		m = new int[n];
 		for (int i = 0; i < n; i++) m[i] = sc.nextInt();
 		System.out.println(recursive(k, 0));
 	}

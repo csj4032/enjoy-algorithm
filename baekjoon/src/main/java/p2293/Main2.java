@@ -14,7 +14,7 @@ public class Main2 {
 		n = sc.nextInt();
 		k = sc.nextInt();
 		m = new int[101];
-		s = new int[1001];
+		s = new int[10001];
 
 		for (int i = 0; i < n; i++) {
 			m[i] = sc.nextInt();
