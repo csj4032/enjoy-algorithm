@@ -2,6 +2,8 @@ package p2293;
 
 import java.util.Scanner;
 
+// 9084 문제와 유사
+// 다이나믹 프로그래밍
 public class Main2 {
 
 	static int[] m;
