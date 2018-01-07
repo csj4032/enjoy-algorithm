@@ -88,6 +88,10 @@ public class Algorithm3 {
 
 	private static int solution3(String S) {
 		//return Arrays.stream(S.split("[0-9]+")).filter(s -> s.matches(".*[A-Z].*")).max(Comparator.comparing(String::length)).map(String::length).orElse(-1);
-		return Arrays.stream(S.split("[0-9]+")).filter(s -> s.matches(".*[A-Z].*")).map(String::length).max(Comparator.comparing(Integer::valueOf)).orElse(-1);
+		return Arrays.stream(S.split("[0-9]+"))
+				.filter(s -> s.matches(".*[A-Z].*"))
+				.map(String::length)
+				.max(Comparator.comparing(Integer::valueOf))
+				.orElse(-1);
 	}
 }
