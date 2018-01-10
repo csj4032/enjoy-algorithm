@@ -1,5 +1,6 @@
 package p2631;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -21,5 +22,7 @@ public class Main {
 				}
 			}
 		}
+
+		System.out.println(n - Arrays.stream(d).max().orElse(0));
 	}
 }
