@@ -1,18 +1,29 @@
 package p11057;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
-		int[][] dp = new int[n + 1][10];
+		long[][] dp = new long[n + 1][11];
+
+		Arrays.fill(dp[0], 1);
 
 		for (int i = 1; i <= n; i++) {
-			int m = dp[i].length;
-			for (int j = 0; j < m; j++) {
-				System.out.println(dp[i][j]);
+			for (int j = 1; j <= 10; j++) {
+				for (int k = 1; k <= j; k++) {
+					dp[i][j] += dp[i-1][k];
+					dp[i][j] = dp[i][j] % 10007;
+				}
 			}
 		}
+
+		for (int i = 0; i <= n; i++) {
+			System.out.println(Arrays.toString(dp[i]));
+		}
+
+		System.out.println(dp[n][10]);
 	}
 }
