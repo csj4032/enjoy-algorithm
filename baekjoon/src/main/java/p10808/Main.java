@@ -2,6 +2,7 @@ package p10808;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
 
@@ -11,12 +12,12 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		String n = sc.next();
 		char[] m = n.toCharArray();
-		int[] l = new int[26];
-
-		for (char s : m) {
-			l[m[s] - 97] += 1;
+		Integer[] l = new Integer[26];
+		Arrays.fill(l, 0);
+		for (char i : m) {
+			l[i - 97] += 1;
 		}
 
-		System.out.println(Arrays.stream(l).mapToObj(StringBuilder::new).collect(joining(" ")));
+		System.out.println(Stream.of(l).map(String::valueOf).collect(joining(" ")));
 	}
 }
