@@ -1,4 +1,4 @@
-package p11650;
+package p11651;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -15,20 +15,20 @@ public class Main {
 		for (int i = 0; i < n; i++) {
 			int x = sc.nextInt();
 			int y = sc.nextInt();
-			m[x + 100000] = 1;
-			if (map.get(x + 100000) == null) {
+			m[y + 100000] = 1;
+			if (map.get(y + 100000) == null) {
 				List<Integer> list = new ArrayList<>();
-				list.add(y);
-				map.put(x + 100000, list);
+				list.add(x);
+				map.put(y + 100000, list);
 			} else {
-				map.get(x + 100000).add(y);
+				map.get(y + 100000).add(x);
 			}
 		}
 
 		map.keySet().stream().sorted().forEach(k -> {
 			List list = map.get(k).stream().sorted().collect(Collectors.toList());
 			list.stream().forEach(e -> {
-				System.out.println(k - 100000 + " " + e);
+				System.out.println(e + " " + (k - 100000));
 			});
 		});
 	}
