@@ -2,6 +2,7 @@ package p2293;
 
 import java.util.Scanner;
 
+// 동전 1
 public class Main2 {
 
 	static int n;
