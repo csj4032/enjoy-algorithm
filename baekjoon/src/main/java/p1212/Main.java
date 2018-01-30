@@ -19,14 +19,21 @@ public class Main {
 		m.put("7", "111");
 	}
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		String n = sc.next();
+	public static void main(String[] args)  {
 
-		System.out.println(Integer.toBinaryString(Integer.valueOf(n, 8)));
+		String n = new Scanner(System.in).next();
+
+		StringBuilder sb = new StringBuilder();
 
 		for (int i = 0; i < n.length(); i++) {
-			System.out.println(n.substring(i, i + 1));
+			sb.append(m.get(n.substring(i, i + 1)));
+		}
+
+		int k = sb.toString().indexOf("1");
+		if(k != -1) {
+			System.out.println(sb.toString().substring(k));
+		} else{
+			System.out.println("0");
 		}
 	}
 }
