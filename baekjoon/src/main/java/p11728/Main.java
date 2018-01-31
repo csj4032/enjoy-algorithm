@@ -3,6 +3,7 @@ package p11728;
 import java.util.Arrays;
 import java.util.Scanner;
 
+// 배열 합치기
 public class Main {
 
 	public static void main(String[] args) {
