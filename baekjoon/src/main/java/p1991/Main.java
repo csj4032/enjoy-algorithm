@@ -2,6 +2,7 @@ package p1991;
 
 import java.util.Scanner;
 
+// 트리 순회
 public class Main {
 
 	static String[] node = new String[1000];
