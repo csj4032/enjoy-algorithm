@@ -2,8 +2,7 @@ package leader;
 
 /**
  * Dominator가 될 수 있는 숫자는 나머지 숫자들보다 많이 존재 해야함
- *
- * **/
+**/
 public class Dominator {
 
 	public static int solution(int[] A) {
