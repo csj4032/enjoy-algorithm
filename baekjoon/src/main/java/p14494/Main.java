@@ -2,6 +2,7 @@ package p14494;
 
 import java.util.Scanner;
 
+// 다이나믹이 뭐에요?
 public class Main {
 
 	public static void main(String[] args) {
