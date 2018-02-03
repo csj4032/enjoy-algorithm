@@ -2,6 +2,7 @@ package p2460;
 
 import java.util.Scanner;
 
+// 지능형 기차 2
 public class Main {
 
 	public static void main(String[] args) {
