@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * LEADER 는 전체 배열의 나머지 절반 보다 많아야 함
- **/
+**/
 public class EquiLeader {
 
 	public static int solution(int[] A) {
@@ -18,7 +18,6 @@ public class EquiLeader {
 
 		// 배열의 길이가 1 일 경우 0으로 리턴
 		if (length == 1) return result;
-
 
 		for (int i = 0; i < length; i++) {
 			int subKey = A[i];
