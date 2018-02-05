@@ -8,10 +8,13 @@ public class Question3 {
 	private static String ONE = "1";
 
 	public static void main(String[] args) {
-		int n = 4;
+		bracket(0);
+	}
+
+	private static void bracket(int n) {
 		int nn = n * 2;
 		int form = (int) Math.pow(2, nn) - (int) Math.pow(2, nn - 1);
-		int to = (int) Math.pow(2, 2 * n);
+		int to = (int) Math.pow(2, nn);
 		for (int i = form; i < to; i++) {
 			String s = String.format("%" + nn + "s", Integer.toBinaryString(i)).replace(" ", ZERO);
 			if (isBracket(s)) {
