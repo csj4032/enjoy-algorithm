@@ -13,7 +13,7 @@ public class Algorithm3 {
 		//System.out.println(solution(new int[]{1, 4, -1, 3, 2}));
 		//System.out.println(solution(new int[]{1, -1}));
 
-//		solution2(new int[]{12345}, 10);
+		solution2(new int[]{12345}, 10);
 		//solution2(new int[]{4, 35, 80, 123, 12345, 44, 8, 5}, 10);
 		//solution2(new int[]{4, 35, 80, 123, 12345, 44, 8, 5, 24, 3, 22}, 4);
 //
@@ -22,7 +22,7 @@ public class Algorithm3 {
 //		System.out.println(solution3("a0bbC"));
 //		System.out.println(solution3("a0bbC0AAAA"));
 
-		System.out.println(Arrays.toString(Arrays.stream(new int[]{1, 2, 3, 4, 5, 6}).filter(x -> Arrays.stream(new int[]{1, 2}).anyMatch(y -> x == y)).toArray()));
+//		System.out.println(Arrays.toString(Arrays.stream(new int[]{1, 2, 3, 4, 5, 6}).filter(x -> Arrays.stream(new int[]{1, 2}).anyMatch(y -> x == y)).toArray()));
 
 		Vector<String> vector = new Vector<>();
 	}
