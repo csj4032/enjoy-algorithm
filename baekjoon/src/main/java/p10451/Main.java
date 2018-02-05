@@ -1,6 +1,5 @@
 package p10451;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -18,10 +17,14 @@ public class Main {
 			}
 			for (int j = 0; j < n; j++) {
 				int k = m[j];
-				while (m[j] != k) {
-					k = m[k] - 1;
-					if (k == m[j]) {
+				int l = j;
+				while (true) {
+					l = m[l] - 1;
+					if (l < 0) break;
+					if (k == m[l]) {
 						s++;
+						m[l] = 0;
+						break;
 					}
 				}
 			}
