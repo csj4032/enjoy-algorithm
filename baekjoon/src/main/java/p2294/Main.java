@@ -1,37 +1,32 @@
 package p2294;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
+// 동전 2
 public class Main {
 
-	static int n;
-	static int m;
-	static int p = 1000000000;
-	static int k[];
-
 	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		n = in.nextInt();
-		m = in.nextInt();
-		k = new int[n];
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+		int[] l = new int[n + 1];
+		int[] dp = new int[m + 1];
+
+		Arrays.fill(dp, 10001);
+		dp[0] = 0;
 
 		for (int i = 0; i < n; i++) {
-			k[i] = in.nextInt();
+			l[i] = sc.nextInt();
 		}
 
-		recursive(0, m, 0);
-		System.out.println(p);
-	}
-
-	private static int recursive(int i, int m, int l) {
-		if (m < 0 || i >= n) {
-			return -1;
-		}
-		if (m == 0) {
-			if (p > l) p = l;
-			return l;
+		for (int i = 0; i < n; i++) {
+			for (int j = l[i]; j <= m; j++) {
+				dp[j] = Math.min(dp[j], dp[j - l[i]] + 1);
+			}
 		}
 
-		return recursive(i, m - k[i], l + 1) + recursive(i + 1, m, l);
+		System.out.println(Arrays.toString(dp));
+		System.out.println(dp[m] == 10001 ? -1 : dp[m]);
 	}
 }
