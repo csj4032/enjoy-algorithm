@@ -9,18 +9,20 @@ public class Equal {
 		// Complete this function
 		int m = arr.length;
 		int c = 0;
+		Arrays.sort(arr);
 		for (int i = 1; i < m; i++) {
 			if (arr[i] != arr[i - 1]) {
 				while (arr[i] != arr[i - 1]) {
 					int k = Math.abs(arr[i] - arr[i - 1]);
 					int t = arr[i] > arr[i - 1] ? i : i - 1;
+					//System.out.println(k);
 					if (k == 1) {
 						for (int l = 0; l < m; l++) {
 							if (t != l) {
 								arr[l] = arr[l] + 1;
 							}
 						}
-					} else if (1 < k && k < 5) {
+					} else if (k < 5) {
 						for (int l = 0; l < m; l++) {
 							if (t != l) {
 								arr[l] = arr[l] + 2;
@@ -34,6 +36,7 @@ public class Equal {
 						}
 					}
 					c++;
+					//System.out.println(Arrays.toString(arr));
 				}
 			}
 
