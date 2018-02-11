@@ -4,18 +4,33 @@ import java.util.Scanner;
 
 public class Main {
 
+	static String a = "***";
+	static String b = "* *";
+	static String c = "***";
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				if (((i / 3) * (j / 3) % 2 != 0)) {
-					System.out.print(" ");
-				} else {
-					System.out.print("*");
-				}
+		int n = sc.nextInt() / 3;
+
+		for (int j = 0; j < n; j++) {
+
+			for (int i = 0; i < n; i++) {
+				System.out.print(a);
 			}
-			System.out.println("");
+
+			System.out.println();
+
+			for (int i = 0; i < n; i++) {
+				System.out.print(b);
+			}
+
+			System.out.println();
+
+			for (int i = 0; i < n; i++) {
+				System.out.print(c);
+			}
+
+			System.out.println();
 		}
 	}
 }
