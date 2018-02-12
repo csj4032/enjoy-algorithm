@@ -22,6 +22,7 @@ public class Main {
 			long sum = 0;
 			for (int j = 1; j < p.length; j++) {
 				if (p[j].equals("1")) {
+					System.out.println(i);
 					sum += m[j - 1];
 				}
 			}
