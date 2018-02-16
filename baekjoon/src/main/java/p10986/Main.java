@@ -1,6 +1,5 @@
 package p10986;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -19,13 +18,15 @@ public class Main {
 			ss[i + 1] = ss[i] + mm[i];
 		}
 
-		System.out.println(Arrays.toString(mm));
-		System.out.println(Arrays.toString(ss));
+		//System.out.println(Arrays.toString(mm));
+		//System.out.println(Arrays.toString(ss));
 
-		for (int i = 1; i < n; i++) {
-			for (int j = i; j < n; j++) {
+		for (int i = 1; i <= n; i++) {
+			for (int j = i; j <= n; j++) {
+				System.out.println(ss[j] + " " + ss[i-1] + " " + (ss[j] - ss[i - 1]) + " " + ((ss[j] - ss[i - 1]) % m == 0));
 				if ((ss[j] - ss[i - 1]) % m == 0) k++;
 			}
+			System.out.println();
 		}
 
 		System.out.println(k);
