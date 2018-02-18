@@ -1,34 +1,35 @@
 package p10986;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * 제목 : 나머지 합
+ * 팁 : A1 ~ A5 합은 S5 - S0
+ * (S5 - S0) % M = 0 이면 (S5 % M) == (S0 % M)
+ * 조합론 kC2
+ */
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		int m = sc.nextInt();
-		int k = 0;
-		int[] mm = new int[n];
-		int[] ss = new int[n + 1];
-
-		ss[0] = 0;
+		long k = 0;
+		long[] c = new long[1000];
 
 		for (int i = 0; i < n; i++) {
-			mm[i] = sc.nextInt();
-			ss[i + 1] = ss[i] + mm[i];
+			int a = sc.nextInt();
+			k += a;
+			c[(int) (k % m)]++;
 		}
 
-		//System.out.println(Arrays.toString(mm));
-		//System.out.println(Arrays.toString(ss));
+		System.out.println(Arrays.toString(c));
 
-		for (int i = 1; i <= n; i++) {
-			for (int j = i; j <= n; j++) {
-				System.out.println(ss[j] + " " + ss[i-1] + " " + (ss[j] - ss[i - 1]) + " " + ((ss[j] - ss[i - 1]) % m == 0));
-				if ((ss[j] - ss[i - 1]) % m == 0) k++;
-			}
-			System.out.println();
+		long t = c[0];
+		for (int i = 0; i < m; i++) {
+			t += (c[i] * (c[i] - 1)) / 2;
 		}
 
-		System.out.println(k);
+		System.out.println(t);
 	}
 }
