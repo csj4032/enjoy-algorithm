@@ -1,28 +1,30 @@
-import java.util.Arrays;
-
 public class Question5 {
+
+	static int arrayLength = 200000001;
+	static int arrayHaftLength = 100000000;
 
 	public static void main(String[] args) {
 		solve(new int[]{2, 5, 6, 1, 10}, 8);
 	}
 
-	private static int[] solve(int[] array, int target) {
-		boolean[] bool = new boolean[11];
-		int[] idx = new int[11];
+	private static int[][] solve(int[] array, int target) {
+		boolean[] bool = new boolean[arrayLength];
+		int[] idx = new int[arrayLength];
+		int[][] result = new int[array.length][2];
 
 		for (int i = 0; i < array.length; i++) {
-			bool[array[i]] = true;
-			idx[array[i]] = i;
+			bool[array[i] + arrayHaftLength] = true;
+			idx[array[i] + arrayHaftLength] = i;
 		}
 
-		System.out.println(Arrays.toString(bool));
-		System.out.println(Arrays.toString(idx));
-
 		for (int i = 0; i < array.length; i++) {
-			if (bool[array[i]] && bool[target - array[i]]) {
-				System.out.println(i + " " + idx[target - array[i]]);
+			if (bool[array[i] + arrayHaftLength] && bool[target - array[i] + arrayHaftLength]) {
+				bool[array[i] + arrayHaftLength] = false;
+				System.out.println("[" + i + ", " + idx[target - array[i] + arrayHaftLength] + "]");
+				//result[i][0] = i;
+				//result[i][1] = idx[target - array[i] + arrayHaftLength];
 			}
 		}
-		return new int[]{};
+		return result;
 	}
 }
