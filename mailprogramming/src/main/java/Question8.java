@@ -6,6 +6,10 @@ public class Question8 {
 		solve(new int[]{3, 3, 3});
 		solve(new int[]{3, 3, 0});
 		solve(new int[]{0, 3, 0});
+		solve(new int[]{0, 0, 3});
+		solve(new int[]{1, 0, 3});
+		solve(new int[]{1, 1, 3});
+		solve(new int[]{0, 1, 3});
 		solve(new int[]{-1, -10, 2, -2});
 	}
 
