@@ -11,16 +11,16 @@ public class Question5 {
 	}
 
 	private static void solve2(Integer[] array, int target) {
-		int len = array.length;
-		Map<Integer, Integer> map = new HashMap<>();
-		for (int i = 0; i < len; i++) {
-			map.put(array[i], i);
-			if (null != map.get(target - array[i])) {
+		int length = array.length;
+		Map<Integer, Integer> indexMap = new HashMap<>();
+		for (int i = 0; i < length; i++) {
+			indexMap.put(array[i], i);
+			if (null != indexMap.get(target - array[i])) {
 				Integer a = target - array[i];
-				System.out.println(map.get(a) + " " + i);
+				System.out.println(indexMap.get(a) + " " + i);
 			}
 		}
-		System.out.println(map);
+		System.out.println(indexMap);
 	}
 
 	private static int[][] solve(int[] array, int target) {
