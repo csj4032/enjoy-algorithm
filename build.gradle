@@ -8,8 +8,8 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
 
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_10
+    targetCompatibility = JavaVersion.VERSION_1_10
 
     repositories {
         mavenLocal()
@@ -19,7 +19,7 @@ subprojects {
     }
 
     dependencies {
-        compile group: 'org.projectlombok', name:'lombok', version: "1.16.20"
+        //compile group: 'org.projectlombok', name:'lombok', version: "1.16.20"
         compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
         compile group: 'com.google.guava', name: 'guava', version: '21.0'
         compile group: 'org.jooq', name: 'jool', version: '0.9.12'
@@ -50,11 +50,11 @@ dependencies {
 }
 compileKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "10"
     }
 }
 compileTestKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "10"
     }
 }
