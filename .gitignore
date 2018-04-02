@@ -1,7 +1,9 @@
+.gradle/
 .idea/
 algospot/out/
 baekjoon/out/
 basic/out/
 codingdojang/out/
 codility/out/
+mailprogramming/out/
 *.iml

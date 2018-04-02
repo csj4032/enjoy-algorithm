@@ -13,8 +13,8 @@ public class Question10 {
 
 	private static void solve(String str) {
 		int length = str.length();
-		String max = "";
-		String temp = "";
+		var max = "";
+		var temp = "";
 
 		for (int j = 0; j < length; j++) {
 			boolean overlap = false;
