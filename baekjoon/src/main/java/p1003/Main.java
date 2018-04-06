@@ -1,7 +1,5 @@
 package p1003;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -10,28 +8,29 @@ import java.util.Scanner;
  * 힌트 :
  */
 public class Main {
+
+	static int[] z = new int[41];
+	static int[] o = new int[41];
+
 	public static void main(String[] args) {
+
+		z[0] = 1;
+		z[1] = 0;
+
+		o[0] = 0;
+		o[1] = 1;
+
 		Scanner sc = new Scanner(System.in);
 		int t = sc.nextInt();
 		for (int i = 0; i < t; i++) {
 			int n = sc.nextInt();
-			Map<Integer, Integer> m = new HashMap<>();
-			m.put(0, 0);
-			m.put(1, 0);
-			fibonacci(n, m);
-			System.out.println(m.get(0) + " " + m.get(1));
+			for (int j = 2; j <= n; j++) {
+				z[j] = z[j - 2] + z[j - 1];
+			}
+			for (int j = 2; j <= n; j++) {
+				o[j] = o[j - 2] + o[j - 1];
+			}
+			System.out.println(z[n] + " " + o[n]);
 		}
-	}
-
-	private static int fibonacci(int n, Map<Integer, Integer> m) {
-		if (n == 0) {
-			m.put(0, m.get(0) + 1);
-			return 0;
-		}
-		if (n == 1) {
-			m.put(1, m.get(1) + 1);
-			return 1;
-		}
-		return fibonacci(n - 1, m) + fibonacci(n - 2, m);
 	}
 }
