@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Main {
 
 	static int n;
-	static int[] cols;
 	static int k;
+	static int[] cols;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
