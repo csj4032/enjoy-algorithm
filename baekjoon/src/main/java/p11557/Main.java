@@ -17,7 +17,7 @@ public class Main {
 				list.add(new University(sc.next(), sc.nextLong()));
 			}
 			list.sort(Comparator.comparing(University::getValue).reversed());
-			System.out.println(list.get(0).name);
+			System.out.println(list.get(0).getName());
 		}
 	}
 }
