@@ -2,29 +2,36 @@ package p9663;
 
 import java.util.Scanner;
 
+/**
+ * 제목 : N-Queen
+ * 분류 : 백트래킹
+ */
 public class Main {
 
-	static int n;
-	static int k;
+	static int size;
+	static int count;
 	static int[] cols;
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		n = sc.nextInt();
-		cols = new int[n+1];
+		solve(new Scanner(System.in).nextInt());
+	}
+
+	private static void solve(int input) {
+		size = input;
+		cols = new int[size + 1];
 		recursive(0);
-		System.out.println(k);
+		System.out.println(count);
 	}
 
 	private static boolean recursive(int row) {
 		if (!promising(row)) {
 			return false;
-		} else if (row == n) {
-			k++;
+		} else if (row == size) {
+			count++;
 			return true;
 		}
 
-		for (int i = 1; i <= n; i++) {
+		for (int i = 1; i <= size; i++) {
 			cols[row + 1] = i;
 			if (recursive(row + 1)) return false;
 		}
