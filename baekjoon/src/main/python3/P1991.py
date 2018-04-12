@@ -24,6 +24,7 @@ def postorder(start):
     postorder(tree[start][1])
     print(start, end='')
 
+
 preorder('A')
 print()
 inorder('A')
