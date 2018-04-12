@@ -21,12 +21,14 @@ public class Main {
 
 		sf1 = new StringBuilder();
 		sf2 = new StringBuilder();
-		graph = new int[1001][10001];
-		visit1 = new int[1001];
-		visit2 = new int[1001];
+		graph = new int[n + 1][n + 1];
+		visit1 = new int[n + 1];
+		visit2 = new int[n + 1];
 
-		for (int i = 0; i < m; i++) {
-			graph[sc.nextInt()][sc.nextInt()] = 1;
+		for (int i = 1; i < m; i++) {
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			graph[x][y] = graph[y][x] = 1;
 		}
 
 		dfs(v);
@@ -51,14 +53,15 @@ public class Main {
 		Queue<Integer> queue = new LinkedList();
 		queue.add(v);
 		visit2[v] = 1;
-		sf2.append(v + " ");
+		//sf2.append(v + " ");
 		while (!queue.isEmpty()) {
-			int k = queue.poll();
-			for (int i = 0; i <= n; i++) {
-				if (graph[k][i] == 1 && visit2[i] != 1) {
+			int x = queue.peek();
+			queue.poll();
+			sf2.append(x + " ");
+			for (int i = 1; i <= n; i++) {
+				if (graph[x][i] == 1 && visit2[i] != 1) {
 					queue.add(i);
 					visit2[i] = 1;
-					sf2.append(i + " ");
 				}
 			}
 		}
