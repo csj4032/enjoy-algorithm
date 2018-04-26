@@ -18,22 +18,17 @@ public class Main {
 			}
 		}
 
+		dp[1][1] = 1;
+
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= m; j++) {
-				System.out.print(br[i][j] + " ");
-				if (br[i][j] < br[i - 1][j]) {
-					System.out.print("위");
-					dp[i][j] = dp[i - 1][j] + 1;
+				if (br[i][j] < br[i - 1][j] && br[i][j] < br[i][j - 1]) {
+					dp[i][j] = dp[i - 1][j] - dp[i][j] + dp[i][j - 1] - dp[i][j];
+				} else if (br[i][j] < br[i - 1][j] && br[i][j] >= br[i][j - 1]) {
+					dp[i][j] += dp[i - 1][j] - dp[i][j];
+				} else if (br[i][j] >= br[i - 1][j] && br[i][j] < br[i][j - 1]) {
+					dp[i][j] += dp[i][j - 1] - dp[i][j];
 				}
-				if (br[i][j] < br[i][j - 1]) {
-					System.out.print("좌");
-					dp[i][j] = dp[i][j - 1] + 1;
-				}
-				if (j < m && br[i][j] < br[i][j + 1]) {
-					System.out.print("우");
-					dp[i][j] = br[i][j + 1] + 1;
-				}
-				System.out.println();
 			}
 		}
 		System.out.println();
