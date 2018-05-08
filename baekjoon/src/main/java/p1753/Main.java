@@ -5,27 +5,31 @@ import java.util.Scanner;
 
 public class Main {
 
-	static int[][] ve;
-	static int inf = 10000000;
+	private static int inf = 10000000;
+	private static int[][] ve;
+	private static int[] dist;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int v = sc.nextInt();
 		int e = sc.nextInt();
 		int s = sc.nextInt();
-		ve = new int[v][v];
+		ve = new int[v + 1][v + 1];
+		dist = new int[v + 1];
 
-		for (int i = 0; i < v; i++) {
-			Arrays.fill(ve[i], inf);
-		}
+		Arrays.fill(dist, inf);
 
 		for (int i = 0; i < e; i++) {
 			int ss = sc.nextInt();
 			int ee = sc.nextInt();
 			int vv = sc.nextInt();
-			ve[ss - 1][ee - 1] = vv;
+			ve[ss][ee] = vv;
 		}
 
-		System.out.println(Arrays.deepToString(ve));
+		dijkstra(s);
+	}
+
+	private static void dijkstra(int s) {
+		dist[s] = 0;
 	}
 }
