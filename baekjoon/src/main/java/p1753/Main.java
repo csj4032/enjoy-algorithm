@@ -27,6 +27,8 @@ public class Main {
 		}
 
 		dijkstra(s);
+
+		System.out.println(1313374%1000);
 	}
 
 	private static void dijkstra(int s) {
