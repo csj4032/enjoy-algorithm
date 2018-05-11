@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/enjoy_algorithm.dir/baekjoon/src/main/c/1000.c.o  -o enjoy_algorithm 
