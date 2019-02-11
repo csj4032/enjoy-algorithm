@@ -1,5 +1,8 @@
 package p5789;
 
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -17,5 +20,8 @@ public class Main {
 				System.out.println("Do-it-Not");
 			}
 		}
+
+		Map map = new HashMap();
+		Map table = new Hashtable();
 	}
 }
