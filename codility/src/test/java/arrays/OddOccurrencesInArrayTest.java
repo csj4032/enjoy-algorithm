@@ -1,21 +1,21 @@
 package arrays;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class OddOccurrencesInArrayTest {
 
-	private int[] n;
+	private static int[] n;
 
-	@Before
-	public void setUp() {
+	@BeforeAll
+	public static void setUp() {
 		n = new int[]{9, 3, 9, 3, 9, 7, 9};
 	}
 
 	@Test
 	public void test() {
 		OddOccurrencesInArray oddOccurrencesInArray = new OddOccurrencesInArray();
-		Assert.assertEquals(7, oddOccurrencesInArray.solution(n));
+		Assertions.assertEquals(7, oddOccurrencesInArray.solution(n));
 	}
 }
