@@ -14,7 +14,6 @@ public class Inchworm {
 		for (int i = 0; i < n; i++) {
 			m[i] = sc.nextInt();
 		}
-
 	}
 
 	private static void solve(int n, int[] m, int s) {
