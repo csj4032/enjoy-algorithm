@@ -7,19 +7,21 @@ public class Brackets {
 
 	private static Stack<Character> stack = new Stack();
 
-	public static int solution(String S) {
-
+	public int solution(String S) {
+		int N = S.length();
 		if (S.isEmpty()) return 1;
-		int characterLength = S.length();
-		if ((characterLength & 1) != 0) return 0;
-		char firstCharacter = S.charAt(0);
-		if (someCloseCharacter(firstCharacter)) return 0;
+		if ((N & 1) != 0) return 0;
 
-		stack.push(firstCharacter);
-		for (int i = 1; i < characterLength; i++) {
-			char source = S.charAt(i);
-			if (notCloseCharacter(source) && (stack.empty() || isOpenToCloseCharacter(stack.peek(), source))) {
-				stack.push(source);
+		char first = S.charAt(0);
+		if (first == ')' || first == '}' || first == ']') return 0;
+
+		Stack<Character> stack = new Stack();
+		stack.push(first);
+		for (int i = 1; i < N; i++) {
+			char ch = S.charAt(i);
+			if (stack.empty() || closeCharacter(stack.peek()) != (ch)) {
+				if (ch != ')' && ch != '}' && ch != ']')
+					stack.push(S.charAt(i));
 			} else {
 				stack.pop();
 			}
@@ -28,28 +30,10 @@ public class Brackets {
 		return 0;
 	}
 
-	private static boolean isOpenToCloseCharacter(char destinae, char source) {
-		if (destinae == '(') return ')' == source;
-		if (destinae == '{') return '}' == source;
-		if (destinae == '[') return ']' == source;
-		return false;
-	}
-
-	private static boolean someCloseCharacter(char ch) {
-		if (ch == ')' || ch == '}' || ch == ']') return true;
-		return false;
-	}
-
-	private static boolean notCloseCharacter(char ch) {
-		if (ch != ')' && ch == '}' && ch == ']') return true;
-		return false;
-	}
-
-	public static void main(String[] args) {
-		System.out.println(solution("())(()"));
-		System.out.println(solution("{[()()]}"));
-		System.out.println(solution("}]"));
-		System.out.println(solution("([)()]"));
-		System.out.println(solution("([)()]]"));
+	public char closeCharacter(char c) {
+		if (c == '(') return ')';
+		if (c == '{') return '}';
+		if (c == '[') return ']';
+		return c;
 	}
 }

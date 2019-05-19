@@ -24,9 +24,4 @@ public class OddOccurrencesInArray {
 		}
 		return (int) set.toArray()[0];
 	}
-
-	public static void main(String[] args) {
-		System.out.println(solution(new int[]{9, 3, 9, 3, 9, 7, 9}));
-		System.out.println(solution2(new int[]{9, 3, 9, 3, 9, 7, 9}));
-	}
 }
