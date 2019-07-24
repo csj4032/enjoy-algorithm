@@ -6,4 +6,3 @@ include 'basic'
 include 'codility'
 include 'hackerrank'
 include 'mailprogramming'
-
