@@ -1,6 +1,5 @@
 package p10927;
 
-import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
@@ -14,8 +13,8 @@ public class Main {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			md.update(n.getBytes());
 			byte[] digest = md.digest();
-			String hash = DatatypeConverter.printHexBinary(digest).toLowerCase();
-			System.out.println(hash);
+			//String hash = DatatypeConverter.printHexBinary(digest).toLowerCase();
+			//System.out.println(hash);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
