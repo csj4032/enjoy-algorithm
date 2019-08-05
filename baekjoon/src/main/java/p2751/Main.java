@@ -1,24 +1,25 @@
 package p2751;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        Integer[] m = new Integer[1_000_001];
-        Arrays.fill(m, 0);
-        for (int i = 0; i < n; i++) {
-            int k = sc.nextInt();
-            m[k] = 1;
-        }
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		boolean[] m = new boolean[2_000_001];
+		for (int i = 0; i < n; i++) {
+			m[sc.nextInt() + 1_000_000] = true;
+		}
 
-        for (int i = 0; i < 1_000_001; i++) {
-            if (m[i] == 1) {
-                System.out.println(i);
-            }
-        }
-    }
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < 2_000_001; i++) {
+			if (m[i]) {
+				sb.append((i - 1000000) + "\n");
+			}
+		}
+
+		System.out.print(sb.toString());
+	}
 }
