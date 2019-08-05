@@ -1,4 +1,4 @@
-package p15654;
+package p15655;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -29,14 +29,14 @@ public class Main {
     }
 
     private static void recursive(int k, int d) {
-        if (k >= M) {
+        if (k == M) {
             for (int i = 0; i < M; i++) {
                 sb.append(SEQUENCE[i]).append(" ");
             }
             sb.append("\n");
             return;
         }
-        for (int i = 0; i < N; i++) {
+        for (int i = d; i < N; i++) {
             if (VISITORS[i]) continue;
             SEQUENCE[k] = NUMBERS[i];
             VISITORS[i] = true;
