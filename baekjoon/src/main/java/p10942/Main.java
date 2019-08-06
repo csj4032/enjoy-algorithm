@@ -1,31 +1,40 @@
 package p10942;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
 
 public class Main {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		int[] m = new int[n + 1];
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int n = Integer.parseInt(br.readLine().trim());
+        int[] m = new int[n + 1];
 
-		for (int i = 1; i <= n; i++) {
-			m[i] = sc.nextInt();
-		}
+        StringTokenizer st = new StringTokenizer(br.readLine().trim(), " ");
+        for (int i = 1; i <= n; i++) {
+            m[i] = Integer.parseInt(st.nextToken());
+        }
 
-		int t = sc.nextInt();
+        int t = Integer.parseInt(br.readLine().trim());
 
-		for (int i = 0; i < t; i++) {
-			int s = sc.nextInt();
-			int e = sc.nextInt();
-			System.out.println(palindrome(s, e, m));
-		}
-	}
+        for (int i = 0; i < t; i++) {
+            st = new StringTokenizer(br.readLine(), " ");
+            int s = Integer.parseInt(st.nextToken());
+            int e = Integer.parseInt(st.nextToken());
+            bw.write(palindrome(s, e, m) + "\n");
+        }
+        bw.close();
+    }
 
-	private static int palindrome(int s, int e, int[] m) {
-		while (s < e) {
-			if (m[s++] != m[e--]) return 0;
-		}
-		return 1;
-	}
+    private static int palindrome(int s, int e, int[] m) {
+        while (s < e) {
+            if (m[s++] != m[e--]) return 0;
+        }
+        return 1;
+    }
 }
