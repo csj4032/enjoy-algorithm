@@ -9,8 +9,8 @@ import java.util.Scanner;
  */
 public class Main {
 
-	static int m = 1000000;
-	static int p = 1500000;
+	static int m = 17;
+	static int p = 17;
 	static int[] fibonacci;
 
 	static {
