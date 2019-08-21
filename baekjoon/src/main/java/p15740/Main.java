@@ -3,7 +3,6 @@ package p15740;
 import java.math.BigInteger;
 import java.util.Scanner;
 
-
 /**
  * 제목 : A+B - 9
  * URL : https://www.acmicpc.net/problem/15740
