@@ -2,6 +2,10 @@ package p14624;
 
 import java.util.Scanner;
 
+/**
+ * 제목 : 전북대학교
+ * URL : https://www.acmicpc.net/problem/14624
+ */
 public class Main {
 
 	public static void main(String[] args) {
