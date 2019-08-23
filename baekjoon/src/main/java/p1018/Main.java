@@ -5,23 +5,23 @@ import java.util.Scanner;
 /**
  * 제목 : 체스판 다시 칠하기
  * 링크 : https://www.acmicpc.net/problem/1018
- */
-public class Main {
+                    */
+            public class Main {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        System.out.println(brute(n - 8, m - 8, initBoard(sc, n, m)));
-    }
+                public static void main(String[] args) {
+                    Scanner sc = new Scanner(System.in);
+                    int n = sc.nextInt();
+                    int m = sc.nextInt();
+                    System.out.println(brute(n - 8, m - 8, initBoard(sc, n, m)));
+                }
 
-    private static char[][] initBoard(Scanner sc, int n, int m) {
-        char[][] chars = new char[n][m];
-        for (int i = 0; i < n; i++) {
-            String l = sc.next();
-            for (int j = 0; j < m; j++) {
-                chars[i][j] = l.charAt(j);
-            }
+                private static char[][] initBoard(Scanner sc, int n, int m) {
+                    char[][] chars = new char[n][m];
+                    for (int i = 0; i < n; i++) {
+                        String l = sc.next();
+                        for (int j = 0; j < m; j++) {
+                            chars[i][j] = l.charAt(j);
+                        }
         }
         return chars;
     }
