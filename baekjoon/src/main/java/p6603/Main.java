@@ -3,7 +3,7 @@ package p6603;
 import java.util.Scanner;
 
 /**
- * 제목 : 로
+ * 제목 : 로또
  * 링크 : https://www.acmicpc.net/problem/6603
  * 메모 : BFS, 브루트 포스, DFS, 백트래킹, 입문용
  */
