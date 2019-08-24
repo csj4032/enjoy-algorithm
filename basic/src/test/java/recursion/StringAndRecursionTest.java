@@ -1,14 +1,15 @@
 package recursion;
 
-import org.junit.Before;
-import org.junit.Test;
+import lombok.AllArgsConstructor;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class StringAndRecursionTest {
 
-	private StringAndRecursion stringAndRecursion;
+	private static StringAndRecursion stringAndRecursion;
 
-	@Before
-	public void setUp() {
+	@BeforeAll
+	public static void setUp() {
 		stringAndRecursion = new StringAndRecursion();
 	}
 
