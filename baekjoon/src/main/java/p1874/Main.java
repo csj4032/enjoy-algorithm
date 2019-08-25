@@ -10,28 +10,34 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Stack<Integer> stack = new Stack<>();
-		List<String> string = new ArrayList<>();
+		List<String> operations = new ArrayList<>();
 		int n = sc.nextInt();
-		int index;
-		int max = 0;
-		int k;
-		while (0 < n--) {
-			k = sc.nextInt();
-			if (max < k) {
-				for (index = max; index < k; index++) {
-					stack.push(index + 1);
-					string.add("+");
+		int m = 0;
+		int top = 0;
+		for (int i = 0; i < n; i++) {
+			int k = sc.nextInt();
+			if (k >= top) {
+				while (true) {
+					if (k > m) {
+						m++;
+						operations.add("+");
+						stack.push(m);
+					} else {
+						operations.add("-");
+						stack.pop();
+						top = stack.isEmpty() ? 0 : stack.peek();
+						break;
+					}
 				}
-			} else {
-				if (stack.peek() > k) {
-					System.out.println("NO");
-					return;
-				}
+			} else if (k < top) {
+				operations.clear();
+				operations.add("NO");
+				break;
 			}
-			stack.pop();
-			string.add("-");
-			if (max < k) max = k;
 		}
-		string.stream().forEach(System.out::println);
+
+		for (String operation : operations) {
+			System.out.println(operation);
+		}
 	}
 }
