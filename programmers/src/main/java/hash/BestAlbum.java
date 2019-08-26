@@ -13,23 +13,24 @@ public class BestAlbum {
 
     private static String[] genres = new String[]{"classic", "pop", "classic", "classic", "pop"};
     private static Integer[] plays = new Integer[]{500, 600, 150, 800, 2500};
-    private static Map<String, Genre> generMap = new HashMap<>();
+    private static Map<String, Genre> genreMap = new HashMap<>();
 
     public static void main(String[] args) {
         List<Song> songs = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             final Integer play = plays[i];
-            Genre genre = generMap.computeIfAbsent(genres[i], (k) -> new Genre(k, 0));
+            Genre genre = genreMap.computeIfAbsent(genres[i], (k) -> new Genre(k, 0));
             genre.setPlays(play);
             songs.add(new Song(genre, plays[i], i));
         }
 
-        List<Song> songsTopTowByGenre = songs.stream()
+        List<Integer> songsTopTowByGenre = songs.stream()
                 .sorted(comparing(Song::getGenrePlays).thenComparing(comparing(Song::getPlays).reversed()))
                 .collect(Collectors.groupingBy(e -> e.getGenre(), () -> new TreeMap<>((o1, o2) -> o2.plays.compareTo(o1.plays)), Collectors.toList()))
                 .entrySet()
                 .stream()
                 .flatMap(e -> e.getValue().stream().limit(2))
+                .map(e-> e.getId())
                 .collect(Collectors.toList());
         System.out.println(songsTopTowByGenre);
     }
@@ -62,6 +63,10 @@ class Song {
         this.id = id;
         this.plays = plays;
         this.genre = genre;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public Genre getGenre() {
