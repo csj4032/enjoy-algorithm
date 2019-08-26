@@ -11,28 +11,23 @@ import static java.util.Comparator.comparing;
 
 public class BestAlbum {
 
-    private static String[] genres = new String[]{"classic", "pop", "classic", "classic", "pop"};
-    private static Integer[] plays = new Integer[]{500, 600, 150, 800, 2500};
-    private static Map<String, Genre> genreMap = new HashMap<>();
-
-    public static void main(String[] args) {
+    public int[] solution(String[] genres, int[] plays) {
         List<Song> songs = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            final Integer play = plays[i];
+        Map<String, Genre> genreMap = new HashMap<>();
+
+        for (int i = 0; i < plays.length; i++) {
             Genre genre = genreMap.computeIfAbsent(genres[i], (k) -> new Genre(k, 0));
-            genre.setPlays(play);
+            genre.setPlays(plays[i]);
             songs.add(new Song(genre, plays[i], i));
         }
 
-        List<Integer> songsTopTowByGenre = songs.stream()
+        return songs.stream()
                 .sorted(comparing(Song::getGenrePlays).thenComparing(comparing(Song::getPlays).reversed()))
                 .collect(Collectors.groupingBy(e -> e.getGenre(), () -> new TreeMap<>((o1, o2) -> o2.plays.compareTo(o1.plays)), Collectors.toList()))
                 .entrySet()
                 .stream()
                 .flatMap(e -> e.getValue().stream().limit(2))
-                .map(e-> e.getId())
-                .collect(Collectors.toList());
-        System.out.println(songsTopTowByGenre);
+                .mapToInt(e -> e.getId()).toArray();
     }
 }
 
