@@ -47,3 +47,16 @@ public class Main {
 		return true;
 	}
 }
+// ABC
+// ABEEBCABC
+
+//	 A B C
+//A  1 0 0
+//B  0 2 0
+//E  0 0 0
+//E  0 0 0
+//B  0 1 0
+//C  0 0 2
+//A  1 0 0
+//B  0 2 0
+//C  0 0 3
