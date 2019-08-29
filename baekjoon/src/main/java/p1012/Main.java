@@ -1,9 +1,15 @@
 package p1012;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * 제목 : 유기농 배추
+ * 링크 : https://www.acmicpc.net/problem/1012
+ * 분류 : BFS, DFS
+ */
 public class Main {
 
     private static int w;
@@ -28,7 +34,7 @@ public class Main {
                 int b = sc.nextInt();
                 m[b][a] = 1;
             }
-
+            System.out.println(Arrays.deepToString(m));
             int g = 1;
             for (int q = 0; q < h; q++) {
                 for (int p = 0; p < w; p++) {
