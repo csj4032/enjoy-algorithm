@@ -3,6 +3,11 @@ package p1520;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * 제목 : 내리막 길
+ * 링크 : https://www.acmicpc.net/problem/1520
+ * 분류 : 다이나믹 프로그래밍
+ */
 public class Main {
 
 	public static void main(String[] args) {
