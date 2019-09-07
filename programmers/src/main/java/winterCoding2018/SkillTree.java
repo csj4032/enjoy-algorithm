@@ -2,38 +2,31 @@ package winterCoding2018;
 
 public class SkillTree {
 
-    public int solution(String skill, String[] skill_trees) {
-        int answer = skill_trees.length;
-        for (int i = 0; i < skill_trees.length; i++) {
-            String tree = skill_trees[i];
-            String after = "";
-            for (int j = 0; j < tree.length(); j++) {
-                char c = tree.charAt(j);
-                int idx = skill.indexOf(c);
-                if (idx != -1) {
-                    after = after + idx;
-                }
-            }
+	public int solution(String skill, String[] skill_trees) {
+		int answer = 0;
+		for (int i = 0; i < skill_trees.length; i++) {
+			String tree = skill_trees[i];
+			String after = "";
+			int some = 0;
+			for (int j = 0; j < tree.length(); j++) {
+				for (int k = 0; k < skill.length(); k++) {
+					if (skill.charAt(k) == tree.charAt(j)) {
+						after = after + tree.charAt(j);
+						some++;
+					}
+				}
+			}
 
-            if (after.length() == 0) answer--;
-            System.out.println(after + " " + answer);
+			boolean flag = true;
+			for (int j = 0; j < after.length(); j++) {
+				if (skill.charAt(j) != after.charAt(j)) {
+					flag = false;
+				}
+			}
 
-            for (int j = 0; j < after.length(); j++) {
-                int k = after.charAt(j) + 0;
-                int t = j + 48;
-                if (k != t) {
-                    answer--;
-                    break;
-                }
-                if (j > 0) {
-                    int f = after.charAt(j - 1) + 0;
-                    if (f != t - 1) {
-                        answer--;
-                        break;
-                    }
-                }
-            }
-        }
-        return answer;
-    }
+			if (some == 0 || flag) answer++;
+		}
+
+		return answer;
+	}
 }
