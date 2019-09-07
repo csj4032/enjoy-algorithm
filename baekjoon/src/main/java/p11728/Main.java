@@ -1,46 +1,44 @@
 package p11728;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-// 배열 합치기
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		int n = Integer.parseInt(st.nextToken());
+		int m = Integer.parseInt(st.nextToken());
+		int[] p = new int[n];
+		int[] q = new int[m];
 
-		Scanner sc = new Scanner(System.in);
+		st = new StringTokenizer(br.readLine().trim(), " ");
+		for (int i = 0; i < n; i++) p[i] = Integer.parseInt(st.nextToken());
 
-		int n = sc.nextInt();
-		int m = sc.nextInt();
-		int k = Math.max(n, m);
+		st = new StringTokenizer(br.readLine().trim(), " ");
+		for (int i = 0; i < m; i++) q[i] = Integer.parseInt(st.nextToken());
 
-		int nn[] = new int[k+1];
-		int mm[] = new int[k+1];
-
-		Arrays.fill(nn, 1000000001);
-		Arrays.fill(mm, 1000000001);
-
-		for (int i = 0; i < n; i++) {
-			int q = sc.nextInt();
-			nn[i] = q;
-		}
-
-		for (int i = 0; i < m; i++) {
-			int q = sc.nextInt();
-			mm[i] = q;
-		}
-
-		int q = 0;
-		for (int i = 0; i <= k; i++) {
-			for (int j = q; j <= k; j++) {
-				if (nn[i] < mm[j]) {
-					if(nn[i] != 1000000001) System.out.print(nn[i] + (i == k ? "" : " "));
-					break;
-				} else {
-					if(mm[j] != 1000000001) System.out.print(mm[j] + (j == k ? "" : " "));
-					q++;
-				}
+		int i = 0;
+		int j = 0;
+		while (true) {
+			int a = p[i];
+			int b = q[j];
+			if (a > b) {
+				sb.append(b + " ");
+				j++;
+			} else {
+				sb.append(a + " ");
+				i++;
 			}
+			if (i == n) break;
+			if (j == m) break;
 		}
+		for (; i < n; i++) sb.append(p[i] + " ");
+		for (; j < m; j++) sb.append(q[j] + " ");
+		System.out.println(sb.toString());
 	}
 }
