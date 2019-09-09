@@ -9,7 +9,7 @@ import java.math.BigInteger;
  * 제목 : 타일링
  * 링크 : https://www.acmicpc.net/problem/1793
  * 분류 : 다이나믹 프로그래밍, 큰 수
- * 메모 : 정형적인 다이나믹 프로그래밍 문제 n 일때의 경우는 n-1의 경우 더하기 (n-2) * 2 의 경우
+ * 메모 : 전형적인 다이나믹 프로그래밍 문제 n 일때의 경우는 n-1의 경우 더하기 (n-2) * 2 의 경우
  */
 public class Main {
 
