@@ -8,11 +8,10 @@ public class Main {
     private static int k;
 
     public static void main(String[] args) {
-//        Scanner sc = new Scanner(System.in);
-//        k = sc.nextInt();
-//        nn = new int[k];
-//        good(0, "");
-        System.out.println(promise("1212"));
+        Scanner sc = new Scanner(System.in);
+        k = sc.nextInt();
+        nn = new int[k];
+        good(0, "");
     }
 
     private static void good(int n, String m) {
@@ -26,18 +25,6 @@ public class Main {
     }
 
     private static boolean promise(String m) {
-        int len = m.length();
-        int loop = m.length() / 2;
-        int start = len - 1;
-        int end = len;
-        for (int i = 1; i <= loop; i++) {
-            System.out.println(m.substring(start - i, end - i));
-            System.out.println(m.substring(start, end));
-            if (m.substring(start - i, end - i).equals(m.substring(start, end))) {
-                return false;
-            }
-            start -= 1;
-        }
         return true;
     }
 }
