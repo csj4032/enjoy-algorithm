@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * 제목 : 신기한 소수
- * 링크 : https://www.acmicpc.net/problem/2023
+ * 제목 : 신기한 소수 링크 : https://www.acmicpc.net/problem/2023
  */
 public class Main {
 
     static boolean[] map = new boolean[10];
+
     static {
         map[2] = true;
         map[3] = true;
@@ -42,6 +42,27 @@ public class Main {
             }
             if (f) System.out.println(i);
         }
+
+        var aa = """
+        SELECT
+            A.NO AS STUDENT_NO,
+            B.NO AS TEACHER_NO
+        FROM
+            STUDENT A
+            INNER JOIN TEACHER B ON A.CLASS_NO = B.CLASS_NO
+        """;
+
+        var errorCode = 1;
+        String message = switch (errorCode) {
+            case 1, 2, 3, 4:
+                yield "Genius Message";
+            case 404:
+                yield "Not found!";
+            case 500:
+                yield "Internal server error!";
+            default:
+                throw new IllegalArgumentException("Unexpected value: " + errorCode);
+        };
     }
 
     private static boolean isPrimeNumber(int t) {
