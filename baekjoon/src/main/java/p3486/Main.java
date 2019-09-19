@@ -2,6 +2,11 @@ package p3486;
 
 import java.util.Scanner;
 
+/**
+ * 제목 : Adding Reversed Numbers
+ * 링크 : https://www.acmicpc.net/problem/3486
+ * 분류 : 트리
+ */
 public class Main {
 
     public static void main(String[] args) {
