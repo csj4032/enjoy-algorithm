@@ -2,7 +2,11 @@ package p1991;
 
 import java.util.Scanner;
 
-// 트리 순회
+/**
+ * 제목 : 트리 순회
+ * 링크 : https://www.acmicpc.net/problem/1991
+ * 분류 : 트리
+ */
 public class Main {
 
 	static String[] node = new String[1000];
