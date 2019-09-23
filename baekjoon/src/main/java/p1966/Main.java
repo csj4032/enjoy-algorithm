@@ -1,37 +1,47 @@
 package p1966;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		StringBuilder sb = new StringBuilder();
 		int t = sc.nextInt();
 
 		for (int i = 0; i < t; i++) {
 			int n = sc.nextInt();
 			int m = sc.nextInt();
-			int k = 0;
-			int r = 0;
 
-			Queue<Integer> q = new PriorityQueue(n);
+			PriorityQueue<Integer> queue = new PriorityQueue(Comparator.reverseOrder());
+			int[] l = new int[n];
 
 			for (int j = 0; j < n; j++) {
 				int p = sc.nextInt();
-				if (p > k) k = p;
-				if (j == i) r = p;
-				q.add(p);
+				queue.add(p);
+				l[j] = p;
 			}
 
-			int y = 0;
-			while (!q.isEmpty()) {
-				if (q.peek() == r && q.peek() == k && m == y) {
-					System.out.println(y+1);
-					break;
+			int q = 0;
+			int w = 0;
+			while (!queue.isEmpty()) {
+				int k = queue.poll();
+				while (true) {
+					if (k == l[q % n]) {
+						w++;
+						l[q % n] = 0;
+						if (q % n == m) {
+							sb.append(w).append("\n");
+						}
+						q++;
+						break;
+					}
+					q++;
 				}
 			}
 		}
+		System.out.println(sb.toString());
 	}
 }
