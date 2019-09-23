@@ -3,6 +3,11 @@ package p1927;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+/**
+ * 제목 : 최소 힙
+ * 링크 : https://www.acmicpc.net/problem/1927
+ * 분류 : 힙
+ */
 public class Main {
 
     public static void main(String[] args) {
