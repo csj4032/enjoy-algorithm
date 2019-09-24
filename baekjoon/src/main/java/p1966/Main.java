@@ -4,6 +4,11 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+/**
+ * 제목 : 프린트 큐
+ * 링크 : https://www.acmicpc.net/problem/1966
+ * 분류 : 브루트 포스, 큐, 시뮬레이션
+ */
 public class Main {
 
 	public static void main(String[] args) {
