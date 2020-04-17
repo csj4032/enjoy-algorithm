@@ -12,8 +12,8 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
-		int[] m = new int[n];
-		int[] dp = new int[n];
+		int[] m = new int[n+1];
+		int[] dp = new int[n+1];
 
 		for (int i = 0; i < n; i++) {
 			m[i] = sc.nextInt();
@@ -26,6 +26,8 @@ public class Main {
 		for (int i = 3; i < n; i++) {
 			dp[i] = Math.max(m[i - 1] + dp[i - 3] , dp[i - 2]) + m[i];
 		}
+		//System.out.println(Arrays.toString(m));
+		//System.out.println(Arrays.toString(dp));
 		System.out.println(dp[n-1]);
 	}
 }

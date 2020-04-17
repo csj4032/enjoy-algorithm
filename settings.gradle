@@ -1,4 +1,5 @@
 rootProject.name = 'enjoy-algorithm'
+include 'algorithmic-problem-solving-strategies'
 include 'algospot'
 include 'baekjoon'
 include 'codingdojang'
