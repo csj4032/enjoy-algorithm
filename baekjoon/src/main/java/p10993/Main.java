@@ -23,7 +23,7 @@ public class Main {
 
 		for (int i = 0; i < h; i++) {
 			for (int j = 0; j < w; j++) {
-				m[j][i] = ' ';
+				m[i][j] = ' ';
 			}
 		}
 
