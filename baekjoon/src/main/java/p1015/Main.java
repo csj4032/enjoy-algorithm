@@ -1,26 +1,37 @@
 package p1015;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
 	public static void main(String[] args) {
 		var sc = new Scanner(System.in);
 		var n = sc.nextInt();
-		var p = new int[n];
+		List<Tuple2> p = new ArrayList();
 		var a = new int[n];
 		var b = new int[n];
 		for (int i = 0; i < n; i++) {
 			int k = sc.nextInt();
 			a[i] = k;
-			p[i] = k;
+			p.add(new Tuple2(i, k));
 		}
-		Arrays.sort(p);
+
+		Collections.sort(p, (o1, o2) -> {
+			if (o1.t2 < o2.t2) {
+				return -1;
+			} else if (o1.t2 > o2.t2) {
+				return 1;
+			} else {
+				if (o1.t1 < o2.t1) {
+					return -1;
+				} else {
+					return 1;
+				}
+			}
+		});
 
 		for (int i = 0; i < n; i++) {
-			int idx = Arrays.binarySearch(p, a[i]);
-			b[i] = idx;
+			b[p.get(i).t1] = i;
 		}
 
 		var sb = new StringBuilder();
@@ -32,13 +43,21 @@ public class Main {
 		System.out.println(sb.toString().trim());
 	}
 
-	public static class Pair {
-		int idx;
-		int value;
+	public static class Tuple2 {
+		Integer t1;
+		Integer t2;
 
-		Pair(int idx, int value) {
-			this.idx = idx;
-			this.value = value;
+		Tuple2(Integer t1, Integer t2) {
+			this.t1 = t1;
+			this.t2 = t2;
+		}
+
+		@Override
+		public String toString() {
+			return "Tuple2{" +
+					"t1=" + t1 +
+					", t2=" + t2 +
+					'}';
 		}
 	}
 }
