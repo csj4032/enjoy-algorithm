@@ -16,6 +16,10 @@ public class Main {
 		v = new boolean[n];
 		d = new int[n];
 
+		for (int i = 0; i < n; i++) {
+			m[i][i] = sc.nextInt();
+		}
+
 		dfs(0, 0);
 	}
 
@@ -32,6 +36,5 @@ public class Main {
 			}
 		}
 		v[s] = false;
-		System.out.println(s + " : " + l);
 	}
 }
