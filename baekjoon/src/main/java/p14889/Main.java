@@ -1,6 +1,7 @@
 package p14889;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +9,7 @@ public class Main {
 	static int[][] m;
 	static boolean[] v;
 	static int[] d;
+	static int k;
 
 	public static void main(String[] args) {
 		var sc = new Scanner(System.in);
@@ -15,26 +17,57 @@ public class Main {
 		m = new int[n][n];
 		v = new boolean[n];
 		d = new int[n];
+		k = Integer.MAX_VALUE;
 
 		for (int i = 0; i < n; i++) {
-			m[i][i] = sc.nextInt();
+			for (int j = 0; j < n; j++) {
+				m[i][j] = sc.nextInt();
+			}
 		}
-
-		dfs(0, 0);
+		dfs(1, 0);
+		System.out.println(k);
 	}
 
 	private static void dfs(int s, int l) {
 		if (l >= n / 2) {
-			System.out.println(Arrays.toString(v));
+			calculate();
 		} else {
 			for (int i = s; i < n; i++) {
 				if (!v[i]) {
 					v[i] = true;
-					d[l] = i + 1;
-					dfs(i, l + 1);
+					dfs(i + 1, l + 1);
+					v[i] = false;
 				}
 			}
 		}
-		v[s] = false;
+	}
+
+	private static void calculate() {
+		List<Integer> ss = new ArrayList<>();
+		List<Integer> ll = new ArrayList<>();
+		for (int i = 0; i < n; i++) {
+			if (v[i]) {
+				ss.add(i);
+			} else {
+				ll.add(i);
+			}
+		}
+
+		int sss = 0;
+		int lll = 0;
+
+		for (int i = 0; i < n / 2; i++) {
+			for (int j = i + 1; j < n / 2; j++) {
+				sss += m[ss.get(i)][ss.get(j)];
+				sss += m[ss.get(j)][ss.get(i)];
+			}
+
+			for (int j = i + 1; j < n / 2; j++) {
+				lll += m[ll.get(i)][ll.get(j)];
+				lll += m[ll.get(j)][ll.get(i)];
+			}
+		}
+
+		k = Math.min(k, Math.abs(sss - lll));
 	}
 }
