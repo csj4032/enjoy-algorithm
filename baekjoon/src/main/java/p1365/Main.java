@@ -1,6 +1,7 @@
 package p1365;
 
 import java.io.*;
+import java.util.Arrays;
 
 /**
  * 제목 : 꼬인 전깃줄
@@ -34,6 +35,7 @@ public class Main {
 			} else {
 				dp[lowerBound(0, idx, m[i], dp) - 1] = m[i];
 			}
+			System.out.println(Arrays.toString(dp));
 		}
 
 		for (int i = 0; i < n; i++) if (dp[i] > 0) k++;

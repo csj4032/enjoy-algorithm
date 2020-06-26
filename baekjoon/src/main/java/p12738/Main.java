@@ -1,14 +1,8 @@
-package p12015;
+package p12738;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-/**
- * 제목 : 가장 긴 증가하는 부분 수열 2
- * 링크 : https://www.acmicpc.net/problem/12015
- * 분류 : LIS, Lower Bound
- * 참고 : https://mygumi.tistory.com/303, https://yhwan.tistory.com/18
- */
 public class Main {
 
 	public static void main(String[] args) {
@@ -22,7 +16,7 @@ public class Main {
 			m[i] = sc.nextInt();
 		}
 
-		Arrays.fill(dp, 0);
+		Arrays.fill(dp, -1000000001);
 		dp[0] = m[0];
 		int idx = 0;
 		for (int i = 1; i < n; i++) {
@@ -33,10 +27,8 @@ public class Main {
 			}
 		}
 
-		//System.out.println(Arrays.toString(dp));
-
 		for (int i = 0; i < n; i++) {
-			if (dp[i] > 0) k++;
+			if (dp[i] > -1000000001) k++;
 		}
 
 		System.out.println(k);
