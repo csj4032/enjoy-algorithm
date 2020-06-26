@@ -2,6 +2,15 @@ package p11401;
 
 import java.util.Scanner;
 
+/**
+ * 제목 : 이항 계수 3
+ * 링크 : https://www.acmicpc.net/problem/11401
+ * 분류 : Binomial Coefficient, Modular
+ * 참고 : https://ohgym.tistory.com/13
+ * nCk = n!/k!(n-k)!
+ * nCk = n-1Ck + n-1Ck-1
+ * 5C2 = 4C2 + 4C1
+ */
 public class Main {
 
 	private static int mod = 1000000007;
