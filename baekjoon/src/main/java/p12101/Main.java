@@ -20,7 +20,3 @@ public class Main {
 		System.out.println(Arrays.toString(dp));
 	}
 }
-
-
-//<1> 2 3 <4> <8> 9
-//<1> 2 3 <4> 5 6 7 8 <9>
