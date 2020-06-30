@@ -8,7 +8,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		var sc = new Scanner(System.in);
-
 		while (true) {
 			String line = sc.nextLine();
 			if (line.equals("EOI")) break;
