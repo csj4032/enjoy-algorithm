@@ -1,5 +1,4 @@
 package p1000;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
@@ -10,6 +9,7 @@ import java.util.function.Consumer;
  * 단계 : 입/출력 받아보기
  * 분류 : 사칙연산, 수학
  */
+
 interface Coder {
 	default void coding() {
 		System.out.println("Da da da");
