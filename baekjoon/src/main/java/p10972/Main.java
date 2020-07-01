@@ -32,11 +32,13 @@ public class Main {
 	}
 
 	private static void recursive(int d, int k) {
+		System.out.println("recursive : " + d);
 		if (d == n) {
 			System.out.println(Arrays.toString(x));
 			return;
 		}
 		for (int i = 0; i < n; i++) {
+			System.out.println("d : " + d + " i : " + i + " v : " + Arrays.toString(v));
 			if (v[i]) continue;
 			v[i] = true;
 			x[i] = d + 1;
