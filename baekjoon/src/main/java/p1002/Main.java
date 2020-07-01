@@ -2,6 +2,11 @@ package p1002;
 
 import java.util.Scanner;
 
+/**
+ * 제목 : 터렛
+ * 링크 : https://www.acmicpc.net/problem/1002
+ * 분류 : 기하 알고리즘
+ */
 public class Main {
 
 	public static void main(String[] args) {
