@@ -1,4 +1,4 @@
-package p10163;
+package p ;
 
 import java.util.Scanner;
 
