@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * 5. 그 이후에 i+1부터 끝까지 정렬을 해준다.
  *
  *
- * 출처: https://tttuer.tistory.com/212?category=776472 [여우와펭귄의 블로그]
+ * 출처: https://tttuer.tistory.com/212?category=776472
  */
 public class Main {
 
