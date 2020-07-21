@@ -37,7 +37,7 @@ public class Main {
 			sb.append("\n");
 		}
 
-		System.out.println(sb.toString());
+		//System.out.println(sb.toString());
 	}
 
 	private static void display(int s, int e, int h, int w, int k) {
@@ -79,6 +79,7 @@ public class Main {
 		}
 
 		int mr = s + (int) Math.pow(2, k - 1);
+		System.out.println(mr + " " + k);
 		if (k % 2 == 1) {
 			display(mr, e + h / 2, h / 2, w - (int) Math.pow(2, k), k - 1);
 		} else {
