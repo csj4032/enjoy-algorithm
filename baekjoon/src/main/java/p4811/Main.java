@@ -1,31 +1,33 @@
 package p4811;
 
+import java.util.Scanner;
+
+/**
+ * 제목 : 알약
+ * 링크 : https://www.acmicpc.net/problem/4811
+ * 분류 : 재귀 호출
+ */
 public class Main {
 
-	static int n;
-	static long[][] map = new long[31][31];
+	static long[][] dp = new long[31][31];
 
 	public static void main(String[] args) {
-		System.out.println(recursive(30, 0));
+		var sc = new Scanner(System.in);
+		var sb = new StringBuilder();
+		while (true) {
+			var n = sc.nextInt();
+			if (n == 0) break;
+			recursive(n, 0);
+			sb.append(dp[n][0] + "\n");
+		}
+		System.out.println(sb.toString());
 	}
 
 	private static long recursive(int w, int h) {
-		if (w > 0) {
-			if (map[w][h] != 0) {
-				return map[w][h];
-			}
-		}
-		if (w == 0) {
-			map[w][h] = 1;
-			return 1;
-		} else {
-			long sum = 0;
-			sum += recursive(w - 1, h + 1);
-			if (h >= 1) {
-				sum += recursive(w, h - 1);
-			}
-			map[w][h] = sum;
-			return sum;
-		}
+		if (dp[w][h] > 0) return dp[w][h];
+		if (w == 0) return 1;
+		dp[w][h] = recursive(w - 1, h + 1);
+		if (h > 0) dp[w][h] += recursive(w, h - 1);
+		return dp[w][h];
 	}
 }
