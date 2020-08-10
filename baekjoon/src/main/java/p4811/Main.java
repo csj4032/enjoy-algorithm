@@ -10,6 +10,11 @@ import java.util.Scanner;
 public class Main {
 
 	static long[][] dp = new long[31][31];
+	private int var;
+
+	public Main(int var) {
+		this.var = var;
+	}
 
 	public static void main(String[] args) {
 		var sc = new Scanner(System.in);
