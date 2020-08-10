@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class LargestProductionGrid {
 
 	static int numbers[][] = new int[20][20];
-	static List<Integer> result = new ArrayList();
+	static List<Integer> result = new ArrayList<Integer>();
 
 	public static void main(String[] args) throws FileNotFoundException {
 		String path = InvestmentInStocks.class.getResource("").getPath();
