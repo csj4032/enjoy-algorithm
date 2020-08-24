@@ -29,6 +29,7 @@ public class Main {
 			graph.get(b).add(a);
 		}
 
+		visitor[x - 1] = true;
 		dfs(x - 1, 0);
 		System.out.println(k);
 	}
@@ -37,46 +38,12 @@ public class Main {
 		for (int i = 0; i < graph.get(idx).size(); i++) {
 			var next = graph.get(idx).get(i);
 			if (!visitor[next]) {
-				if (next == (y - 1)) {
-					k = node;
-				}
 				visitor[next] = true;
-				node = node + 1;
-				dfs(next, node);
-				node = node - 1;
+				dfs(next, node + 1);
+				if (next == (y - 1)) {
+					k = node + 1;
+				}
 			}
 		}
 	}
 }
-//9
-//7 3
-//7
-//1 2
-//1 4
-//2 7
-//2 8
-//2 9
-//4 3
-//4 6
-
-//9
-//5 3
-//7
-//1 2
-//1 3
-//2 7
-//2 8
-//2 9
-//4 5
-//4 6
-
-//9
-//7 3
-//7
-//1 2
-//1 4
-//2 7
-//2 8
-//2 9
-//7 3
-//4 6
