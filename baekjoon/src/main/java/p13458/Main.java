@@ -1,5 +1,8 @@
 package p13458;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 /**
@@ -15,28 +18,25 @@ public class Main {
 	private static int b;
 	private static long t;
 
-	public static void main(String[] args) {
-
-		sc = new Scanner(System.in);
-		n = sc.nextInt();
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		n = Integer.parseInt(br.readLine());
 		m = new int[1000001];
 
-		for (int i = 0; i < n; i++) {
-			m[i] = sc.nextInt();
-		}
+		String[] nums = br.readLine().split(" ");
+		for (int i = 0; i < n; i++) m[i] = Integer.parseInt(nums[i]);
 
-		a = sc.nextInt();
-		b = sc.nextInt();
+		String[] ma = br.readLine().split(" ");
+		a = Integer.parseInt(ma[0]);
+		b = Integer.parseInt(ma[1]);
 
 		for (int i = 0; i < n; i++) {
 			long k = m[i];
 			long l = k - a;
 			t += 1;
 			if (l > 0) {
-				while (l > 0) {
-					l -= b;
-					t++;
-				}
+				t += (l / b);
+				t += (l % b == 0) ? 0 : 1;
 			}
 		}
 		System.out.println(t);
