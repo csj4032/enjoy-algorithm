@@ -1,9 +1,11 @@
 package p2456;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import org.jooq.lambda.Seq;
+import org.jooq.lambda.tuple.Tuple3;
+
+import java.util.*;
+
+import static org.jooq.lambda.Seq.zip;
 
 public class Main {
 
@@ -13,30 +15,36 @@ public class Main {
 		var a = new Vote("1");
 		var b = new Vote("2");
 		var c = new Vote("3");
-		var d = "";
+		var d = "0";
 		for (int i = 0; i < n; i++) {
 			a.setPoint(sc.nextInt());
 			b.setPoint(sc.nextInt());
 			c.setPoint(sc.nextInt());
 		}
-
 		List<Vote> votes = Arrays.asList(a, b, c);
 		votes.sort(Vote::compareTo);
-
 		var e = votes.get(0);
 		var f = votes.get(1);
-
-		if (!e.equals(f)) {
-			d = e.number;
-		} else {
-			d = "0";
-		}
-
+		if (!e.equals(f)) d = e.number;
 		System.out.println(d + " " + e.sum);
+
+		Collections.sort(votes, Comparator.comparing(Vote::getSum).thenComparing(Vote::getThree).thenComparing(Vote::getTwo).thenComparing(Vote::getOne));
+		Collections.sort(votes);
 	}
 }
 
 class Vote implements Comparable<Vote> {
+
+	@Override
+	public int compareTo(Vote o) {
+		int c;
+		c = o.sum.compareTo(this.sum);
+		if (c == 0) c = o.three.compareTo(this.three);
+		if (c == 0) c = o.two.compareTo(this.two);
+		if (c == 0) c = o.one.compareTo(this.one);
+		return c;
+	}
+
 	String number;
 	Integer one = 0;
 	Integer two = 0;
@@ -58,26 +66,24 @@ class Vote implements Comparable<Vote> {
 		}
 	}
 
-	@Override
-	public int compareTo(Vote o) {
-		int e;
-		int a = o.sum.compareTo(this.sum);
-		if (a == 0) {
-			int b = o.three.compareTo(this.three);
-			if (b == 0) {
-				int c = o.two.compareTo(this.two);
-				if (c == 0) {
-					return o.one.compareTo(this.one);
-				} else {
-					e = c;
-				}
-			} else {
-				e = b;
-			}
-		} else {
-			e = a;
-		}
-		return e;
+	public String getNumber() {
+		return number;
+	}
+
+	public Integer getOne() {
+		return one;
+	}
+
+	public Integer getTwo() {
+		return two;
+	}
+
+	public Integer getThree() {
+		return three;
+	}
+
+	public Integer getSum() {
+		return sum;
 	}
 
 	@Override
