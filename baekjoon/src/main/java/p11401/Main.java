@@ -19,13 +19,12 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		int k = sc.nextInt();
-
-		System.out.println(dynamic(n, k));
+		System.out.println(dynamic(n%mod, k%mod));
 	}
 
 	public static long dynamic(int n, int k) {
 		int i, j;
-		long[][] dp = new long[n + 1][k + 1];
+		int[][] dp = new int[n + 1][k + 1];
 		for (i = 0; i <= n; i++) {
 			for (j = 0; j <= Math.min(i, k); j++) {
 				if (j == 0 || i == j) {
