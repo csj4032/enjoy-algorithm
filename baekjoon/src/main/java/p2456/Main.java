@@ -1,11 +1,6 @@
 package p2456;
 
-import org.jooq.lambda.Seq;
-import org.jooq.lambda.tuple.Tuple3;
-
 import java.util.*;
-
-import static org.jooq.lambda.Seq.zip;
 
 public class Main {
 
