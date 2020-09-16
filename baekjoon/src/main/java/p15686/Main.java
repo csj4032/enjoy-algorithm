@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * 제목 : 치킨 배달
+ * 링크 : https://www.acmicpc.net/problem/15686
+ * 분류 : 구현, 브루트포스 알고리즘 Combination
+ */
 public class Main {
 
 	static int m;
