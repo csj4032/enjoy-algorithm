@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * 제목 : 스타트링크
  * 링크 : https://www.acmicpc.net/problem/5014
- * 분류 : DFS, 그래프 이론, 그래프 탐색, 너비 우선 탐색
+ * 분류 : BFS, 그래프 이론, 그래프 탐색, 너비 우선 탐색
  */
 public class Main {
 
