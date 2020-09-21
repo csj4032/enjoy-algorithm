@@ -2,6 +2,11 @@ package p17406;
 
 import java.util.Scanner;
 
+/**
+ * 제목 : 배열 돌리기
+ * 링크 : https://www.acmicpc.net/problem/17406
+ * 분류 : 구현, 브루트포스 알고리즘, 배열 회전
+ */
 public class Main {
 
 	static int[][] l;
