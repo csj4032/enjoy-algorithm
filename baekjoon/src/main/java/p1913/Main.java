@@ -2,6 +2,10 @@ package p1913;
 
 import java.util.Scanner;
 
+/**
+ * 제목 : 달팽이
+ * 링크 : https://www.acmicpc.net/problem/1913
+ */
 public class Main {
 
 	static int[][] d = new int[4][2];
