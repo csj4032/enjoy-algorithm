@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * 제목 : N-Queen
- * 분류 : 백트래킹
+ * 분류 : 브루트포스 알고리즘, 백트래킹
  */
 public class Main {
 
