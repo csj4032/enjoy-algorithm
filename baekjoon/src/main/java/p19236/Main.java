@@ -12,7 +12,6 @@ public class Main {
 
 	static int max;
 	static Tuple[][] map = new Tuple[4][4];
-	static boolean[][] visitor = new boolean[4][4];
 	static int[] dy = new int[]{-1, -1, 0, 1, 1, 1, 0, -1};
 	static int[] dx = new int[]{0, -1, -1, -1, 0, 1, 1, 1};
 
