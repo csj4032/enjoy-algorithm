@@ -7,6 +7,7 @@ basic/build
 basic/out
 codingdojang/out
 codility/out
+hackerrank/out
 mailprogramming/out
 programmers/out
 *.iml

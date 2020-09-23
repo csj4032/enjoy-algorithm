@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 /**
  * 제목 : N과 M (1)
  * 링크 : https://www.acmicpc.net/problem/15649
- * 분류 : 조합, 순열, DFS
+ * 분류 : 조합(nCr), 순열(nPr), DFS
  */
 public class Main {
 
