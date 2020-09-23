@@ -1,6 +1,9 @@
 package p3190;
 
 import java.util.*;
+import java.util.function.IntFunction;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 제목 : 뱀
@@ -45,7 +48,6 @@ public class Main {
 			var ndy = head.y + dy[direct];
 			var ndx = head.x + dx[direct];
 			var isSnake = isSnake(ndy, ndx);
-			//System.out.println("ndy : " + ndy + " ndx : " + ndx + " len :" + snakes.size() + " second :" + second);
 			if (ndy < 0 || ndy >= n || ndx < 0 || ndx >= n || isSnake) break;
 
 			if (ndy >= 0 && ndy < n && ndx >= 0 && ndx < n) {
@@ -87,6 +89,15 @@ public class Main {
 			}
 			System.out.println();
 		}
+
+		IntStream.of(1,2).boxed().collect(Collectors.partitioningBy(e-> e > 5));
+		IntStream.of(1,2).mapToObj(new IntFunction<Object>() {
+
+			@Override
+			public Object apply(int value) {
+				return value;
+			}
+		});
 	}
 }
 
@@ -103,10 +114,6 @@ class Snake {
 
 	@Override
 	public String toString() {
-		return "Snake{" +
-				"y=" + y +
-				", x=" + x +
-				", isHead=" + isHead +
-				'}';
+		return "Snake{" + "y=" + y + ", x=" + x + ", isHead=" + isHead + '}';
 	}
 }
