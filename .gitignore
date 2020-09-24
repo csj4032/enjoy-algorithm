@@ -1,6 +1,7 @@
 build
 .gradle
 .idea
+algorithmic-problem-solving-strategies/out
 algospot/out
 baekjoon/out
 basic/build
