@@ -26,7 +26,7 @@ public class Main {
 	}
 
 	private static void dfs(int depth, int[][] map) {
-		if (depth > 4) return;
+		if (depth > 9) return;
 		for (int i = 0; i < 4; i++) {
 			var copyMap = copyMap(map);
 			move(i, copyMap);
