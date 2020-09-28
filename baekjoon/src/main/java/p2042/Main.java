@@ -2,6 +2,11 @@ package p2042;
 
 import java.util.Scanner;
 
+/**
+ * 제목 : 구간 합 구하기
+ * 링크 : https://www.acmicpc.net/problem/2042
+ * 분류 : 자료 구조, 세그먼트 트리
+ */
 public class Main {
 
 	private static long nn[];
@@ -14,7 +19,7 @@ public class Main {
 		var k = sc.nextInt();
 		m += k;
 		nn = new long[n];
-		tree = new long[n * n];
+		tree = new long[4*n];
 		for (int i = 0; i < n; i++) nn[i] = sc.nextInt();
 
 		init(nn, tree, 1, 0, n - 1);

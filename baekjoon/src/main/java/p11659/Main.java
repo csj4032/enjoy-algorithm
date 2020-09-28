@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 /**
  * 제목 : 구간 합 구하기 4
  * 링크 : https://www.acmicpc.net/problem/11659
+ * 분류 : 누적 합
  */
 public class Main {
 
