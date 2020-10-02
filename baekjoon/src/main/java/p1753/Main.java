@@ -3,6 +3,11 @@ package p1753;
 import java.io.*;
 import java.util.*;
 
+/**
+ * 제목 : 최단경로
+ * 링크 : https://www.acmicpc.net/problem/1753
+ * 분류 : 그래프 이론, 다익스트라
+ */
 public class Main {
 
 	static Queue<Tuple> queue = new PriorityQueue<>(2000001);
@@ -76,9 +81,6 @@ class Tuple implements Comparable<Tuple> {
 
 	@Override
 	public String toString() {
-		return "Tuple{" +
-				"v=" + v +
-				", w=" + w +
-				'}';
+		return "Tuple{" + "v=" + v + ", w=" + w + '}';
 	}
 }
