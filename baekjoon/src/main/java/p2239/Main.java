@@ -13,9 +13,6 @@ public class Main {
 
 	static int len = 9;
 	static int[][] map = new int[len][len];
-	static boolean[][] rows = new boolean[len][len + 1];
-	static boolean[][] cols = new boolean[len][len + 1];
-	static boolean[][] visitor = new boolean[len][len];
 
 	public static void main(String[] args) {
 		var sc = new Scanner(System.in);
@@ -23,9 +20,6 @@ public class Main {
 			var line = sc.nextLine();
 			for (int j = 0; j < len; j++) {
 				map[i][j] = Integer.parseInt(line.split("")[j]);
-				if (map[i][j] != 0) {
-					visitor[i][j] = true;
-				}
 			}
 		}
 		backTracking(0);
