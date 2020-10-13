@@ -57,28 +57,28 @@ public class Main {
 					x--;
 					continue;
 				}
-				copy(1, 0);
+				move(1, 0);
 			} else if (direct == 2) {
 				x--;
 				if (x < 0) {
 					x++;
 					continue;
 				}
-				copy(1, 1);
+				move(1, 1);
 			} else if (direct == 3) {
 				y--;
 				if (y < 0) {
 					y++;
 					continue;
 				}
-				copy(0, 0);
+				move(0, 0);
 			} else if (direct == 4) {
 				y++;
 				if (y >= n) {
 					y--;
 					continue;
 				}
-				copy(0, 1);
+				move(0, 1);
 			}
 			var bottom = dice[3][1];
 			var tempTop = dice[1][1];
@@ -94,7 +94,7 @@ public class Main {
 		System.out.println(sb.toString());
 	}
 
-	private static void copy(int i, int d) {
+	private static void move(int i, int d) {
 		var queue = new LinkedList<Integer>();
 		for (int j = 0; j < 4; j++) {
 			var y = direct[i][j][0];
