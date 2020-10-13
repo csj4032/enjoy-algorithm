@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * 제목 : 트리 순회
  * 링크 : https://www.acmicpc.net/problem/1991
- * 분류 : 트리
+ * 분류 : 트리 (전위 순회, 중위 순회, 후위 순회)
  */
 public class Main {
 
