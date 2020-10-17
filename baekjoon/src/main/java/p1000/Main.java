@@ -1,4 +1,7 @@
 package p1000;
+import java.nio.file.CopyOption;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
@@ -38,7 +41,14 @@ public class Main {
 		});
 
 		var string = "String";
-		string.lines();
+		string.lines().filter((a)->true).sorted().limit(1).distinct();
+
+		for (var i = 0; i < 10; i++) {
+
+		}
+
+		CopyOption[] options = {StandardCopyOption.REPLACE_EXISTING};
+		"Hello world!".chars().forEach(System.out::print);
 	}
 
 	private static <T extends Dummy> void with(T t, Consumer<T> consumer) {
