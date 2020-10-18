@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -21,7 +22,11 @@ public class Main {
 	private static final int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8};
 	private static final List<String> strings = new ArrayList<>();
 
+	private static Logger log;
+
 	public static void main(String[] args) throws IOException {
+		log = Logger.getLogger("");
+		log.info("");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		sb = new StringBuilder();
