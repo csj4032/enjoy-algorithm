@@ -25,8 +25,6 @@ public class Main {
 	private static Logger log;
 
 	public static void main(String[] args) throws IOException {
-		log = Logger.getLogger("");
-		log.info("");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 		sb = new StringBuilder();
