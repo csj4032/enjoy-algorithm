@@ -16,12 +16,11 @@ public class Main {
 	public static void main(String[] args) {
 		var sc = new Scanner(System.in);
 		var n = sc.nextInt();
+		var nn = n * 2;
 		var k = sc.nextInt();
 		l = new ArrayList<>();
 		r = new ArrayList<>();
-		for (int i = 0; i < n * 2; i++) {
-			l.add(new Node(sc.nextInt(), false));
-		}
+		for (int i = 0; i < nn; i++) l.add(new Node(sc.nextInt(), false));
 
 		while (true) {
 			l.add(0, l.remove(l.size() - 1));
@@ -49,13 +48,12 @@ public class Main {
 			}
 
 			var cnt = 0;
-			for (int i = 0; i < n * 2; i++) {
+			for (int i = 0; i < nn; i++) {
 				if (l.get(i).durability <= 0) cnt++;
 			}
 			t++;
 			if (cnt >= k) break;
 		}
-
 		System.out.println(t);
 	}
 }
@@ -69,9 +67,7 @@ class Robot {
 
 	@Override
 	public String toString() {
-		return "Robot{" +
-				"position=" + position +
-				'}';
+		return "Robot{position=" + position + '}';
 	}
 }
 
@@ -86,8 +82,6 @@ class Node {
 
 	@Override
 	public String toString() {
-		return "Node{" +
-				"durability=" + durability +
-				'}';
+		return "Node{" + "durability=" + durability + '}';
 	}
 }
