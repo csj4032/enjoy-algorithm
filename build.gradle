@@ -9,8 +9,8 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
 
-    sourceCompatibility = JavaVersion.VERSION_14
-    targetCompatibility = JavaVersion.VERSION_14
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 
     repositories {
         mavenLocal()
@@ -20,22 +20,22 @@ subprojects {
     }
 
     dependencies {
-        compile group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
-        compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
-        compile group: 'com.google.guava', name: 'guava', version: '21.0'
-        compile group: 'org.jooq', name: 'jool', version: '0.9.12'
-        compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-        compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.7'
-        compile group: 'ch.qos.logback', name: 'logback-core', version: '1.1.7'
-        compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-        compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.25'
-        compile group: 'ca.umontreal.iro.simul', name: 'ssj', version: '3.3.0'
-        testCompile group: 'org.mockito', name: 'mockito-core', version: '2.13.0'
-        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: "${junitJupiterVersion}"
-        testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "${junitJupiterVersion}"
-        testRuntime group: 'org.junit.platform', name: 'junit-platform-launcher', version: "${junitPlatformVersion}"
-        testRuntime group: 'org.junit.platform', name: 'junit-platform-engine', version: "${junitPlatformVersion}"
-        testRuntime group: 'org.junit.platform', name: 'junit-platform-commons', version: "${junitPlatformVersion}"
+        implementation group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
+        implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
+        implementation group: 'com.google.guava', name: 'guava', version: '21.0'
+        implementation group: 'org.jooq', name: 'jool', version: '0.9.12'
+        implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+        implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.7'
+        implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.1.7'
+        implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+        implementation group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.25'
+        implementation group: 'ca.umontreal.iro.simul', name: 'ssj', version: '3.3.0'
+        testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.13.0'
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: "${junitJupiterVersion}"
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "${junitJupiterVersion}"
+        testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: "${junitPlatformVersion}"
+        testImplementation group: 'org.junit.platform', name: 'junit-platform-engine', version: "${junitPlatformVersion}"
+        testImplementation group: 'org.junit.platform', name: 'junit-platform-commons', version: "${junitPlatformVersion}"
         annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
     }
 }
