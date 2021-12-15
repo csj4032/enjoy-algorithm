@@ -1,14 +1,45 @@
 package levelOne;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /*
  * 로또의 최고 순위와 최저 순위
  * https://programmers.co.kr/learn/courses/30/lessons/77484
  * */
-public class P77484 {
+public class Dial {
+	int x;
+	int y;
+	String letter;
+	String direct;
+
+	public Dial(int x, int y, String letter, String direct) {
+		this.x = x;
+		this.y = y;
+		this.letter = letter;
+		this.direct = direct;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public String getDirect() {
+		return direct;
+	}
+
+	@Override
+	public String toString() {
+		return "Dial{" +
+				"x=" + x +
+				", y=" + y +
+				", letter='" + letter + '\'' +
+				", direct='" + direct + '\'' +
+				'}';
+	}
 
 	public static void main(String[] args) {
 		int[] numbers = new int[]{1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5};
@@ -63,45 +94,5 @@ public class P77484 {
 			}
 		}
 		System.out.println(result);
-	}
-}
-
-class Dial {
-	int x;
-	int y;
-	String letter;
-	String direct;
-
-	public Dial(int x, int y, String letter, String direct) {
-		this.x = x;
-		this.y = y;
-		this.letter = letter;
-		this.direct = direct;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public String getLetter() {
-		return letter;
-	}
-
-	public String getDirect() {
-		return direct;
-	}
-
-	@Override
-	public String toString() {
-		return "Dial{" +
-				"x=" + x +
-				", y=" + y +
-				", letter='" + letter + '\'' +
-				", direct='" + direct + '\'' +
-				'}';
 	}
 }
