@@ -11,25 +11,24 @@ public class FailureRateTest {
 	public int[] solution(int N, int[] stages) {
 		Map<Integer, Stage> stageMap = new HashMap<>();
 		int totalChallenger = stages.length;
-		for (int i = 0; i < totalChallenger; i++) {
-			Integer key = stages[i];
+		for (int i = 0; i < stages.length; i++) {
+			int key = stages[i];
 			if (stageMap.containsKey(key)) {
-				stageMap.get(key).increaseChallenger();
+				Stage stage = stageMap.get(key);
+				stage.increaseChallenger();
 			} else {
 				stageMap.put(key, new Stage(key, 1));
 			}
 		}
 
-		List<FailureRate> failureRateList = new ArrayList<>();
+		List<FailureRate> failureRates = new ArrayList<>();
 		int prevStageChallenger = 0;
 		for (int i = 1; i <= N; i++) {
 			FailureRate failureRate = new FailureRate(i, stageMap.get(i), totalChallenger - prevStageChallenger);
 			prevStageChallenger += failureRate.getChallenger();
-			failureRateList.add(failureRate);
+			failureRates.add(failureRate);
 		}
-		System.out.println(failureRateList.stream().sorted().collect(Collectors.toList()));
-		System.out.println(Arrays.toString(failureRateList.stream().sorted().mapToInt(e -> e.getNumber()).toArray()));
-		return failureRateList.stream().sorted().mapToInt(e -> e.getNumber()).toArray();
+		return failureRates.stream().sorted().mapToInt(e-> e.getNumber()).toArray();
 	}
 
 	@Test

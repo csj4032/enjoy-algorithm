@@ -2,18 +2,20 @@ package kakaoBlindRecuitment2019;
 
 public class FailureRate implements Comparable<FailureRate> {
 
-	private Integer number;
+	private int number;
 	private Stage stage;
 	private int totalChallenger;
 
-	public FailureRate(Integer number, Stage stage, int totalChallenger) {
+	public FailureRate(int number, Stage stage, int totalChallenger) {
 		this.number = number;
 		this.stage = stage;
-		if (this.stage == null) this.stage = new Stage(number, 0);
+		if (this.stage == null) {
+			this.stage = new Stage(number, 0);
+		}
 		this.totalChallenger = totalChallenger;
 	}
 
-	public Integer getNumber() {
+	public int getNumber() {
 		return number;
 	}
 
@@ -26,6 +28,11 @@ public class FailureRate implements Comparable<FailureRate> {
 	}
 
 	@Override
+	public int compareTo(FailureRate o) {
+		return o.getRate().compareTo(this.getRate());
+	}
+
+	@Override
 	public String toString() {
 		return "FailureRate{" +
 				"number=" + number +
@@ -34,12 +41,8 @@ public class FailureRate implements Comparable<FailureRate> {
 				", rate=" + getRate() +
 				'}';
 	}
-
-	@Override
-	public int compareTo(FailureRate o) {
-		return o.getRate().compareTo(this.getRate());
-	}
 }
+
 
 class Stage {
 
@@ -49,6 +52,10 @@ class Stage {
 	public Stage(int number, int challenger) {
 		this.number = number;
 		this.challenger = challenger;
+	}
+
+	public int getNumber() {
+		return number;
 	}
 
 	public int getChallenger() {
@@ -66,5 +73,4 @@ class Stage {
 				", challenger=" + challenger +
 				'}';
 	}
-
 }
