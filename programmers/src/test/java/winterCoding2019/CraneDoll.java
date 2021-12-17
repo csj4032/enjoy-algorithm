@@ -13,23 +13,23 @@ public class CraneDoll {
 		this.basket = new ArrayDeque<>();
 	}
 
-	public boolean isEmptyDoll(int col) {
-		if (null == board.peekOfColumn(col)) return true;
-		return false;
-	}
-
 	public void addBasket(int col) {
 		if (!isEmptyDoll(col)) {
 			Doll doll = board.popOfColumn(col);
-			Doll target = basket.peek();
-			if (target != null && doll.getCharacter().equals(target.getCharacter())) {
+			Doll targetDoll = basket.peek();
+			if (targetDoll != null && doll.getCharacter().equals(targetDoll.getCharacter())
+			) {
 				bomb += 2;
 				basket.pop();
 			} else {
 				basket.push(doll);
 			}
 		}
-		System.out.println("bomb :" + bomb);
+	}
+
+	private boolean isEmptyDoll(int col) {
+		if (null == board.peekOfColumn(col)) return true;
+		return false;
 	}
 
 	public int getBomb() {
@@ -37,21 +37,24 @@ public class CraneDoll {
 	}
 }
 
+
 class Board {
 
-	private Map<Integer, Queue<Doll>> map = new HashMap();
+	private Map<Integer, Queue<Doll>> map = new HashMap<>();
 
 	public Board(int[][] board) {
 		init(board);
 	}
 
-	public void init(int[][] board) {
+	private void init(int[][] board) {
 		int len = board.length;
 		for (int col = 0; col < len; col++) {
-			Queue<Doll> dolls = new ArrayDeque<>();
+			Queue<Doll> dolls = new ArrayDeque();
 			for (int row = 0; row < len; row++) {
 				int character = board[row][col];
-				if (character != 0) dolls.add(new Doll(character, new Point(row, col)));
+				if (character != 0) {
+					dolls.add(new Doll(character, new Point(row, col)));
+				}
 			}
 			map.put(col + 1, dolls);
 		}
@@ -67,6 +70,7 @@ class Board {
 }
 
 class Doll {
+
 	private Integer character;
 	private Point point;
 
@@ -78,14 +82,31 @@ class Doll {
 	public Integer getCharacter() {
 		return character;
 	}
+
+	@Override
+	public String toString() {
+		return "Doll{" +
+				"character=" + character +
+				", point=" + point +
+				'}';
+	}
 }
 
 class Point {
+
 	private int row;
 	private int col;
 
 	public Point(int row, int col) {
 		this.row = row;
 		this.col = col;
+	}
+
+	@Override
+	public String toString() {
+		return "Point{" +
+				"row=" + row +
+				", col=" + col +
+				'}';
 	}
 }
