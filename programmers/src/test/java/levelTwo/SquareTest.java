@@ -6,17 +6,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SquareTest {
 
-	public long solution(int w, int h) {
+	public long solution(long w, long h) {
 		long area = w * h;
-		long min = Math.min(w, h);
-		if (w == 1 || h == 1) return 0;
-		if (w == h) return area - h;
-		if ((w % 2) != 0 && (h % 2) != 0) return (area - min * 2l) - 1l;
-		return area - min * 2l;
+		return area - (w + h - gcd(w, h));
+	}
+
+	public long gcd(long a, long b) {
+		if (b == 0) return a;
+		return gcd(b, a % b);
 	}
 
 	@Test
 	public void test() {
-		solution(10,1);
+		assertEquals(0, solution(10, 1));
+		assertEquals(6, solution(3, 3));
+		assertEquals(8, solution(3, 5));
+		assertEquals(90, solution(12, 9));
+		assertEquals(80, solution(12, 8));
 	}
 }
