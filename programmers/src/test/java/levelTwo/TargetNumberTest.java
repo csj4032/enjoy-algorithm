@@ -9,9 +9,22 @@ class TargetNumberTest {
 		//System.out.println(new TargetNumber().dfs(numbers, target));
 		//System.out.println(new TargetNumber().dfs2(numbers, 0, 0, target));
 		//System.out.println(new TargetNumber().bfs(numbers, target));
-		new TargetNumber().bfs(numbers, target);
-		int answer = new TargetNumber().dfs(numbers, target);
-		return answer;
+		//new TargetNumber().bfs(numbers, target);
+		//int answer = new TargetNumber().dfs(numbers, target);
+		for (int i = 0; i < 5; i++) {
+			String s = String.format("%" + 6 + "s", Integer.toBinaryString(i)).replace(" ", "0");
+			String[] ss =s.split("");
+			long sum = 0;
+			for (int j = 0; j < ss.length; j++) {
+				if(ss[j].equals("0")) {
+					sum -= numbers[i];
+				} else {
+					sum += numbers[i];
+				}
+			}
+		}
+
+		return 0;
 	}
 
 	@Test

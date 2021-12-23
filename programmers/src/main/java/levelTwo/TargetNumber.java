@@ -33,6 +33,9 @@ public class TargetNumber {
 		}
 	}
 
+
+
+
 	public int dfs2(int[] numbers, int step, int sum, int target) {
 		if (numbers.length == step) {
 			if (sum == target) return 1;
@@ -64,3 +67,8 @@ public class TargetNumber {
 		return answer;
 	}
 }
+
+
+
+
+
