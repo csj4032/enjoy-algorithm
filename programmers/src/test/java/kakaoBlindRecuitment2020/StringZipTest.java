@@ -10,7 +10,6 @@ class StringZipTest {
 		return stringZip.zip(s);
 	}
 
-
 	@Test
 	public void test() {
 		Assertions.assertEquals(7, solution("aabbaccc"));
