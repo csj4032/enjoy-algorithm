@@ -13,8 +13,8 @@ class LargestSquareDynamicTest {
 	@Test
 	public void test() {
 		Assertions.assertEquals(9, solution(new int[][]{{0, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 1, 1}, {0, 0, 1, 0}}));
-//		Assertions.assertEquals(4, solution(new int[][]{{0, 0, 1, 1}, {1, 1, 1, 1}}));
-//		Assertions.assertEquals(1, solution(new int[][]{{1, 0}, {0, 0}}));
+		Assertions.assertEquals(4, solution(new int[][]{{0, 0, 1, 1}, {1, 1, 1, 1}}));
+		Assertions.assertEquals(1, solution(new int[][]{{1, 0}, {0, 0}}));
 	}
 
 }
