@@ -11,8 +11,9 @@ public class Main {
 		//Scanner sc = new Scanner(System.in);
 		//String[] s = sc.next().split("");
 		//String[] s = new String[]{"(", "(", ")", "[", "[", "]", "]", ")", "(", "[", "]", ")"};
-		String[] s = new String[]{"(", ")", "[", "[", "]", "]"};
+		//String[] s = new String[]{"(", ")", "[", "[", "]", "]"};
 		//String[] s = new String[]{"(", "(", ")", ")"};
+		String[] s = new String[]{"[", "]", "[", "]"};
 		Stack<String> stack = new Stack<>();
 		String cur;
 		Integer k = 0;
