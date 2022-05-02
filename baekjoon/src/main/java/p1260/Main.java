@@ -2,6 +2,11 @@ package p1260;
 
 import java.util.*;
 
+/**
+ * 제목 : DFS 와 BFS
+ * 링크 : https://www.acmicpc.net/problem/1260
+ * 분류 : 그래프 이론, 그래프 탐색, 너비 우선 탐색, 깊이 우선 탐색
+ */
 public class Main {
 
 	private static StringBuilder sf1;
