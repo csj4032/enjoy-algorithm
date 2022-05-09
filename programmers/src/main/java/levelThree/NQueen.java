@@ -1,61 +1,38 @@
 package levelThree;
 
-import java.util.Arrays;
-
 public class NQueen {
 
-	private boolean[][] board;
-	int answer = 0;
+	private int[] cols;
+	private int size = 0;
+	private int answer = 0;
 
 	public int solution(int n) {
-		board = new boolean[n][n];
-		recursive(0, 0, 0);
+		size = n;
+		cols = new int[n + 1];
+		recursive(0);
 		return answer;
 	}
 
-	private void recursive(int n, int y, int x) {
-		if (!promising(n, y, x)) {
-			board[y][x] = true;
-			return;
+	private boolean recursive(int row) {
+		if (!promising(row)) {
+			return false;
+		} else if (row == size) {
+			answer++;
+			return true;
 		}
 
-		System.out.println(Arrays.deepToString(board));
-		for (int i = y; i < n; i++) {
-			for (int j = x; j < n; j++) {
-				board[i][j] = true;
-				recursive(n, i, j);
-			}
+		for (int i = 1; i <= size; i++) {
+			cols[row + 1] = i;
+			if (recursive(row + 1)) return false;
 		}
-		answer++;
+		return false;
 	}
 
-	private boolean promising(int n, int y, int x) {
-
-		// row
-		for (int i = 0; i < n; i++) {
-			if (board[i][x]) {
-				return false;
-			}
+	private boolean promising(int row) {
+		for (int i = 1; i < row; i++) {
+			if (cols[i] == cols[row]) return false;
+			if ((row - i) == Math.abs(cols[row] - cols[i])) return false;
 		}
-
-		// col
-		for (int i = 0; i < n; i++) {
-			if (board[y][i]) {
-				return false;
-			}
-		}
-
-//		int z = Math.min(x, y);
-//		int w = Math.max(x, y);
-//		int j = y - z;
-//		int k = x - z;
-//		int l = n - w;
-//		for (int i = 0; i < l; i++) {
-//			if (board[j + i][k + i]) {
-//				return false;
-//			}
-//		}
-
 		return true;
 	}
 }
