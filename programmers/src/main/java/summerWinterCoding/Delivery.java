@@ -4,62 +4,66 @@ import java.util.*;
 
 public class Delivery {
 
-	private List<Vertex>[] graphs;
-	private boolean[] visitors;
+	PriorityQueue<Vertex> queue = new PriorityQueue<>();
+	private List<List<Vertex>> graphs = new ArrayList();
+	static int[] distances;
 
 	public int likelihood(int N, int[][] road, int K) {
-		graphs = new ArrayList[N];
-		visitors = new boolean[N];
-		PriorityQueue<Vertex> queue = new PriorityQueue<>();
+		distances = new int[N + 1];
+		for (int i = 0; i <= N; i++) {
+			graphs.add(new ArrayList<>());
+			distances[i] = 1000000;
+		}
 
-		for (int i = 0; i < N; i++) graphs[i] = new ArrayList<>();
 		for (int i = 0; i < road.length; i++) {
-			int a = road[i][0] - 1;
-			int b = road[i][1] - 1;
+			int a = road[i][0];
+			int b = road[i][1];
 			int d = road[i][2];
-			graphs[a].add(new Vertex(b, d));
+			graphs.get(a).add(new Vertex(b, d));
+			graphs.get(b).add(new Vertex(a, d));
 		}
 
-		Vertex[] distances = new Vertex[N];
-		for (int i = 0; i < N; i++) {
-			if(i == 0) distances[i] = new Vertex(i, 0);
-			distances[i] = new Vertex(i, Integer.MAX_VALUE);
-			queue.add(distances[i]);
-		}
+		distances[1] = 0;
+		queue.add(new Vertex(1, 0));
 
 		while (!queue.isEmpty()) {
-			Vertex vertex = queue.poll();
-			for (Vertex v : graphs[vertex.index]){
-				distances[v.index].distance = distances[vertex.index].distance + v.distance;
-				queue.offer(new Vertex(v.index, distances[v.index].distance));
+			Vertex cur = queue.poll();
+			if(distances[cur.v] < cur.w) continue;
+			for (Vertex next : graphs.get(cur.v)) {
+				if ((distances[cur.v] + next.w) < distances[next.v]) {
+					distances[next.v] = distances[cur.v] + next.w;
+					queue.offer(new Vertex(next.v, distances[next.v]));
+				}
 			}
 		}
 
 		int count = 0;
+		for (int i = 0; i <= N; i++) {
+			if (distances[i] <= K) {
+				count++;
+			}
+		}
 		return count;
 	}
 }
 
 class Vertex implements Comparable<Vertex> {
-	Integer index;
-	Integer distance;
+	Integer v;
+	Integer w;
 
-	public Vertex(Integer index, Integer distance) {
-		this.index = index;
-		this.distance = distance;
+	public Vertex(Integer v, Integer w) {
+		this.v = v;
+		this.w = w;
 	}
 
 	@Override
-	public int compareTo(Vertex vertex) {
-		return this.distance.compareTo(vertex.distance);
+	public int compareTo(Vertex o) {
+		return (this.w < o.w) ? -1 : ((this.w == o.w) ? 0 : 1);
 	}
 
 	@Override
 	public String toString() {
-		return "Vertex{" +
-				"index=" + index +
-				", distance=" + distance +
-				'}';
+		return "Tuple{" + "v=" + v + ", w=" + w + '}';
 	}
 }
 
