@@ -32,8 +32,8 @@ public class Main {
 		strings.sort(Comparator.naturalOrder());
 		strings.forEach(System.out::println);
 
-		int[] comArrays = new int[4];
-		combination(comArrays, numbers.length, 4, 0, 0, numbers);
+//		int[] comArrays = new int[4];
+//		combination(comArrays, numbers.length, 4, 0, 0, numbers);
 	}
 
 	private static void permutation(int n, int m, int depth) {
