@@ -1,6 +1,5 @@
 package levelTwo;
 
-import java.util.Arrays;
 import java.util.BitSet;
 
 public class DifferenceBit {
