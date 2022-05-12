@@ -22,6 +22,7 @@ public class GetReportResults {
 			Set<String> uniqueReportedCounts = reportedCounts.getOrDefault(reported, new HashSet<>());
 			uniqueReportedCounts.add(id);
 		}
+
 		for (int i = 0; i < idListLength; i++) {
 			String id = id_list[i];
 			Set<String> reportIds = reports.get(id);
