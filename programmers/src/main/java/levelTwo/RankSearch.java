@@ -2,6 +2,9 @@ package levelTwo;
 
 import java.util.*;
 
+/*
+Lower Bound, Upper Bound
+ */
 public class RankSearch {
 
 	public int[] solution(String[] info, String[] query) {
