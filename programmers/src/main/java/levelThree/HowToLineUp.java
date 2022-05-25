@@ -1,37 +1,31 @@
 package levelThree;
 
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HowToLineUp {
 
-
 	public int[] solution(int n, long k) {
 		int[] answer = new int[n];
-		LinkedList<Integer> list = new LinkedList<>();
+		long[] factorial = new long[n + 1];
+		factorial[0] = 1;
+		List<Integer> list = new ArrayList<>();
 		for (int i = 1; i <= n; i++) {
 			list.add(i);
+			factorial[i] = factorial(i);
 		}
-
+		k = k - 1;
 		int i = 0;
 		while (true) {
-			long f = factorial(n - 1);
+			long f = factorial[n - 1];
 			int kk = (int) (k / f);
-			int kkk = (int) (k % f);
-			if (n == 0) {
-				//answer[n] = list.get(0);
-				//answer[n - 1] = list.get(1);
-				break;
-			}
+			long kkk = k % f;
+			answer[i] = list.remove(kk);
 			k = kkk;
 			n = n - 1;
-			answer[i] = list.get(kk);
-			list.remove(kk);
 			i++;
-			System.out.println(kk + " " + kkk);
-			System.out.println(Arrays.toString(answer));
+			if (n == 0) break;
 		}
-
 		return answer;
 	}
 
