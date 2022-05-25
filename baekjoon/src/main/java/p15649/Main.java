@@ -33,7 +33,7 @@ public class Main {
 		strings.forEach(System.out::println);
 
 //		int[] comArrays = new int[4];
-//		combination(comArrays, numbers.length, 4, 0, 0, numbers);
+//		combination(comArrays, numbers.length, 3, 0, 0, numbers);
 	}
 
 	private static void permutation(int n, int m, int depth) {
