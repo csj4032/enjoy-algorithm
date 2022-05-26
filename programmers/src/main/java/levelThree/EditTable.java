@@ -1,7 +1,6 @@
 package levelThree;
 
-import java.util.ArrayList;
-import java.util.Stack;
+import java.util.*;
 
 public class EditTable {
 
@@ -9,8 +8,10 @@ public class EditTable {
 		int length = cmd.length;
 		Stack<Row> undo = new Stack();
 		StringBuffer sb = new StringBuffer();
-		ArrayList<Integer> linkedList = new ArrayList<>();
-		for (int i = 0; i < n; i++) {
+		List<Integer> linkedList = new ArrayList<>();
+
+		LinkedHashMap
+		for (Integer i = 0; i < n; i++) {
 			sb.append("O");
 			linkedList.add(i);
 		}
@@ -43,21 +44,21 @@ public class EditTable {
 		return sb.toString();
 	}
 
-	private int down(int current, int move) {
+	private int down(Integer current, Integer move) {
 		return current + move;
 	}
 
-	private int up(int current, int move) {
+	private int up(Integer current, Integer move) {
 		return current - move;
 	}
 
-	public int delete(int current, ArrayList<Integer> linkedList, Stack<Row> undo) {
+	public int delete(int current, List<Integer> linkedList, Stack<Row> undo) {
 		undo.add(new Row(current, linkedList.remove(current)));
 		if ((linkedList.size()) == current) current--;
 		return current;
 	}
 
-	public int undo(int current, ArrayList<Integer> linkedList, Stack<Row> undo) {
+	public int undo(int current, List<Integer> linkedList, Stack<Row> undo) {
 		Row row = undo.pop();
 		int index = row.index;
 		int value = row.value;
@@ -71,7 +72,7 @@ class Row {
 	int index;
 	int value;
 
-	public Row(int index, int value) {
+	public Row(Integer index, Integer value) {
 		this.index = index;
 		this.value = value;
 	}
