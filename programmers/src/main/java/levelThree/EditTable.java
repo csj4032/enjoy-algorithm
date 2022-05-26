@@ -2,78 +2,47 @@ package levelThree;
 
 import java.util.*;
 
+/**
+ *  명령이 끝나고 누락된 줄을 찾아서 LIFO 로 X 를 삽입
+ */
 public class EditTable {
 
 	public String solution(int n, int k, String[] cmd) {
+
+		StringBuilder sb = new StringBuilder();
+		Stack<Integer> stack = new Stack<>();
+		int size = n;
 		int length = cmd.length;
-		Stack<Row> undo = new Stack();
-		StringBuffer sb = new StringBuffer();
-		List<Integer> linkedList = new ArrayList<>();
 
-		LinkedHashMap
-		for (Integer i = 0; i < n; i++) {
-			sb.append("O");
-			linkedList.add(i);
-		}
+		StringBuffer sbb = new StringBuffer();
+		sbb.append("aaa");
+		sbb.insert(1, "b");
+		System.out.println(sbb);
 
-		int current = k;
 		for (int i = 0; i < length; i++) {
-			String commend = cmd[i];
-			if (commend.equals("C")) {
-				//System.out.println("C" + " " + current);
-				current = delete(current, linkedList, undo);
-			} else if (commend.equals("Z")) {
-				//System.out.println("Z" + " " + current);
-				current = undo(current, linkedList, undo);
-			} else if (commend.contains("U")) {
-				Integer count = Integer.valueOf(commend.split(" ")[1]);
-				//System.out.println("U" + " " + current + " " + count);
-				current = up(current, count);
-			} else if (commend.contains("D")) {
-				Integer count = Integer.valueOf(commend.split(" ")[1]);
-				//System.out.println("D" + " " + current + " " + count);
-				current = down(current, count);
+			char c = cmd[i].charAt(0);
+
+			if (c == 'U') {
+				k -= Integer.valueOf(cmd[i].substring(2));
+			} else if (c == 'D') {
+				k += Integer.valueOf(cmd[i].substring(2));
+			} else if (c == 'C') {
+				stack.push(k);
+				size -= 1;
+				if (k == size) k -= 1;
+			} else {
+				int r = stack.pop();
+				if (k >= r) k += 1;
+				size += 1;
 			}
-			//System.out.println(linkedList);
 		}
 
-		while (!undo.isEmpty()) {
-			sb.setCharAt(undo.pop().value, 'X');
-		}
+		for (int i = 0; i < size; i++) sb.append('O');
 
+		while (!stack.isEmpty()) {
+			int kk = stack.pop().intValue();
+			sb.insert(kk, 'X');
+		}
 		return sb.toString();
-	}
-
-	private int down(Integer current, Integer move) {
-		return current + move;
-	}
-
-	private int up(Integer current, Integer move) {
-		return current - move;
-	}
-
-	public int delete(int current, List<Integer> linkedList, Stack<Row> undo) {
-		undo.add(new Row(current, linkedList.remove(current)));
-		if ((linkedList.size()) == current) current--;
-		return current;
-	}
-
-	public int undo(int current, List<Integer> linkedList, Stack<Row> undo) {
-		Row row = undo.pop();
-		int index = row.index;
-		int value = row.value;
-		if (index <= current) current++;
-		linkedList.add(index, value);
-		return current;
-	}
-}
-
-class Row {
-	int index;
-	int value;
-
-	public Row(Integer index, Integer value) {
-		this.index = index;
-		this.value = value;
 	}
 }
