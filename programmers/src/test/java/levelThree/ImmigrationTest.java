@@ -8,6 +8,6 @@ class ImmigrationTest {
 	@Test
 	public void test() {
 		Immigration immigration = new Immigration();
-		Assertions.assertEquals(28, immigration.solution(6, new int[]{1, 2, 3, 0, 0, 0, 7, 10}));
+		Assertions.assertEquals(28, immigration.solution(6, new int[]{7, 10}));
 	}
 }
