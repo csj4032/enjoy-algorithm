@@ -6,11 +6,32 @@ public class Immigration {
 
 	public long solution(int n, int[] times) {
 		long answer = 0;
+		int idx = 0;
 		int length = times.length;
-		int[] imm = new int[length];
 		Arrays.sort(times);
-		System.out.println(lowerBound(times, 0, length));
-		System.out.println(upperBound(times, 0, length));
+		int[] imm = new int[length];
+		//int[] imm = Arrays.copyOf(times, length);
+		while (true) {
+			answer++;
+			Arrays.sort(imm);
+			int lower = lowerBound(imm, 0, length);
+			int upper = upperBound(imm, 0, length);
+			System.out.println(lower + " " + upper + " " + Arrays.toString(imm) + " " + answer + " " + n);
+			if (lower != upper) {
+				for (int i = lower; i <= upper; i++) {
+					if (imm[i] > 0) continue;
+					n--;
+					imm[i] = times[idx];
+					idx++;
+					idx = idx % length;
+				}
+			} else {
+				for (int i = 0; i < length; i++) {
+					imm[i] = imm[i] - 1;
+				}
+			}
+			if (n < 0 && (lower < upper)) break;
+		}
 		return answer;
 	}
 
