@@ -3,53 +3,38 @@ package levelThree;
 import java.util.Arrays;
 
 /**
- * 입국심사를 기다리는 사람 수를 적당히 나워서 심사를 처리
- * 심사원은 최대한 동일한 입국자를 할당
- * 심사를 받는데 걸리는 최대 시간에서 최소 시간으로 입국자를 넘김
- * 최소 시간이 다시 늘어나는 시점에 종료
+ * 전체 시간은 1 ~ 가장 오래 걸리는 입국심사 * 입국자
  */
 public class Immigration {
 
-	public long solution(int n, int[] times) {
+	public long solution(long n, int[] times) {
 		long answer = 0;
-		long temp = Long.MAX_VALUE;
 		int length = times.length;
-		int portion = n / length;
-		int remainder = n % length;
-		long[] imm = new long[length];
 		Arrays.sort(times);
-		Arrays.fill(imm, portion);
-		for (int i = 0; i < remainder; i++) {
-			imm[i] = imm[i] + 1;
-		}
-		//System.out.println(Arrays.toString(imm));
-		while (true) {
-			long max = Long.MIN_VALUE;
-			int iMax = 0;
-			long min = Long.MAX_VALUE;
-			int iMin = 0;
-			for (int i = 0; i < length; i++) {
-				long time = imm[i] * times[i];
-				if (time == 0) continue;
-				if (max <= time) {
-					max = time;
-					iMax = i;
-				}
-				if (min >= time) {
-					min = time;
-					iMin = i;
-				}
+		long maxTime = times[length - 1] * n;
+		long start = 1l;
+		long end = maxTime;
+
+		if(start == end) return end;
+
+		while (start < end) {
+			long median = (start + end) / 2;
+			long count = complete(median, times, length);
+			if (count < n) {
+				start = median + 1;
+			} else {
+				end = median;
 			}
-			imm[iMax] = imm[iMax] - 1;
-			imm[iMin] = imm[iMin] + 1;
-			answer = max;
-			//System.out.println(answer + " " + max + " " + temp);
-			if (answer >= temp) {
-				answer = temp;
-				break;
-			}
-			temp = answer;
+			answer = end;
 		}
 		return answer;
+	}
+
+	private long complete(long index, int[] times, int length) {
+		long count = 0;
+		for (int j = 0; j < length; j++) {
+			count += index / times[j];
+		}
+		return count;
 	}
 }
