@@ -2,6 +2,11 @@ package p11726;
 
 import java.util.Scanner;
 
+/**
+ * 제목 : 2×n 타일링
+ * 링크 : https://www.acmicpc.net/problem/11726
+ * 분류 : 동적프로그래밍
+ */
 public class Main {
 
 	public static void main(String[] args) {
