@@ -1,48 +1,69 @@
 package levelTwo;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MenuRenewal {
 
+	private static Map<String, Integer> menuMap = new LinkedHashMap<>();
+	private static Map<Integer, Integer> maxMap = new LinkedHashMap<>();
+	private static List<String> menus = new ArrayList<>();
+
 	public String[] solution(String[] orders, int[] course) {
 		String[] answer = {};
-		Set<String> alphabet = new HashSet<>();
 		for (int i = 0; i < orders.length; i++) {
-			String[] order = orders[i].split("");
-			for (int j = 0; j < order.length; j++) {
-				alphabet.add(order[j]);
+			char[] menus = orders[i].toCharArray();
+			int menuLength = menus.length;
+			for (int j = 0; j < course.length; j++) {
+				int courseLength = course[j];
+				boolean[] visited = new boolean[menuLength];
+				if (menuLength >= courseLength) {
+					combination(menus, visited, 0, menuLength, courseLength);
+				}
 			}
 		}
-		String[] unique = alphabet.toArray(new String[]{});
-		System.out.println(Arrays.toString(unique));
+		menuMap.keySet()
+				.removeAll(menuMap.entrySet().stream().filter(e -> e.getValue().equals(1)).map(e -> e.getKey()).collect(Collectors.toList()));
+//		Map<String, Integer> sortedMap = menuMap.entrySet().stream()
+//				.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
 		for (int i = 0; i < course.length; i++) {
-			int size = course[i];
-			permutation(unique.length, size, 0, unique);
-			System.out.println(" ");
+			int key = course[i];
+			Optional<Map.Entry<String, Integer>> value = menuMap.entrySet().stream().filter(e -> e.getKey().length() == key).max(Comparator.comparing(Map.Entry::getValue));
+			if (value.isPresent()) {
+				maxMap.put(key, value.get().getValue());
+			}
 		}
-		return answer;
+		for (Map.Entry<Integer, Integer> max : maxMap.entrySet()) {
+			for (Map.Entry<String, Integer> menu : menuMap.entrySet()) {
+				if (max.getKey() == menu.getKey().length() && max.getValue().equals(menu.getValue())) {
+					menus.add(menu.getKey());
+				}
+			}
+		}
+		Collections.sort(menus);
+		System.out.println(menus);
+		return menus.stream().toArray(String[]::new);
 	}
 
-
-	private static void permutation(int n, int m, int depth, String[] unique) {
-		if (depth == m) {
-			System.out.println(Arrays.toString(unique));
+	private void combination(char[] array, boolean[] visited, int from, int to, int depth) {
+		if (depth == 0) {
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < from; i++) {
+				if (visited[i]) sb.append(array[i]);
+			}
+			String[] menus = sb.toString().split("");
+			Arrays.sort(menus);
+			String key = Arrays.asList(menus).stream().collect(Collectors.joining());
+			menuMap.computeIfPresent(key, (k, v) -> v + 1);
+			menuMap.computeIfAbsent(key, (k) -> 1);
 			return;
 		}
-		for (int i = depth; i < n; i++) {
-			swap(i, depth, unique);
-			permutation(n, m, depth + 1, unique);
-			swap(i, depth, unique);
-		}
-	}
 
-	private static void swap(int p, int q, String[] unique) {
-		String t = unique[p];
-		unique[p] = unique[q];
-		unique[q] = t;
+		for (int i = from; i < to; i++) {
+			visited[i] = true;
+			combination(array, visited, i + 1, to, depth - 1);
+			visited[i] = false;
+		}
 	}
 }
