@@ -8,44 +8,37 @@ import java.util.stream.Collectors;
 
 public class NewsClustering {
 
-	static Pattern pattern = Pattern.compile("[a-z,A-Z]{2}");
+	static Pattern pattern = Pattern.compile("[a-zA-Z]{2}");
 
 	public int solution(String str1, String str2) {
-		List<String> str11 = extractString(str1);
-		List<String> str22 = extractString(str2);
+		List<Sub> sub11 = extractString(str1);
+		List<Sub> sub22 = extractString(str2);
 
-		if (str11.isEmpty() || str22.isEmpty()) {
-			return 65536;
-		}
-
-		Map<String, Long> map11 = str11.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-		Map<String, Long> map22 = str22.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
-		List<Sub> sub11 = map11.entrySet().stream().map(e -> new Sub(e.getKey(), e.getValue())).collect(Collectors.toList());
-		List<Sub> sub22 = map22.entrySet().stream().map(e -> new Sub(e.getKey(), e.getValue())).collect(Collectors.toList());
-		List<Sub> sub33 = new ArrayList<>(sub11);
-		List<Sub> sub44 = new ArrayList<>(sub22);
+		if (sub11.isEmpty() && sub22.isEmpty()) return 65536;
 
 		sub11.addAll(sub22);
-		sub33.retainAll(sub44);
 
-		List<Sub> sub55 = new ArrayList<>(sub11);
-		List<Sub> sub66 = new ArrayList<>(sub33);
+		Map<String, List<Sub>> sub33 = sub11.stream().collect(Collectors.groupingBy(e -> e.getKey(), Collectors.toList()));
 
-		System.out.println(sub55);
-		System.out.println(sub66);
+		List<Sub> intersection = sub33.entrySet()
+				.stream()
+				.filter(e -> e.getValue().size() > 1)
+				.map(e -> e.getValue().stream().min(Sub::compareTo).get())
+				.collect(Collectors.toList());
+		List<Sub> union = sub33.entrySet()
+				.stream()
+				.map(e -> e.getValue().stream().max(Sub::compareTo).get())
+				.collect(Collectors.toList());
 
-		Map<String, Optional<Sub>> union = sub55.stream().collect(Collectors.groupingBy(e -> e.getKey(), Collectors.maxBy(Sub::compareTo)));
-		Map<String, Optional<Sub>> intersection = sub66.stream().collect(Collectors.groupingBy(e -> e.getKey(), Collectors.minBy(Sub::compareTo)));
+		Long unionCount = union.stream().mapToLong(e -> e.getCount()).sum();
+		Long intersectionCount = intersection.stream().mapToLong(e -> e.getCount()).sum();
 
-		Long unionCount = union.entrySet().stream().mapToLong(e -> e.getValue().get().getCount()).sum();
-		Long intersectionCount = intersection.entrySet().stream().mapToLong(e -> e.getValue().get().getCount()).sum();
 		double temp = (double) intersectionCount / (double) unionCount;
 		int answer = (int) (65536 * temp);
 		return answer;
 	}
 
-	private List<String> extractString(String str2) {
+	private List<Sub> extractString(String str2) {
 		List<String> result = new ArrayList<>();
 		for (int i = 0; i < str2.length(); i++) {
 			if (i + 2 > str2.length()) break;
@@ -55,7 +48,9 @@ public class NewsClustering {
 				result.add(ss);
 			}
 		}
-		return result;
+		return result
+				.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+				.entrySet().stream().map(e -> new Sub(e.getKey(), e.getValue())).collect(Collectors.toList());
 	}
 }
 
