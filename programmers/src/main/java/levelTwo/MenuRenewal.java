@@ -10,7 +10,6 @@ public class MenuRenewal {
 	private static List<String> menus = new ArrayList<>();
 
 	public String[] solution(String[] orders, int[] course) {
-		String[] answer = {};
 		for (int i = 0; i < orders.length; i++) {
 			char[] menus = orders[i].toCharArray();
 			int menuLength = menus.length;
@@ -22,10 +21,7 @@ public class MenuRenewal {
 				}
 			}
 		}
-		menuMap.keySet()
-				.removeAll(menuMap.entrySet().stream().filter(e -> e.getValue().equals(1)).map(e -> e.getKey()).collect(Collectors.toList()));
-//		Map<String, Integer> sortedMap = menuMap.entrySet().stream()
-//				.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+		menuMap.keySet().removeAll(menuMap.entrySet().stream().filter(e -> e.getValue().equals(1)).map(e -> e.getKey()).collect(Collectors.toList()));
 
 		for (int i = 0; i < course.length; i++) {
 			int key = course[i];
@@ -42,7 +38,6 @@ public class MenuRenewal {
 			}
 		}
 		Collections.sort(menus);
-		System.out.println(menus);
 		return menus.stream().toArray(String[]::new);
 	}
 
