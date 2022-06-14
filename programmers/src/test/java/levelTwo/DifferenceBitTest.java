@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class DifferenceBitTest {
+
 	@Test
 	public void test() {
 		DifferenceBit differenceBit = new DifferenceBit();
