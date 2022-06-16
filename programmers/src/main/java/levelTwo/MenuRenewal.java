@@ -21,6 +21,7 @@ public class MenuRenewal {
 				}
 			}
 		}
+
 		menuMap.keySet().removeAll(menuMap.entrySet().stream().filter(e -> e.getValue().equals(1)).map(e -> e.getKey()).collect(Collectors.toList()));
 
 		for (int i = 0; i < course.length; i++) {
