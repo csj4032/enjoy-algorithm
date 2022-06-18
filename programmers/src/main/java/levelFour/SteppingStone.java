@@ -12,7 +12,7 @@ public class SteppingStone {
 	public int solution(int distance, int[] rocks, int n) {
 		int length = rocks.length;
 		Arrays.sort(rocks);
-		combination(0, length, n, rocks, distance, new boolean[length]);
+		combination(0, length, 1, rocks, distance, new boolean[length]);
 		return answer;
 	}
 
@@ -21,6 +21,8 @@ public class SteppingStone {
 			AtomicInteger min = new AtomicInteger(Integer.MAX_VALUE);
 			List<Integer> remain = new ArrayList<>();
 			remain.add(0);
+			System.out.println(Arrays.toString(visited));
+			System.out.println(Arrays.toString(rocks));
 			for (int i = 0; i < to; i++) {
 				if (!visited[i]) {
 					remain.add(rocks[i]);
