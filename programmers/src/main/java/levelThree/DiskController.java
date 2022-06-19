@@ -14,9 +14,10 @@ public class DiskController {
 
 		int flag = 0;
 		int sum = 0;
+		Job job;
 		while (!jobQueue.isEmpty()) {
 			int gap = 0;
-			Job job = jobQueue.poll();
+			job = jobQueue.poll();
 			System.out.println(job);
 			if (flag <= job.start) {
 				flag = job.start + job.through;
