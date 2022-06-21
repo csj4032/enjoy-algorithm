@@ -1,5 +1,7 @@
 package levelTwo;
 
+import java.util.Stack;
+
 public class BracketConversion {
 
 	public String solution(String p) {
@@ -9,35 +11,53 @@ public class BracketConversion {
 
 	private String recursive(String p) {
 		if (p.equals("")) return "";
-		String u = "";
-		String v = "";
-		int pp = 0;
-		int qq = 0;
-		int ss = 0;
-
-		for (int i = 0; i < p.length(); i++) {
-			if (p.charAt(i) == ')') pp++;
-			if (p.charAt(i) == '(') qq++;
-			if (pp == qq) {
-				ss = i;
-				break;
-			}
-		}
-
-		u = p.substring(0, ss + 1);
-		v = p.substring(ss + 1);
-		if (u.charAt(0) == ')') {
-			String uu = "";
-			for (int i = 1; i < u.length() - 1; i++) {
-				if (u.charAt(i) == ')') {
-					uu += "(";
+		String[] uv = balanced(p);
+		String u = uv[0];
+		String v = uv[1];
+		if (correct(u)) {
+			return u + recursive(v);
+		} else {
+			u = u.substring(1, u.length() - 1);
+			String[] uu = u.split("");
+			String uuu = "";
+			for (int i = 0; i < u.length(); i++) {
+				if (uu[i].equals("(")) {
+					uuu += ")";
 				} else {
-					uu += ")";
+					uuu += "(";
 				}
 			}
-			return "(" + recursive(uu) + ")" + recursive(v);
-		} else {
-			return u + recursive(v);
+			return "(" + recursive(v) + ")" + uuu;
 		}
+	}
+
+	private boolean correct(String u) {
+		String[] brackets = u.split("");
+		if (brackets[0].equals(")")) return false;
+		Stack<String> stack = new Stack<>();
+		for (int i = 0; i < brackets.length; i++) {
+			if (brackets[i].equals("(")) {
+				stack.push(brackets[i]);
+			} else {
+				stack.pop();
+			}
+		}
+		return stack.isEmpty();
+	}
+
+	public String[] balanced(String w) {
+		Stack<String> stack = new Stack<>();
+		String[] brackets = w.split("");
+		stack.push(brackets[0]);
+		int i = 1;
+		while (!stack.isEmpty()) {
+			if (stack.peek().equals(brackets[i])) {
+				stack.push(brackets[i]);
+			} else {
+				stack.pop();
+			}
+			i++;
+		}
+		return new String[]{w.substring(0, i), w.substring(i)};
 	}
 }

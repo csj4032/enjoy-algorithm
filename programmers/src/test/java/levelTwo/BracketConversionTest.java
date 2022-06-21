@@ -8,11 +8,8 @@ class BracketConversionTest {
 	@Test
 	public void test() {
 		BracketConversion bracketConversion = new BracketConversion();
-		Assertions.assertEquals("()", bracketConversion.solution("()((())()))("));
-		//Assertions.assertEquals("(()())()", bracketConversion.solution("(()())()"));
-		Assertions.assertEquals("((()))()", bracketConversion.solution(")))(((()"));
-		Assertions.assertEquals("(((())))", bracketConversion.solution("))))(((("));
-		Assertions.assertEquals("()(())", bracketConversion.solution("()))(("));
+		//Assertions.assertEquals("((())()(()))", bracketConversion.solution("()((())()))("));
+		//Assertions.assertEquals("()", bracketConversion.solution(")("));
 		Assertions.assertEquals("()(())()", bracketConversion.solution("()))((()"));
 	}
 }
