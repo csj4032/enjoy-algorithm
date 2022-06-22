@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * 징검다리
+ */
 public class SteppingStone {
 
 	static int answer = 0;
