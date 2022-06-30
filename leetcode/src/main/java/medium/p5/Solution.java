@@ -1,5 +1,6 @@
 package medium.p5;
 
+<<<<<<< Updated upstream
 import java.util.Arrays;
 
 public class Solution {
@@ -23,10 +24,27 @@ public class Solution {
 					if (max < i - j + 1) {
 						max = i - j + 1;
 						begin = j;
+=======
+public class Solution {
+
+	public String longestPalindrome(String s) {
+		if (s.length() == 1) return s;
+		int length = s.length();
+		int begin = 0;
+		int maxLength = 0;
+		for (int i = 0; i < length; i++) {
+			for (int j = i; j < length; j++) {
+				if (isPalindrome(s, i, j)) {
+					int subLen = j + 1 - i;
+					if (subLen > maxLength) {
+						maxLength = subLen;
+						begin = i;
+>>>>>>> Stashed changes
 					}
 				}
 			}
 		}
+<<<<<<< Updated upstream
 		return s.substring(begin, begin + max);
 	}
 
@@ -37,5 +55,18 @@ public class Solution {
 			}
 			System.out.println();
 		}
+=======
+		return s.substring(begin, begin + maxLength);
+	}
+
+	public boolean isPalindrome(String s, int start, int end) {
+		if (s.length() == 1) return true;
+		while (start <= end) {
+			if (s.charAt(start) != s.charAt(end)) return false;
+			start++;
+			end--;
+		}
+		return true;
+>>>>>>> Stashed changes
 	}
 }
