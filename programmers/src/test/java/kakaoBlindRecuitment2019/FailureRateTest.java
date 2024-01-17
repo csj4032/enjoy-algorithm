@@ -11,15 +11,14 @@ public class FailureRateTest {
 	public int[] solution(int N, int[] stages) {
 		Map<Integer, Stage> stageMap = new HashMap<>();
 		int totalChallenger = stages.length;
-		for (int i = 0; i < stages.length; i++) {
-			int key = stages[i];
-			if (stageMap.containsKey(key)) {
-				Stage stage = stageMap.get(key);
-				stage.increaseChallenger();
-			} else {
-				stageMap.put(key, new Stage(key, 1));
-			}
-		}
+        for (int key : stages) {
+            if (stageMap.containsKey(key)) {
+                Stage stage = stageMap.get(key);
+                stage.increaseChallenger();
+            } else {
+                stageMap.put(key, new Stage(key, 1));
+            }
+        }
 
 		List<FailureRate> failureRates = new ArrayList<>();
 		int prevStageChallenger = 0;
