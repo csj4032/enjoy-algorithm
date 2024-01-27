@@ -12,7 +12,7 @@ public class Immigration {
 		int length = times.length;
 		Arrays.sort(times);
 		long maxTime = times[length - 1] * n;
-		long start = 1l;
+		long start = 1L;
 		long end = maxTime;
 
 		if(start == end) return end;
