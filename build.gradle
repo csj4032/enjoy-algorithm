@@ -36,7 +36,7 @@ subprojects {
         testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: "${junitPlatformVersion}"
         testImplementation group: 'org.junit.platform', name: 'junit-platform-engine', version: "${junitPlatformVersion}"
         testImplementation group: 'org.junit.platform', name: 'junit-platform-commons', version: "${junitPlatformVersion}"
-        annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
+        // annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
     }
 }
 buildscript {
