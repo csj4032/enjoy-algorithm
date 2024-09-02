@@ -9,21 +9,22 @@ import java.util.Scanner;
  */
 public class Main {
 
-	static long[] dp = new long[31];
+    static long[] dp = new long[31];
 
-	static {
-		dp[0] = 0;
-		dp[1] = 0;
-		dp[2] = 3;
-		dp[3] = 0;
-		dp[4] = 11;
-		dp[5] = 0;
-		dp[6] = 41;
-	}
+    static {
+        dp[0] = 1;
+        dp[1] = 0;
+        dp[2] = 3;
+        dp[3] = 0;
+        dp[4] = 11;
+        dp[5] = 0;
+        dp[6] = 41;
+    }
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		System.out.println(dp[n]);
-	}
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        for (int i = 6; i <= n; i += 2) dp[i] = 4 * dp[i - 2] - dp[i - 4];
+        System.out.println(dp[n]);
+    }
 }

@@ -1,5 +1,7 @@
 package p1991;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -9,56 +11,52 @@ import java.util.Scanner;
  */
 public class Main {
 
-	static String[] node = new String[1000];
+    static Map<String, Node> nodes = new HashMap();
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		node[1] = "A";
-		for (int i = 0; i < n; i++) {
-			String a = sc.next();
-			String b = sc.next();
-			String c = sc.next();
-			int parent = search(a);
-			node[parent * 2] = b;
-			node[parent * 2 + 1] = c;
-		}
-		preOrder(1);
-		System.out.println("");
-		inOrder(1);
-		System.out.println("");
-		postOrder(1);
-	}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        for (int i = 0; i < n; i++) {
+            String a = sc.next();
+            String b = sc.next();
+            String c = sc.next();
+            nodes.put(a, new Node(b, c));
+        }
+        preOrder("A");
+        System.out.println();
+        inOrder("A");
+        System.out.println();
+        postOrder("A");
+    }
 
-	private static void preOrder(int i) {
-		if (node[i].equals(".")) return;
-		System.out.print(node[i]);
-		preOrder(i * 2);
-		preOrder(i * 2 + 1);
-	}
+    private static void preOrder(String node) {
+        if (node.equals(".")) return;
+        System.out.print(node);
+        preOrder(nodes.get(node).left);
+        preOrder(nodes.get(node).right);
+    }
 
-	private static void inOrder(int i) {
-		if (node[i].equals(".")) return;
-		inOrder(i * 2);
-		System.out.print(node[i]);
-		inOrder(i * 2 + 1);
-	}
+    private static void inOrder(String node) {
+        if (node.equals(".")) return;
+        inOrder(nodes.get(node).left);
+        System.out.print(node);
+        inOrder(nodes.get(node).right);
+    }
 
-	private static void postOrder(int i) {
-		if (node[i].equals(".")) return;
-		postOrder(i * 2);
-		postOrder(i * 2 + 1);
-		System.out.print(node[i]);
-	}
+    private static void postOrder(String node) {
+        if (node.equals(".")) return;
+        postOrder(nodes.get(node).left);
+        postOrder(nodes.get(node).right);
+        System.out.print(node);
+    }
+}
 
-	private static int search(String a) {
-		int i = 1;
-		while (i < node.length) {
-			if (a.equals(node[i])) {
-				break;
-			}
-			i++;
-		}
-		return i;
-	}
+class Node {
+    String left;
+    String right;
+
+    public Node(String left, String right) {
+        this.left = left;
+        this.right = right;
+    }
 }
