@@ -40,3 +40,25 @@ public class Main {
 		}
 	}
 }
+
+class Item {
+	String name;
+	Integer age;
+
+	public Item(String z, Integer o) {
+		this.name = name;
+		this.age = age;
+	}
+
+	@Override
+	public boolean equals(Object ojb) {
+		if (this == ojb) {
+			return true;
+		}
+		if (ojb == null || getClass() != ojb.getClass()) {
+			return false;
+		}
+		Item item = (Item) ojb;
+		return name.equals(item.name) && age.equals(item.age);
+	}
+}
