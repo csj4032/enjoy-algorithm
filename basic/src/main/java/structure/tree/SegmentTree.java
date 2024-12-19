@@ -1,4 +1,4 @@
-package tree;
+package structure.tree;
 
 import java.math.BigInteger;
 import java.util.stream.IntStream;
