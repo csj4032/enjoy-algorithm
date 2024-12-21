@@ -4,11 +4,7 @@ import java.util.Arrays;
 
 public class QuickSelect {
 
-	public static void main(String[] args) {
-		System.out.println(quickSelect(new int[]{5, 1, 3, 4, 2}, 2));
-	}
-
-	public static int quickSelect(int[] array, int k) {
+	public int quickSelect(int[] array, int k) {
 		int len = array.length;
 		if (array == null || len <= k) {
 			return -1;

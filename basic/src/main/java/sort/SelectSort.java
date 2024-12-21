@@ -1,7 +1,5 @@
 package sort;
 
-import java.util.Arrays;
-
 public class SelectSort {
 
 	public void sort(int[] array) {
@@ -17,12 +15,5 @@ public class SelectSort {
 			array[index] = array[i];
 			array[i] = temp;
 		}
-	}
-
-	public static void main(String[] args) {
-		int[] array = new int[]{32, 3, 45, 5};
-		SelectSort selectSort = new SelectSort();
-		selectSort.sort(array);
-		System.out.println(Arrays.toString(array));
 	}
 }

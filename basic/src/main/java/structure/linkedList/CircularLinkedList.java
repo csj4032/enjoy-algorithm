@@ -1,6 +1,9 @@
 package structure.linkedList;
 
-public class CircularLinkedList<T> {
+import structure.Node;
+import structure.Structure;
+
+public class CircularLinkedList<T> implements Structure<T> {
 
     private Node<T> tail;
     private int size;
@@ -24,25 +27,18 @@ public class CircularLinkedList<T> {
         size++;
     }
 
-    public void print() {
-        if (tail == null) {
-            return;
-        }
-        Node<T> current = tail.next;
-        do {
-            System.out.print(current.value + " ");
-            current = current.next;
-        } while (current != tail.next);
-        System.out.println();
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
     }
 
-    private static class Node<T> {
-        T value;
-        Node<T> next;
+    @Override
+    public int size() {
+        return size;
+    }
 
-        Node() {
-            value = null;
-            next = null;
-        }
+    @Override
+    public Node<T> head() {
+        return tail;
     }
 }

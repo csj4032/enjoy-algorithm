@@ -1,9 +1,13 @@
 package structure.linkedList;
 
-public class DoublyLinkedList<T> {
+import structure.Node;
+import structure.Structure;
+
+public class DoublyLinkedList<T> implements Structure<T> {
 
     private Node<T> head;
     private Node<T> tail;
+    private int size;
 
     public void firstAdd(T value) {
         if (head == null) {
@@ -14,6 +18,7 @@ public class DoublyLinkedList<T> {
             node.next = head;
             head = node;
         }
+        size++;
     }
 
     public void lastAdd(T value) {
@@ -25,27 +30,21 @@ public class DoublyLinkedList<T> {
             node.prev = tail;
             tail = node;
         }
+        size++;
     }
 
-    public void print() {
-        Node<T> current = head;
-        while (current != null) {
-            System.out.print(current.value);
-            if (current.next != null) System.out.print(" -> ");
-            current = current.next;
-        }
-        System.out.println();
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
     }
 
-    private static class Node<T> {
-        T value;
-        Node<T> next;
-        Node<T> prev;
+    @Override
+    public int size() {
+        return size;
+    }
 
-        Node(T value) {
-            this.value = value;
-            next = null;
-            prev = null;
-        }
+    @Override
+    public Node<T> head() {
+        return head;
     }
 }

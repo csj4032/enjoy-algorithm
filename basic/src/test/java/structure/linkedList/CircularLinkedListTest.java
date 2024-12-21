@@ -24,6 +24,5 @@ class CircularLinkedListTest {
         circularLinkedList.add(1);
         circularLinkedList.add(2);
         circularLinkedList.add(3);
-        circularLinkedList.print();
     }
 }
