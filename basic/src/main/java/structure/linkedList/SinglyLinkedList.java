@@ -1,7 +1,5 @@
 package structure.linkedList;
 
-import java.util.LinkedList;
-
 public class SinglyLinkedList<T> {
 
     private Integer size;
