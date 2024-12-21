@@ -1,6 +1,10 @@
 package structure.linkedList;
 
-public class SinglyLinkedList<T> {
+
+import structure.Node;
+import structure.Structure;
+
+public class SinglyLinkedList<T> implements Structure<T> {
 
     private Integer size;
     private Node<T> head;
@@ -40,18 +44,13 @@ public class SinglyLinkedList<T> {
         return search(index);
     }
 
-    public int size() {
-        return size;
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
     }
 
-    public void print() {
-        Node<T> current = head;
-        while (current != null) {
-            System.out.print(current.value);
-            if (current.next != null) System.out.print(" -> ");
-            current = current.next;
-        }
-        System.out.println();
+    public int size() {
+        return size;
     }
 
     private Node<T> remove() {
@@ -67,6 +66,11 @@ public class SinglyLinkedList<T> {
         Node<T> current = head;
         while (index-- > 0) current = current.next;
         return current;
+    }
+
+    @Override
+    public structure.Node<T> head() {
+        return null;
     }
 
     public static class Node<T> {

@@ -24,7 +24,6 @@ public class SinglyLinkedListTest {
         singlyLinkedList.add(1);
         singlyLinkedList.add(2);
         singlyLinkedList.add(3);
-        singlyLinkedList.print();
     }
 
     @Test
@@ -39,7 +38,6 @@ public class SinglyLinkedListTest {
         singlyLinkedList.add(6);
         singlyLinkedList.remove(2);
         assertEquals(4, singlyLinkedList.get(2).value);
-        singlyLinkedList.print();
     }
 
     @Test
@@ -53,8 +51,6 @@ public class SinglyLinkedListTest {
         assertEquals(2, singlyLinkedList.size());
         singlyLinkedList.add(4);
         assertEquals(3, singlyLinkedList.size());
-        singlyLinkedList.print();
-
         System.out.println("\nRequesting GC...");
         System.gc();
 

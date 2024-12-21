@@ -24,7 +24,6 @@ class DoublyLinkedListTest {
         doublyLinkedList.firstAdd(1);
         doublyLinkedList.firstAdd(2);
         doublyLinkedList.firstAdd(3);
-        doublyLinkedList.print();
     }
 
     @Test
@@ -34,6 +33,5 @@ class DoublyLinkedListTest {
         doublyLinkedList.lastAdd(1);
         doublyLinkedList.lastAdd(2);
         doublyLinkedList.lastAdd(3);
-        doublyLinkedList.print();
     }
 }

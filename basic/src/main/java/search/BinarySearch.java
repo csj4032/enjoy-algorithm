@@ -3,10 +3,17 @@ package search;
 public class BinarySearch {
 
     public int binarySearch(int[] sortedArray, int key, int low, int high) {
-        int middle = (low + high) / 2;
-        if (high < low) return -1;
-        if (key == sortedArray[middle]) return middle;
-        if (key < sortedArray[middle]) return binarySearch(sortedArray, key, low, middle - 1);
-        return binarySearch(sortedArray, key, middle + 1, high);
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            System.out.printf("low : %s, mid : %s, high : %s, key: %s\n", low, mid, high, key);
+            if (sortedArray[mid] == key) {
+                return mid;
+            } else if (sortedArray[mid] < key) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return -1;
     }
 }
