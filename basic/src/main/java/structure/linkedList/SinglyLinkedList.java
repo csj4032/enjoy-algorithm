@@ -1,8 +1,9 @@
 package structure.linkedList;
 
-
-import structure.Node;
 import structure.Structure;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SinglyLinkedList<T> implements Structure<T> {
 
@@ -12,6 +13,9 @@ public class SinglyLinkedList<T> implements Structure<T> {
 
     public SinglyLinkedList() {
         size = 0;
+        List<Integer> number = new ArrayList<>();
+        number.add(1);
+        number.stream().reduce(0, (a, b) -> a + b);
     }
 
     public void add(T value) {

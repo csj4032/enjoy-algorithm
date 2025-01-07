@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class QueueTest {
 
-    StructurePrinter<Integer> printer = new StructurePrinter<>();
+    StructurePrinter printer = new StructurePrinter();
 
     @Test
     @Order(1)
@@ -39,6 +39,7 @@ public class QueueTest {
         queue.enqueue(4);
         queue.enqueue(5);
         queue.enqueue(6);
+        queue.dequeue();
         printer.print(queue, StructurePrinter.PrintOrder.FIFO);
     }
 }
