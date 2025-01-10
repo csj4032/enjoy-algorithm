@@ -1,7 +1,5 @@
 package levelZero;
 
-import java.util.Arrays;
-
 public class SafeZone {
 
     public int solution(int[][] board) {
