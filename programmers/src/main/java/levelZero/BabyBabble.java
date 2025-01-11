@@ -14,12 +14,13 @@ public class BabyBabble {
                     for (int l = 0; l < 4; l++) {
                         set.add(baby[i]);
                         if (i != j) set.add(baby[i] + baby[j]);
-                        if (i != j & i != k & j != k) set.add(baby[i] + baby[j] + baby[k]);
-                        if (i != j & i != k & j != k & i != l & j != k & j != l & k != l) set.add(baby[i] + baby[j] + baby[k] + baby[l]);
+                        if (i != j & i != k & i != l & j != k) set.add(baby[i] + baby[j] + baby[k]);
+                        if (i != j & i != k & i != l & j != k & j != l & k != l) set.add(baby[i] + baby[j] + baby[k] + baby[l]);
                     }
                 }
             }
         }
+        System.out.println(set.size());
         for (String babb : babbling) if (set.contains(babb)) answer++;
         return answer;
     }
