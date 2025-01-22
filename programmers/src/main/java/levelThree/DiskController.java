@@ -2,73 +2,61 @@ package levelThree;
 
 import java.util.PriorityQueue;
 
+/**
+ * https://school.programmers.co.kr/learn/courses/30/lessons/42627
+ */
 public class DiskController {
 
-	public int solution(int[][] jobs) {
-		PriorityQueue<Job> jobQueue = new PriorityQueue<>();
-		for (int i = 0; i < jobs.length; i++) {
-			Job job = new Job(jobs[i][0], jobs[i][1]);
-			jobQueue.add(job);
-		}
-		System.out.println(jobQueue);
+    public int solution(int[][] jobs) {
+        PriorityQueue<Job> jobQueue = new PriorityQueue<>();
+        for (int i = 0; i < jobs.length; i++) jobQueue.add(new Job(i, jobs[i][0], jobs[i][1]));
+        int sum = 0;
+        while (!jobQueue.isEmpty()) {
+            PriorityQueue<Job> readyQueue = new PriorityQueue<>();
+            Job job = jobQueue.poll();
+            for (Job temp : jobQueue) {
+                temp.setFlag(job.start + job.through);
+                readyQueue.add(temp);
+            }
+            jobQueue = readyQueue;
+            sum += job.end - job.request;
+        }
+        return sum / jobs.length;
+    }
 
-		int flag = 0;
-		int sum = 0;
-		Job job;
-		while (!jobQueue.isEmpty()) {
-			int gap = 0;
-			job = jobQueue.poll();
-			System.out.println(job);
-			if (flag <= job.start) {
-				flag = job.start + job.through;
-				sum += job.through;
-			} else {
-				flag = flag + job.through;
-				gap = flag - job.start;
-				sum += gap;
-			}
+    static class Job implements Comparable<Job> {
+        Integer index;
+        Integer request;
+        Integer start;
+        Integer end;
+        Integer through;
 
-			for (Job temp : jobQueue) {
-				temp.setFlag(flag);
-			}
-			System.out.println(sum + " " + gap + " " + flag);
-		}
-		return sum / jobs.length;
-	}
-}
+        public Job(Integer index, Integer request, Integer through) {
+            this.index = index;
+            this.request = request;
+            this.through = through;
+            this.start = request;
+            this.end = request + through;
+        }
 
-class Job implements Comparable<Job> {
-	Integer start;
-	Integer end;
-	Integer through;
+        public void setFlag(int flag) {
+            if (flag > start) {
+                start = flag;
+                end = flag + through;
+            }
+        }
 
-	public Job(Integer start, Integer through) {
-		this.start = start;
-		this.end = start + through;
-		this.through = through;
-	}
+        @Override
+        public String toString() {
+            return "Job{ index=" + index + ", request=" + request + ", start=" + start + ", end=" + end + ", through=" + through + '}';
+        }
 
-	public void setFlag(int flag) {
-		if (flag >= start) {
-			end = flag - start + through;
-		}
-	}
-
-	@Override
-	public String toString() {
-		return "Job{" +
-				"start=" + start +
-				", end=" + end +
-				", through=" + through +
-				'}';
-	}
-
-	@Override
-	public int compareTo(Job o) {
-		int result = this.start.compareTo(o.start);
-		if (result == 0) {
-			result = this.end.compareTo(o.end);
-		}
-		return result;
-	}
+        @Override
+        public int compareTo(Job o) {
+            int result = this.start.compareTo(o.start);
+            if (result == 0) result = this.through.compareTo(o.through);
+            if (result == 0) result = this.index.compareTo(o.index);
+            return result;
+        }
+    }
 }
