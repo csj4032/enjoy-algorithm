@@ -1,25 +1,20 @@
 package levelZero;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class TestBed {
 
-    public String solution(int[] numLog) {
-        StringBuilder answer = new StringBuilder();
-        for (int i = 0; i < numLog.length - 1; i++) {
-            int prev = numLog[i];
-            int next = numLog[i + 1];
-            if (next - prev == 1) answer.append("w");
-            if (next - prev == -1) answer.append("s");
-            if (next - prev == 10) answer.append("d");
-            if (next - prev == -10) answer.append("a");
+    public int[] solution(int n, int[] numlist) {
+        List<Integer> answer = new ArrayList<>();
+        for (int num : numlist) {
+            if (num % n == 0) answer.add(num);
         }
-        return answer.toString();
+        return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 
     public static void main(String[] args) {
         TestBed testBed = new TestBed();
-        String result = testBed.solution(new int[]{0, 1, 0, 10, 0, 1, 0, 10, 0, -1, -2, -1});
-        System.out.println(result);
+        int[] result = testBed.solution(5, new int[]{1, 9, 3, 10, 13, 5});
+        System.out.println(result[0]);
     }
 }
