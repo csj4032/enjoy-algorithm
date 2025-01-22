@@ -3,7 +3,7 @@ package levelThree;
 import java.util.PriorityQueue;
 
 /**
- * https://school.programmers.co.kr/learn/courses/30/lessons/42627
+ * <a href="https://school.programmers.co.kr/learn/courses/30/lessons/42627">...</a>
  */
 public class DiskController {
 
