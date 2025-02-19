@@ -2,19 +2,22 @@ package levelTwo;
 
 import java.util.*;
 
+/**
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/138476">귤 고르기</a>
+ * Category : 최대 힙
+ */
 public class Tangerine {
 
     public int solution(int k, int[] tangerine) {
-        int sum = 0;
-        int answer = 0;
-        Map<Integer, Integer> frequency = new LinkedHashMap<>();
-        for (int tan : tangerine) frequency.put(tan, frequency.getOrDefault(tan, 0) + 1);
-        List<Integer> counts = new ArrayList<>(frequency.values());
-        counts.sort(Comparator.reverseOrder());
-        for (int count : counts) {
-            sum += count;
+        Map<Integer, Integer> frequency = new HashMap<>();
+        for (int tan : tangerine) frequency.merge(tan, 1, Integer::sum);
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        maxHeap.addAll(frequency.values());
+        int count = 0, answer = 0;
+        while (count < k && !maxHeap.isEmpty()) {
+            count += maxHeap.poll();
+            System.out.println(count);
             answer++;
-            if (sum >= k) break;
         }
         return answer;
     }
