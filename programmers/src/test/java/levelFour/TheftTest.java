@@ -8,6 +8,9 @@ public class TheftTest {
     @Test
     public void test() {
         Theft theft = new Theft();
-        Assertions.assertEquals(9, theft.solution(new int[]{1, 2, 3, 1, 5}));
+        Assertions.assertEquals(3, theft.solution(new int[]{1, 2, 3}));
+        Assertions.assertEquals(8, theft.solution(new int[]{1, 2, 3, 1, 5}));
+        Assertions.assertEquals(6, theft.solution(new int[]{1, 5, 3, 1}));
+        Assertions.assertEquals(8, theft.solution(new int[]{1, 5, 7, 1}));
     }
 }
