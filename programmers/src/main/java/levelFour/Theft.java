@@ -1,8 +1,8 @@
 package levelFour;
 
 /**
- * Link : https://school.programmers.co.kr/learn/courses/30/lessons/42897
- * Category : 동적계획법 (Dynamic Programming)
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/42897">도둑질</a>
+ * Category : Dynamic Programming
  */
 public class Theft {
 
