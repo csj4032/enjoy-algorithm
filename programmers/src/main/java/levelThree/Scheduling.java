@@ -9,6 +9,25 @@ import java.util.PriorityQueue;
  */
 public class Scheduling {
 
+    public int solution(int n, int[] cores) {
+        int answer = 0;
+        int length = cores.length;
+        int step = 0;
+        while (n > 0) {
+            for (int i = 0; i < length; i++) {
+                int current = cores[i];
+                if ((step % current) == 0) {
+                    n--;
+                    answer = i;
+                    if (n == 0) break;
+                }
+            }
+            step++;
+        }
+        return answer + 1;
+    }
+
+
     class Core implements Comparable<Core> {
         int index;
         int seq;
@@ -36,7 +55,7 @@ public class Scheduling {
         }
     }
 
-    public int solution(int n, int[] cores) {
+    public int queue(int n, int[] cores) {
         int length = cores.length;
         PriorityQueue<Core> queue = new PriorityQueue(cores.length);
         if (length > n) return n;
@@ -53,7 +72,7 @@ public class Scheduling {
         }
     }
 
-    public int solution2(int n, int[] cores) {
+    public int search(int n, int[] cores) {
         int length = cores.length;
         if (n <= length) return n;
         long left = 0;
