@@ -9,9 +9,7 @@ public class SeesawBuddy {
         long answer = 0;
         Map<Integer, Integer> weightMap = new HashMap<>();
 
-        for (int weight : weights) {
-            weightMap.put(weight, weightMap.getOrDefault(weight, 0) + 1);
-        }
+        for (int weight : weights) weightMap.put(weight, weightMap.getOrDefault(weight, 0) + 1);
 
         int[] ratiosA = {1, 2, 2, 3};
         int[] ratiosB = {1, 3, 4, 4};
