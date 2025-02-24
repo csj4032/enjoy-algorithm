@@ -1,6 +1,5 @@
-package floatic;
+package challenge.floatic;
 
-import java.util.regex.*;
 import java.util.*;
 
 public class Problem2 {

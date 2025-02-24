@@ -1,4 +1,4 @@
-package floatic;
+package challenge.floatic;
 
 import java.util.*;
 

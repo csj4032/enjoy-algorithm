@@ -1,4 +1,4 @@
-package FortyTwoDot;
+package challenge.fortyTwoDot;
 
 import java.util.*;
 

@@ -1,9 +1,8 @@
-package FortyTwoDot;
+package challenge.fortyTwoDot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Problem1 {
 

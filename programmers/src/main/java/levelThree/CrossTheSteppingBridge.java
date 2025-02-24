@@ -1,7 +1,9 @@
 package levelThree;
 
 /**
- * 이진탐색
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/64062">징검다리 건너기</a>
+ * Category : 이진 탐색
+ * Solution :
  */
 public class CrossTheSteppingBridge {
 
