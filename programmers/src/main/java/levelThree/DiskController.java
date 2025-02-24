@@ -3,7 +3,8 @@ package levelThree;
 import java.util.PriorityQueue;
 
 /**
- * <a href="https://school.programmers.co.kr/learn/courses/30/lessons/42627">...</a>
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/42627">디스크 컨트롤러</a>
+ * Category : 힙 (Heap)
  */
 public class DiskController {
 

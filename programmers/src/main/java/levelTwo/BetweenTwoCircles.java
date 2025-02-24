@@ -18,6 +18,6 @@ public class BetweenTwoCircles {
             long minY = minYSquared > 0 ? (long) Math.ceil(Math.sqrt(minYSquared)) : 0;
             count += (maxY - minY + 1);
         }
-        return count * 4 - ((r2 - r1 + 1) * 4);
+        return count * 4 - ((r2 - r1 + 1) * 4L);
     }
 }

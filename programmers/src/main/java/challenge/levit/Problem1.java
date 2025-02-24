@@ -1,4 +1,4 @@
-package levit;
+package challenge.levit;
 
 import java.util.*;
 
