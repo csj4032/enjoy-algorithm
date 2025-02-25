@@ -1,19 +1,11 @@
-package levelThree;
+package greedy;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-/**
- * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/42861">섬 연결하기</a>
- * Category : Greedy, Union-Find, Kruskal, Minimum Spanning Tree, MST
- */
-public class ConnectingIslands {
+public class Kruskal {
 
     public static class Edge implements Comparable<Edge> {
-        int u;
-        int v;
-        int weight;
+        int u, v, weight;
 
         public Edge(int u, int v, int weight) {
             this.u = u;
@@ -24,11 +16,6 @@ public class ConnectingIslands {
         @Override
         public int compareTo(Edge other) {
             return this.weight - other.weight;
-        }
-
-        @Override
-        public String toString() {
-            return "Edge{" + "u=" + u + ", v=" + v + ", weight=" + weight + '}';
         }
     }
 
@@ -43,7 +30,9 @@ public class ConnectingIslands {
         }
 
         public int find(int x) {
-            if (parent[x] != x) parent[x] = find(parent[x]);
+            if (parent[x] != x) {
+                parent[x] = find(parent[x]); // 경로 압축
+            }
             return parent[x];
         }
 
@@ -56,20 +45,18 @@ public class ConnectingIslands {
         }
     }
 
-    public int solution(int n, int[][] costs) {
-        int answer = 0;
-        int count = 0;
-        List<Edge> edges = new ArrayList<>();
-        for (int[] cost : costs) edges.add(new Edge(cost[0], cost[1], cost[2]));
+    public int minimumSpanningTree(int n, List<Edge> edges) {
+        int result = 0;
         Collections.sort(edges);
         UnionFind uf = new UnionFind(n);
+        int mstWeight = 0;
         for (Edge edge : edges) {
             if (uf.union(edge.u, edge.v)) {
-                answer += edge.weight;
-                count++;
-                if (count == n - 1) break;
+                mstWeight += edge.weight;
+                result++;
+                if (result == n - 1) break;
             }
         }
-        return answer;
+        return mstWeight;
     }
 }

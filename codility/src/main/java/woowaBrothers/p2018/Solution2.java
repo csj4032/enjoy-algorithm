@@ -16,38 +16,36 @@ public class Solution2 {
 
 	private static String solution(String S) {
 		String[] files = S.split("\n");
-		int length = files.length;
 		List<Photo> photos = new ArrayList<>();
 		StringBuilder sb = new StringBuilder();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		for (int i = 0; i < length; i++) {
-			String[] units = files[i].split("\\s*(=>|,)\\s*");
-			String[] fileNameExtention = units[0].split("\\.");
-			Photo photo = new Photo(fileNameExtention[0], fileNameExtention[1], units[1], LocalDateTime.parse(units[2], formatter));
-			photos.add(photo);
-		}
+        for (String file : files) {
+            String[] units = file.split("\\s*(=>|,)\\s*");
+            String[] fileNameExtension = units[0].split("\\.");
+            Photo photo = new Photo(fileNameExtension[0], fileNameExtension[1], units[1], LocalDateTime.parse(units[2], formatter));
+            photos.add(photo);
+        }
 
-		Map<String, List<Photo>> map = photos.stream().collect(Collectors.groupingBy(e -> e.getCityName()));
-		map.entrySet().stream().forEach(e -> e.getValue().sort(Comparator.comparing(Photo::getDateTime)));
+		Map<String, List<Photo>> map = photos.stream().collect(Collectors.groupingBy(Photo::getCityName));
+		map.forEach((key, value) -> value.sort(Comparator.comparing(Photo::getDateTime)));
 
 		int photoSize = photos.size();
-		for (int i = 0; i < photoSize; i++) {
-			Photo photo = photos.get(i);
-			List<Photo> p = map.get(photo.getCityName());
-			int size = p.size();
-			int decimal = getDecimal(size);
-			String number = "";
-			for (int j = 0; j < size; j++) {
-				if (p.get(j).getCityNameDateTime().equals(photo.getCityNameDateTime())) {
-					if (decimal > 1) {
-						number = String.format("%0" + decimal + "d", j + 1);
-					} else {
-						number = String.valueOf(j + 1);
-					}
-				}
-			}
-			sb.append(photo.getCityName() + number + "." + photo.getExtension()).append((photoSize == i) ? "" : "\n");
-		}
+        for (Photo photo : photos) {
+            List<Photo> p = map.get(photo.getCityName());
+            int size = p.size();
+            int decimal = getDecimal(size);
+            String number = "";
+            for (int j = 0; j < size; j++) {
+                if (p.get(j).getCityNameDateTime().equals(photo.getCityNameDateTime())) {
+                    if (decimal > 1) {
+                        number = String.format("%0" + decimal + "d", j + 1);
+                    } else {
+                        number = String.valueOf(j + 1);
+                    }
+                }
+            }
+            sb.append(photo.getCityName()).append(number).append(".").append(photo.getExtension()).append("\n");
+        }
 
 		return sb.toString();
 	}

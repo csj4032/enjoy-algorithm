@@ -3,7 +3,11 @@ package levelThree;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class DiskController_ {
+/**
+ * Link : <a href="https://programmers.co.kr/learn/courses/30/lessons/42627">디스크 컨트롤러</a>
+ * Category : Heap
+ */
+public class DiskControllerLambda {
 
     public int solution(int[][] jobs) {
         PriorityQueue<Job> jobQueue = new PriorityQueue<>((a, b) -> a.request == b.request ? a.through - b.through : a.request - b.request);
