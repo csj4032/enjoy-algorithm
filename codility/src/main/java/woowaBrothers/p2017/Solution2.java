@@ -11,7 +11,7 @@ public class Solution2 {
 	private static void solution(int[] A, int K) {
 		int space = String.valueOf(Arrays.stream(A).max().getAsInt()).length();
 		int len = A.length;
-		decoration(space, (K > len ? len : K));
+		decoration(space, (Math.min(K, len)));
 		for (int i = 0; i < len; i++) {
 			boolean next = ((i + 1) % K) == 0;
 			boolean isLast = (i == (len - 1));
@@ -28,19 +28,13 @@ public class Solution2 {
 	}
 
 	private static String white(int space, int number) {
-		StringBuffer sb = new StringBuffer();
-		sb.append("|");
-		for (int j = 0; j < space - String.valueOf(number).length(); j++) {
-			sb.append(" ");
-		}
-		return sb.toString();
+        return "|" +
+                " ".repeat(Math.max(0, space - String.valueOf(number).length()));
 	}
 
 	private static void decoration(int space, int k) {
-		StringBuffer sb = new StringBuffer("+");
-		for (int i = 0; i < space; i++) {
-			sb.append("-");
-		}
+		StringBuilder sb = new StringBuilder("+");
+        sb.append("-".repeat(Math.max(0, space)));
 		for (int i = 0; i < k; i++) {
 			System.out.print(sb.toString());
 		}

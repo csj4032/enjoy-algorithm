@@ -3,8 +3,9 @@ package levelThree;
 import java.util.PriorityQueue;
 
 /**
- * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/42627">디스크 컨트롤러</a>
- * Category : 힙 (Heap)
+ * Link : <a href="https://programmers.co.kr/learn/courses/30/lessons/42627">디스크 컨트롤러</a>
+ * Category : Heap, Simulation, Greedy, Priority Queue, 최소 힙
+ * Idea : 현재 대기 큐에 있는 작업들 중에서, 처리 시간이 가장 짧은 작업(우선순위는 처리 시간, 요청 시각, 작업 번호 순)을 선택하여 실행
  */
 public class DiskController {
 
