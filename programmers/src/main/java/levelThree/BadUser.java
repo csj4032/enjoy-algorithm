@@ -15,9 +15,7 @@ public class BadUser {
     public static void dfs(int depth, String[] user_id, String[] banner_id, String[] target_id, boolean[] visited, Set<String> result) {
         if (depth == target_id.length) {
             int count = 0;
-            for (int i = 0; i < banner_id.length; i++) {
-                if (isMatch(banner_id[i], target_id[i])) count++;
-            }
+            for (int i = 0; i < banner_id.length; i++) if (isMatch(banner_id[i], target_id[i])) count++;
             if (count == banner_id.length) {
                 String[] strings = target_id.clone();
                 Arrays.sort(strings);
