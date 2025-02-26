@@ -2,56 +2,45 @@ package levelTwo;
 
 import java.util.*;
 
+/**
+ * Link : https://school.programmers.co.kr/learn/courses/30/lessons/155651
+ * Category : Priority Queue, Greedy, Sorting, Simulation
+ */
 public class HotelHourlyRental {
 
     class BookTime implements Comparable<BookTime> {
-        public int start;
-        public int end;
+        public String start;
+        public String end;
+        public int startSeconds;
+        public int endSeconds;
 
         public BookTime(String[] times) {
-            this.start = Integer.parseInt(times[0].split(":")[0]) * 60 + Integer.parseInt(times[0].split(":")[1]);
-            this.end = Integer.parseInt(times[1].split(":")[0]) * 60 + Integer.parseInt(times[1].split(":")[1]);
+            this.start = times[0];
+            this.end = times[1];
+            this.startSeconds = Integer.parseInt(start.split(":")[0]) * 60 + Integer.parseInt(start.split(":")[1]);
+            this.endSeconds = Integer.parseInt(end.split(":")[0]) * 60 + Integer.parseInt(end.split(":")[1]);
         }
 
         @Override
         public int compareTo(BookTime other) {
-            return this.start - other.start;
+            return this.startSeconds - other.startSeconds;
         }
 
         @Override
         public String toString() {
-            return "BookTime{" + "start=" + start + ", end=" + end + '}';
+            return "BookTime{" + "start='" + start + '\'' + ", end='" + end + '\'' + ", startSeconds=" + startSeconds + ", endSeconds=" + endSeconds + '}';
         }
     }
 
     public int solution(String[][] book_time) {
-        Queue<BookTime> queue = new PriorityQueue<>();
-        List<LinkedList<BookTime>> bookTimes = new LinkedList<>();
-        for (String[] times : book_time) {
-            queue.add(new BookTime(times));
-            bookTimes.add(new LinkedList<>());
+        BookTime[] bookings = new BookTime[book_time.length];
+        for (int i = 0; i < book_time.length; i++) bookings[i] = new BookTime(book_time[i]);
+        Arrays.sort(bookings);
+        Queue<Integer> roomQueue = new PriorityQueue<>();
+        for (BookTime booking : bookings) {
+            if (!roomQueue.isEmpty() && roomQueue.peek() <= booking.startSeconds) roomQueue.poll();
+            roomQueue.offer(booking.endSeconds + 10);
         }
-
-        while (!queue.isEmpty()) {
-            BookTime bookTime = queue.poll();
-            for (LinkedList<BookTime> time : bookTimes) {
-                if (time.isEmpty()) {
-                    time.add(bookTime);
-                    break;
-                } else {
-                    BookTime lastBookTime = time.getLast();
-                    System.out.println("lastBookTime: " + lastBookTime.end + " bookTime: " + bookTime.start);
-                    if (lastBookTime.end + 10 <= bookTime.start) {
-                        time.add(bookTime);
-                        break;
-                    }
-                }
-            }
-        }
-
-
-        System.out.println(bookTimes.size());
-        int answer = 0;
-        return answer;
+        return roomQueue.size();
     }
 }
