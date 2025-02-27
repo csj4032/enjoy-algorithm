@@ -3,7 +3,7 @@ package levelTwo;
 import java.util.*;
 
 /**
- * Link : https://school.programmers.co.kr/learn/courses/30/lessons/155651
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/155651">...</a>
  * Category : Priority Queue, Greedy, Sorting, Simulation
  */
 public class HotelHourlyRental {
