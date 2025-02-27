@@ -1,5 +1,9 @@
 package levelTwo;
 
+/**
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/389479">서버 증설 횟수</a>
+ * Category : 구현, Simulation
+ */
 public class NumberScalingOperations {
 
     public int solution(int[] players, int m, int k) {
