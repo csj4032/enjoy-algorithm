@@ -1,20 +1,23 @@
 package levelTwo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class MazeEscape {
 
     private static final int[] dy = {0, 0, -1, 1};
     private static final int[] dx = {-1, 1, 0, 0};
+    private static int rows;
+    private static int cols;
     private static int min;
+    private static String[][] maze;
+    private static boolean[][] visited;
 
     public int solution(String[] maps) {
+        rows = maps.length;
+        cols = maps[0].length();
         min = Integer.MAX_VALUE;
-        int rows = maps.length;
-        int cols = maps[0].length();
-        boolean[][] visited = new boolean[rows][cols];
-        String[][] maze = new String[rows][cols];
+        maze = new String[rows][cols];
+        visited = new boolean[rows][cols];
         int[] start = new int[2];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -25,25 +28,29 @@ public class MazeEscape {
                 }
             }
         }
-//        System.out.println("start: " + start[0] + " " + start[1]);
-        maze(start[0], start[1], 0, false, rows, cols, maze, visited);
+        maze(start[0], start[1], 0, false);
         return min == Integer.MAX_VALUE ? -1 : min;
     }
 
-    private void maze(int row, int col, int count, boolean lever, int rows, int cols, String[][] map, boolean[][] visited) {
-        if (map[row][col].equals("E") && lever) {
-//            System.out.println("row: " + row + " col: " + col + " count: " + count);
+    private void maze(int row, int col, int count, boolean lever) {
+        if (maze[row][col].equals("E") && lever) {
             min = Math.min(min, count);
             return;
         }
         for (int i = 0; i < 4; i++) {
             int ny = row + dy[i];
             int nx = col + dx[i];
+            if (min < count) continue;
             if (nx < 0 || ny < 0 || ny >= rows || nx >= cols) continue;
-            if (map[ny][nx].equals("X") || visited[ny][nx]) continue;
-            if (map[ny][nx].equals("L")) lever = true;
+            if (maze[ny][nx].equals("X") || visited[ny][nx]) continue;
+            if (maze[ny][nx].equals("L")) {
+                lever = true;
+                for (int j = 0; j < visited.length; j++) {
+                    Arrays.fill(visited[j], false);
+                }
+            }
             visited[ny][nx] = true;
-            maze(ny, nx, count + 1, lever, rows, cols, map, visited);
+            maze(ny, nx, count + 1, lever);
             visited[ny][nx] = false;
         }
     }
