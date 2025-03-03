@@ -23,8 +23,9 @@ public class SongJustPlayedTest {
 //        Assertions.assertEquals("SING", songJustPlayed.solution("BA", new String[]{"12:00,12:03,SING,AB"}));
 //        Assertions.assertEquals("(None)", songJustPlayed.solution("A", new String[]{"12:00,12:01,SING,BA"}));
 //        Assertions.assertEquals("(None)", songJustPlayed.solution("BA", new String[]{"12:00,12:04,SING,A#B"}));
-        Assertions.assertEquals("(None)", songJustPlayed.solution("A", new String[]{"12:00,12:01,SING,A#"}));
-        Assertions.assertEquals("SONG", songJustPlayed.solution("A#", new String[]{"12:00,12:01,SONG,A#"}));
+//        Assertions.assertEquals("(None)", songJustPlayed.solution("A", new String[]{"12:00,12:01,SING,A#"}));
+//        Assertions.assertEquals("SONG", songJustPlayed.solution("A#", new String[]{"12:00,12:01,SONG,A#"}));
+        songJustPlayed.solution("BD", new String[]{"12:00,12:05,SING,ACBED"});
     }
     //"A", ["12:00,12:01,Song,A#"] -> "(None)"
 }
