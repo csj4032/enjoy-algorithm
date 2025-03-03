@@ -64,15 +64,11 @@ public class SongJustPlayed {
             musicList.add(music);
         }
         List<String> remember = matcher(m);
-        List<Music> result = new ArrayList<>();
+        Collections.sort(musicList);
         for (Music music : musicList) {
-            if (isContains(music, remember)) {
-                result.add(music);
-            }
+            if (isContains(music, remember)) return music.title;
         }
-        Collections.sort(result);
-        System.out.println(result);
-        return result.isEmpty() ? "(None)" : result.get(0).title;
+        return "(None)";
     }
 
     private boolean isContains(Music music, List<String> remember) {
