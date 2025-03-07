@@ -17,11 +17,7 @@ public class DefenseGame {
 
         @Override
         public String toString() {
-            return "State{" +
-                    "n=" + n +
-                    ", k=" + k +
-                    ", index=" + index +
-                    '}';
+            return "State{" + "n=" + n + ", k=" + k + ", index=" + index + '}';
         }
 
         @Override
@@ -51,28 +47,19 @@ public class DefenseGame {
     }
 
     public int solution(int n, int k, int[] enemy) {
-        if (k >= enemy.length) return enemy.length;
-        int result = 0;
-        for (int i = 0; i <= k; i++) {
-            int tempN = n;
-            int tempK = k - i;
-            int index = i;
-            while (enemy.length > index) {
-                if (enemy[index] >= tempN && tempK > 0) {
-                    tempK--;
-                } else {
-                    tempN -= enemy[index];
-                }
-                if (tempK <= 0 && tempN < 0) {
-                    break;
-                }
-                System.out.println("start : " + i + " current : " + index + " K : " + tempK + " N : " + tempN);
-                index++;
+        long sum = 0;
+        int index;
+        Queue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
+        for (index = 0; index < enemy.length; index++) {
+            sum += enemy[index];
+            queue.add(enemy[index]);
+            while (sum > n && k > 0) {
+                k--;
+                sum -= queue.poll();
             }
-            result = Math.max(result, index);
+            if (sum > n) break;
         }
-        System.out.println();
-        return result;
+        return index;
     }
 
     private int bfs(State first, int[] enemy) {
@@ -93,7 +80,7 @@ public class DefenseGame {
                     queue.add(new State(state.n, state.k - 1, state.index + 1));
                 }
             }
-            System.out.println(state + " " + queue);
+            System.out.println(state);
         }
         System.out.println();
         return result;
