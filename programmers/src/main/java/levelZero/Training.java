@@ -8,12 +8,12 @@ public class Training {
     }
 
     public int solution(int number, int n, int m) {
+        int[] array = new int[]{10, 20, 30, 4, 5, 6};
         int answer = 0;
-        int nn = number % n;
-        int mm = number % m;
-        if (nn == 0 & mm == 0) {
-            return 1;
+        for (int i = 0; i < array.length; i++) {
+            answer += array[i];
         }
+        System.out.println(answer);
         return answer;
     }
 }

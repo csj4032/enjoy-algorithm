@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/67259">경주로 건설</a>
- * Category : DFS/BFS
+ * Category : DFS/BFS, DP
  */
 public class RaceTrack {
 
