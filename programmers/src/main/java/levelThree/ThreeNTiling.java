@@ -1,9 +1,13 @@
 package levelThree;
 
+/**
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/12902">3 x n 타일링</a>
+ * Category : Dynamic Programming, 다이나믹 프로그래밍
+ */
 public class ThreeNTiling {
 
 	public long solution(int n) {
-		long mod = 1_000_000_007l;
+		long mod = 1_000_000_007L;
 		long[] dp = new long[n + 1];
 		dp[0] = 1;
 		dp[2] = 3;
@@ -15,7 +19,6 @@ public class ThreeNTiling {
 			}
 			dp[i] = (dp[i] + k) % mod;
 		}
-		long answer = dp[n];
-		return answer;
+        return dp[n];
 	}
 }
