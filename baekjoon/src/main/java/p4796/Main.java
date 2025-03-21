@@ -18,15 +18,15 @@ public class Main {
 	public static void main(String[] args) {
 		var sc = new Scanner(System.in);
 		var sb = new StringBuilder();
-		var k = 0l;
+		var k = 0L;
 		while (true) {
 			var l = sc.nextLong();
 			var p = sc.nextLong();
 			var v = sc.nextLong();
-			if (l == 0l && p == 0l && v == 0l) break;
+			if (l == 0L && p == 0L && v == 0L) break;
 			k++;
 			long vp = v / p;
-			long lpv = v % p > l ? l : v % p;
+			long lpv = Math.min(v % p, l);
 			long t = (vp * l) + lpv;
 			sb.append("Case " + k + ": " + t + "\n");
 		}

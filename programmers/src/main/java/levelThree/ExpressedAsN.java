@@ -1,19 +1,15 @@
 package levelThree;
 
+import java.util.*;
+
+/**
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/42895">N으로 표현</a>
+ * Category : DP, Dynamic Programming
+ */
 public class ExpressedAsN {
 
-	public int solution(int N, int number) {
-		int[] dp = new int[32001];
-		dp[0] = 2;
-		dp[1] = 2;
-		for (int i = 1; i <= number; i++) {
-			if (i % N == 0) {
-				dp[i] = i / N;
-			} else {
-				dp[i] = dp[i - 1] + 1 + (i / 10);
-			}
-		}
-		int answer = dp[number];
-		return answer;
-	}
+    public int solution(int N, int number) {
+        if (N == number) return 1;
+        return -1;
+    }
 }
