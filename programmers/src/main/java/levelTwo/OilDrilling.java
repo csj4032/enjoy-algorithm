@@ -8,68 +8,69 @@ import java.util.*;
  */
 public class OilDrilling {
 
-    class UnionFind {
-        public int[] parent;
-
-        public UnionFind(int n) {
-            parent = new int[n];
-            for (int i = 0; i < n; i++) parent[i] = i;
-        }
-
-        public int find(int x) {
-            if (parent[x] != x) parent[x] = find(parent[x]);
-            return parent[x];
-        }
-
-        public int union(int x, int y) {
-            x = find(x);
-            y = find(y);
-            if (x != y) parent[y] = x;
-            return x;
-        }
-    }
-
-    private int[][] directions = {{0, 1}, {1, 0}};
+    private final int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
     public int solution(int[][] land) {
         int answer = 0;
-        int row = land.length;
         int col = land[0].length;
-        UnionFind uf = new UnionFind(row * col);
-        int[] checker = new int[row * col];
+        int row = land.length;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        boolean[][] visited = new boolean[row][col];
+
+        int flag = 2;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (land[i][j] != 1) continue;
+                int count = drilling(land, i, j, visited, flag);
+                map.put(flag, count);
+                flag++;
+            }
+        }
 
         for (int i = 0; i < col; i++) {
+            Set<Integer> set = new HashSet<>();
             for (int j = 0; j < row; j++) {
-                if (land[j][i] == 0) continue;
-                int current = j * col + i;
-                checker[current] = 1;
-                for (int k = 0; k < 2; k++) {
-                    int ny = j + directions[k][0];
-                    int nx = i + directions[k][1];
-                    if (ny < row && nx < col && land[ny][nx] == 1) {
-                        int next = ny * col + nx;
-                        int rootCurrent = uf.find(current);
-                        int rootNext = uf.find(next);
-                        if (rootCurrent != rootNext) {
-                            int root = uf.union(rootCurrent, rootNext);
-                            checker[root] = checker[rootCurrent] + (checker[rootNext] == 0 ? 1 : checker[rootNext]);
-                        }
-                    }
+                if (land[j][i] > 1) set.add(land[j][i]);
+            }
+            int sum = 0;
+            for (Integer a : set) sum += map.get(a);
+            answer = Math.max(answer, sum);
+        }
+        return answer;
+    }
+
+    private int drilling(int[][] land, int row, int col, boolean[][] visited, int flag) {
+        ArrayDeque<int[]> queue = new ArrayDeque<>();
+        queue.offer(new int[]{row, col});
+        land[row][col] = flag;
+        int count = 1;
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int y = current[0];
+            int x = current[1];
+            for (int[] direction : directions) {
+                int dy = y + direction[0];
+                int dx = x + direction[1];
+                if (dy >= 0 && dy < land.length && dx >= 0 && dx < land[0].length && !visited[dy][dx] && land[dy][dx] == 1) {
+                    land[dy][dx] = flag;
+                    queue.offer(new int[]{dy, dx});
+                    visited[dy][dx] = true;
+                    count++;
                 }
             }
         }
+        return count;
+    }
 
-        for (int i = 0; i < col; i++) {
-            int count = 0;
-            Set<Integer> chunkSet = new HashSet<>();
-            for (int j = 0; j < row; j++) {
-                if (land[j][i] == 0) continue;
-                int current = j * col + i;
-                chunkSet.add(uf.find(current));
+    private void drilling_(int[][] land, int row, int col, boolean[][] visited) {
+        for (int i = 0; i < directions.length; i++) {
+            int nextRow = row + directions[i][1];
+            int nextCol = col + directions[i][0];
+            if (nextRow < 0 || nextRow >= land.length || nextCol < 0 || nextCol >= land[0].length || land[nextRow][nextCol] == 0 || visited[nextRow][nextCol]) {
+                continue;
             }
-            for (Integer chuck : chunkSet) count += checker[chuck];
-            answer = Math.max(answer, count);
+            visited[nextRow][nextCol] = true;
+            drilling_(land, nextRow, nextCol, visited);
         }
-        return answer;
     }
 }
