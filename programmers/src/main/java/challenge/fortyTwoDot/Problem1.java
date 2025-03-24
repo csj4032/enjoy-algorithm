@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Problem1 {
 
-
     // card 배열을 2차원 배열로 분해 하고 word 배열에 있는 단어들과 비교하여 같은 단어가 있으면 해당 단어를 반환한다.
     // 같은 단어가 없으면 "-1"를 반환한다.
     public String[] solution(String[] card, String[] word) {

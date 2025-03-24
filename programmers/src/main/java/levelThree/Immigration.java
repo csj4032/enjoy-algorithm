@@ -3,7 +3,9 @@ package levelThree;
 import java.util.Arrays;
 
 /**
- * 전체 시간은 1 ~ 가장 오래 걸리는 입국심사 * 입국자
+ * Link : https://school.programmers.co.kr/learn/courses/30/lessons/43238
+ * Category : 이분탐색
+ * Describe : 전체 시간은 1 ~ 가장 오래 걸리는 입국심사 * 입국자
  */
 public class Immigration {
 
@@ -32,9 +34,7 @@ public class Immigration {
 
 	private long complete(long index, int[] times, int length) {
 		long count = 0;
-		for (int j = 0; j < length; j++) {
-			count += index / times[j];
-		}
+		for (int j = 0; j < length; j++) count += index / times[j];
 		return count;
 	}
 }
