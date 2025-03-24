@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class NetworkTest {
+
     @Test
     public void solutionTest() {
         Network network = new Network();

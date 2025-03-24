@@ -1,7 +1,7 @@
 package levelThree;
 
 /**
- * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/12904">...</a>
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/12904">가장 긴 팰린드롬</a>
  * Category : Dynamic Programming, DP, 다이나믹 프로그래밍
  */
 public class LongestPalindrome {

@@ -6,13 +6,11 @@ import java.util.*;
 public class Problem4 {
 
     public static void main(String[] args) {
-        // 입력 예시
         String[] grid = {"####", "##.#", ".#.#"};
         Problem4 problem4 = new Problem4();
         System.out.println(problem4.solution(grid));
     }
 
-    // 상하좌우 방향
     private static final int[] dx = {-1, 1, 0, 0};
     private static final int[] dy = {0, 0, -1, 1};
 
