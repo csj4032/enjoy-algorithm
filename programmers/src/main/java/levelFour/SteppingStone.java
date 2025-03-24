@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/43236">징검다리</a>
+ * Category : Binary Search
+ */
 public class SteppingStone {
 
     public int solution(int distance, int[] rocks, int n) {
