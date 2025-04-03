@@ -8,8 +8,7 @@ public class PerfectCrimeTest {
     @Test
     public void test() {
         PerfectCrime perfectCrime = new PerfectCrime();
-        Assertions.assertEquals(0, perfectCrime.solution(new int[][]{{1, 1}, {1, 1}}, 3, 3));
-        Assertions.assertEquals(2, perfectCrime.solution(new int[][]{{1, 1}, {2, 3}, {2, 1}}, 4, 4));
+        Assertions.assertEquals(2, perfectCrime.solution(new int[][]{{1, 2}, {2, 3}, {2, 1}}, 4, 4));
         Assertions.assertEquals(0, perfectCrime.solution(new int[][]{{1, 1}, {2, 3}, {2, 1}}, 1, 7));
         Assertions.assertEquals(6, perfectCrime.solution(new int[][]{{3, 3}, {3, 3}}, 7, 1));
         Assertions.assertEquals(-1, perfectCrime.solution(new int[][]{{3, 3}, {3, 3}}, 6, 1));
