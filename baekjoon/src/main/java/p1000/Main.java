@@ -1,68 +1,40 @@
 package p1000;
-import java.nio.file.CopyOption;
-import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardOpenOption;
-import java.util.Iterator;
-import java.util.List;
-import java.util.function.Consumer;
+
+import java.util.Scanner;
 
 /**
- * 제목 : A+B
- * 링크 : https://www.acmicpc.net/problem/1000
- * 단계 : 입/출력 받아보기
- * 분류 : 사칙연산, 수학
+ * 백준 1000 - A+B
+ * 분류: 수학, 구현, 사칙연산
+ * 
+ * 핵심 개념:
+ * - 두 정수를 입력받아 합을 출력하는 가장 기본적인 문제
+ * - 프로그래밍의 기초: 입력, 연산, 출력
+ * 
+ * 학습 포인트:
+ * 1. Scanner를 이용한 정수 입력 받기
+ * 2. 기본 사칙연산 (덧셈)
+ * 3. System.out.println()을 이용한 출력
+ * 4. 변수 선언과 사용
+ * 
+ * 예시:
+ * - 입력: 1 2 → 출력: 3
+ * - 입력: 3 4 → 출력: 7
+ * 
+ * 시간복잡도: O(1) - 상수 시간
+ * 공간복잡도: O(1) - 상수 공간
  */
-interface Coder {
-	default void coding() {
-		System.out.println("Da da da");
-	}
-}
-
-interface Developer {
-	default void develop() {
-		System.out.println("Mmm,,,");
-	}
-}
-
-interface Dummy {
-	Object f(Object o);
-}
-
 public class Main {
 	public static void main(String[] args) {
-		Iterator<?> iterator = getIteratorByType(1, List.of("One", "Two")::iterator, List.of(1, 2)::iterator, null);
-		while (iterator.hasNext()) {
-			System.out.println(iterator.next());
-		}
-
-		with((Dummy & Coder & Developer) i -> i, genius -> {
-			genius.coding();
-			genius.develop();
-		});
-
-		var string = "String";
-		string.lines().filter((a)->true).sorted().limit(1).distinct();
-
-		for (var i = 0; i < 10; i++) {
-
-		}
-
-		CopyOption[] options = {StandardCopyOption.REPLACE_EXISTING};
-		"Hello world!".chars().forEach(System.out::print);
-	}
-
-	private static <T extends Dummy> void with(T t, Consumer<T> consumer) {
-		consumer.accept(t);
-	}
-
-	private static <A, B, C> Iterator<?> getIteratorByType(int type, Iterable<A> f1, Iterable<B> f2, Iterable<C> f3) {
-		return switch (type) {
-			case 1, 2, 3:
-				yield f2.iterator();
-			case 4, 5:
-				yield f3.iterator();
-			default:
-				yield f1.iterator();
-		};
+		Scanner sc = new Scanner(System.in);
+		
+		// 두 정수 A, B 입력받기
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		
+		// 두 수의 합 계산
+		int sum = a + b;
+		
+		// 결과 출력
+		System.out.println(sum);
 	}
 }

@@ -8,8 +8,26 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
- * 제목 : 이진수 덧셈
- * 링크 : https://www.acmicpc.net/problem/1252
+ * 제목: 이진수 덧셈
+ * 링크: https://www.acmicpc.net/problem/1252
+ * 분류: 수학, 구현, 진법 변환
+ * 
+ * 핵심 아이디어:
+ * - 두 이진수를 더하여 이진수 결과를 출력하는 문제
+ * - 이진수 덧셈의 규칙: 0+0=0, 0+1=1, 1+0=1, 1+1=10(carry 발생)
+ * - 자리 올림(carry)을 고려한 수동 덧셈 구현
+ * 
+ * 알고리즘 접근:
+ * 1. 두 이진수의 길이를 같게 맞춤 (앞에 0 패딩)
+ * 2. 오른쪽부터 왼쪽으로 각 자리를 더함
+ * 3. carry를 다음 자리로 전파
+ * 4. 최종 결과에서 앞의 불필요한 0 제거
+ * 
+ * 학습 개념:
+ * - 이진수 연산의 기본 원리
+ * - carry 처리를 포함한 덧셈 알고리즘
+ * - 문자열 패딩과 자릿수 맞추기
+ * - StringBuilder를 이용한 효율적인 문자열 조작
  */
 public class Main {
 

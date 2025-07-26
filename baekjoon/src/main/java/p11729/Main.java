@@ -1,45 +1,133 @@
 package p11729;
 
+/**
+ * 백준 11729번: 하노이 탑 이동 순서
+ * https://www.acmicpc.net/problem/11729
+ * 
+ * 문제 분류: 분할정복, 재귀
+ * 난이도: Silver I
+ * 
+ * 핵심 알고리즘:
+ * - 하노이 탑 (Tower of Hanoi) 문제
+ * - 재귀적 분할정복 접근
+ * 
+ * 문제 해결 접근법:
+ * 1. n개의 원판을 1번 기둥에서 3번 기둥으로 옮기기
+ * 2. 규칙: 한 번에 하나씩, 큰 원판이 작은 원판 위에 올 수 없음
+ * 3. 재귀적 분해:
+ *    - n-1개를 1번에서 2번으로 이동
+ *    - 가장 큰 원판을 1번에서 3번으로 이동
+ *    - n-1개를 2번에서 3번으로 이동
+ * 
+ * 시간 복잡도: O(2^n)
+ * 공간 복잡도: O(n) - 재귀 스택
+ * 
+ * 핵심 개념:
+ * - 문제의 재귀적 구조 파악
+ * - 보조 기둥 활용 전략
+ * - 지수적 증가하는 이동 횟수 (2^n - 1)
+ */
+
 import java.util.Scanner;
 
-/**
- * 제목 : 하노이 탑 이동 순서
- * 링크 : https://www.acmicpc.net/problem/11729
- * 분류 : 분할정복
- * 메모 : 한 번에 하나의 원판만 옮길 수 있다. 큰 원판이 작은 원판 위에 있어서는 안 된다.
- * n 이 to 에서 from 가려면 n-1은 previous에 있어여 한다.
- *
- * // n = 3
- * 1 From -> To
- * 2 From -> Pre
- * 1 To -> Pre
- * 3 From -> To
- * 1 To -> From
- * 2 Pre -> To
- * 1 From -> To
- */
 public class Main {
 
-	static int k = 0;
-	static StringBuilder sb = new StringBuilder();
+	static int moveCount = 0;
+	static StringBuilder result = new StringBuilder();
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
+		
+		// 하노이 탑 해결: n개 원판을 1번 기둥에서 3번 기둥으로 이동
 		hanoi(n, 1, 3, 2);
-		sb.insert(0, k + "\n");
-		System.out.println(sb.toString());
+		
+		// 결과 출력: 이동 횟수와 이동 순서
+		result.insert(0, moveCount + "\n");
+		System.out.println(result.toString());
 	}
 
-	private static void hanoi(int n, int from, int to, int pre) {
+	/**
+	 * 하노이 탑 재귀 함수
+	 * @param n 이동할 원판의 개수
+	 * @param from 출발 기둥
+	 * @param to 목적지 기둥
+	 * @param aux 보조 기둥
+	 */
+	private static void hanoi(int n, int from, int to, int aux) {
+		// 기저 조건: 원판이 1개인 경우
 		if (n == 1) {
-			k++;
-			sb.append(from + " " + to + "\n");
+			moveCount++;
+			result.append(from + " " + to + "\n");
 			return;
 		}
-		hanoi(n - 1, from, pre, to);
-		k++;
-		sb.append(from + " " + to + "\n");
-		hanoi(n - 1, pre, to, from);
+		
+		// 3단계 분할정복 과정:
+		
+		// 1단계: 위의 n-1개 원판을 from에서 aux로 이동
+		//        (to를 보조 기둥으로 사용)
+		hanoi(n - 1, from, aux, to);
+		
+		// 2단계: 가장 큰 원판을 from에서 to로 이동
+		moveCount++;
+		result.append(from + " " + to + "\n");
+		
+		// 3단계: aux에 있는 n-1개 원판을 to로 이동
+		//        (from을 보조 기둥으로 사용)
+		hanoi(n - 1, aux, to, from);
 	}
 }
+
+/*
+ * 하노이 탑 문제 상세 분석:
+ * 
+ * 1. 문제의 핵심:
+ *    - n개의 원판을 A 기둥에서 C 기둥으로 옮기기
+ *    - 한 번에 하나씩만 이동 가능
+ *    - 큰 원판이 작은 원판 위에 올 수 없음
+ * 
+ * 2. 재귀적 사고 과정:
+ *    n개 원판 이동 = 
+ *    ① (n-1)개를 목적지가 아닌 보조 기둥으로 이동
+ *    ② 가장 큰 원판을 목적지로 이동
+ *    ③ (n-1)개를 보조 기둥에서 목적지로 이동
+ * 
+ * 3. 예시 (n=3):
+ *    1→3: 1 3 (원판1을 3번으로)
+ *    1→2: 1 2 (원판2를 2번으로)
+ *    3→2: 3 2 (원판1을 2번으로)
+ *    1→3: 1 3 (원판3을 3번으로)
+ *    2→1: 2 1 (원판1을 1번으로)
+ *    2→3: 2 3 (원판2를 3번으로)
+ *    1→3: 1 3 (원판1을 3번으로)
+ * 
+ * 4. 수학적 특성:
+ *    - 이동 횟수: 2^n - 1
+ *    - n=1: 1회, n=2: 3회, n=3: 7회, n=4: 15회...
+ *    - 지수적 증가로 인해 큰 n에서는 매우 많은 이동 필요
+ * 
+ * 5. 알고리즘의 정확성 증명:
+ *    - 귀납법으로 증명 가능
+ *    - 기저: n=1일 때 성립
+ *    - 귀납: n=k일 때 성립하면 n=k+1일 때도 성립
+ * 
+ * 6. 변형 문제들:
+ *    - 4개 기둥 하노이 탑 (Frame-Stewart 알고리즘)
+ *    - 제한된 이동만 허용하는 경우
+ *    - 특정 상태에서 최소 이동 횟수 구하기
+ * 
+ * 7. 실제 응용:
+ *    - 백업 시스템에서 테이프 관리
+ *    - 컴퓨터 과학에서 재귀 개념 설명
+ *    - 퍼즐 게임
+ * 
+ * 8. 최적화 고려사항:
+ *    - 출력이 많으므로 StringBuilder 사용
+ *    - 큰 n에서는 메모리 제한 주의
+ *    - 재귀 깊이가 n이므로 스택 오버플로우 주의
+ * 
+ * 관련 문제:
+ * - 백준 1074: Z (분할정복)
+ * - 백준 2447: 별 찍기 - 10 (재귀적 패턴)
+ * - 백준 1629: 곱셈 (분할정복을 이용한 거듭제곱)
+ */
