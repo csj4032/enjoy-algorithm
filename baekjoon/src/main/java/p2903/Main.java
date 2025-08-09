@@ -2,20 +2,119 @@ package p2903;
 
 import java.util.Scanner;
 
+/**
+ * 백준 2903번 - 중앙 이동 알고리즘
+ * https://www.acmicpc.net/problem/2903
+ * 
+ * 난이도: Bronze III
+ * 분류: 수학, 구현
+ * 
+ * 프로그래밍 기초 개념:
+ * 1. 규칙성 찾기 (패턴 인식)
+ * 2. 점화식 (Recurrence Relation) 
+ * 3. 제곱 계산과 수학적 사고
+ * 4. 정적 배열 초기화 (static block)
+ * 
+ * 수학 개념:
+ * - 프랙탈 구조에서의 점 개수 증가 패턴
+ * - 한 변의 점 개수: 2^n + 1
+ * - 전체 점 개수: (2^n + 1)²
+ * 
+ * 초보자를 위한 팁:
+ * - 정사각형을 4등분할 때 새로 생기는 점들을 생각해보세요
+ * - 한 변의 점 개수가 어떻게 변하는지 관찰해보세요
+ * - 그림을 그려서 패턴을 확인해보는 것이 중요합니다!
+ */
 public class Main {
-
-	static long[] m = new long[16];
-
-	static {
-		m[0] = 2;
-		for (int i = 1; i < 16; i++) {
-			m[i] = m[i - 1] * 2 - 1;
-		}
-	}
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		System.out.println(m[n] * m[n]);
-	}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(); // 이동 횟수
+        
+        // 중앙 이동 알고리즘: n번 수행 후 한 변의 점 개수
+        // 규칙: 한 변의 점 개수 = 2^n + 1
+        int pointsPerSide = (int) Math.pow(2, n) + 1;
+        
+        // 전체 점의 개수 = (한 변의 점 개수)²
+        int totalPoints = pointsPerSide * pointsPerSide;
+        
+        System.out.println(totalPoints);
+        
+        sc.close();
+    }
 }
+
+/*
+ * 더 효율적인 방법 (원래 코드의 아이디어):
+ * 
+ * 점화식을 이용한 방법
+ * - points[0] = 2 (초기 한 변의 점 개수: 2개)
+ * - points[i] = points[i-1] * 2 - 1 (다음 단계의 한 변 점 개수)
+ * 
+ * static long[] sidePoints = new long[16];
+ * static {
+ *     sidePoints[0] = 2;
+ *     for (int i = 1; i < 16; i++) {
+ *         sidePoints[i] = sidePoints[i-1] * 2 - 1;
+ *     }
+ * }
+ * 
+ * 결과: sidePoints[n] * sidePoints[n]
+ */
+
+/*
+ * 학습 가이드:
+ * 
+ * 1. 중앙 이동 알고리즘 이해
+ *    n=0: 2×2 정사각형 (4개 점)
+ *    ●---●
+ *    |   |
+ *    ●---●
+ *    
+ *    n=1: 각 변의 중점과 정사각형 중앙에 점 추가 (9개 점)
+ *    ●-●-●
+ *    |-●-|
+ *    ●-●-●
+ *    
+ *    n=2: 다시 각 작은 정사각형을 4등분 (25개 점)
+ *    각 단계마다 점의 개수가 특정 패턴으로 증가
+ * 
+ * 2. 패턴 분석
+ *    n=0: 한 변에 2개 점 → 전체 2² = 4개
+ *    n=1: 한 변에 3개 점 → 전체 3² = 9개  
+ *    n=2: 한 변에 5개 점 → 전체 5² = 25개
+ *    n=3: 한 변에 9개 점 → 전체 9² = 81개
+ *    
+ *    한 변의 점 개수: 2, 3, 5, 9, 17, ... = 2^n + 1
+ * 
+ * 3. 수학적 공식 도출
+ *    - 각 단계에서 기존 선분을 2등분하고 중점에 새 점 추가
+ *    - n단계 후 한 변의 점 개수 = 2^n + 1
+ *    - 전체 점 개수 = (2^n + 1)²
+ * 
+ * 4. 점화식 접근법
+ *    f(0) = 2 (초기 한 변 점 개수)
+ *    f(n) = f(n-1) × 2 - 1 (겹치는 끝점 1개 제외)
+ *    
+ *    이유: 기존 선분을 2배로 늘리면서 겹치는 점 제거
+ * 
+ * 5. Math.pow() vs 비트 연산
+ *    - Math.pow(2, n): 일반적인 거듭제곱
+ *    - 1 << n: 비트 시프트 (2^n과 동일, 더 빠름)
+ *    - int pointsPerSide = (1 << n) + 1;
+ * 
+ * 6. 실습해보기
+ *    - 직접 그림을 그려서 n=0, 1, 2일 때를 확인해보세요
+ *    - 각 단계에서 새로 추가되는 점의 개수를 세어보세요
+ *    - 공식이 맞는지 검증해보세요
+ * 
+ * 7. 응용 분야
+ *    - 컴퓨터 그래픽스의 세분화 알고리즘
+ *    - 프랙탈 기하학 
+ *    - 수치 해석에서의 격자 세분화
+ *    - 게임에서의 지형 생성 알고리즘
+ * 
+ * 8. 시간복잡도
+ *    - Math.pow() 사용: O(log n)
+ *    - 비트 시프트 사용: O(1)  
+ *    - 미리 계산된 배열 사용: O(1)
+ */

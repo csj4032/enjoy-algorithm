@@ -3,69 +3,146 @@ package p1002;
 import java.util.Scanner;
 
 /**
- * 제목 : 터렛
- * 링크 : https://www.acmicpc.net/problem/1002
- * 분류 : 기하 알고리즘
+ * 백준 1002번 - 터렛
+ * https://www.acmicpc.net/problem/1002
+ * 
+ * 난이도: Silver III
+ * 분류: 수학, 기하학
+ * 
+ * 프로그래밍 기초 개념:
+ * 1. 두 원의 교점 개수 구하기 (기하학적 사고)
+ * 2. 거리 계산 공식 (피타고라스 정리)
+ * 3. 조건문을 이용한 경우 분석
+ * 4. 실수 계산과 정수 비교
+ * 
+ * 수학 개념:
+ * - 두 원의 위치 관계: 외접, 내접, 두 점 교차, 분리, 포함
+ * - 중심 간 거리와 두 반지름의 관계로 교점 개수 결정
+ * - 특수한 경우: 동심원 (중심이 같은 원)
+ * 
+ * 초보자를 위한 팁:
+ * - 두 원의 관계를 그림으로 그려보면 이해하기 쉽습니다
+ * - 중심 간 거리(d)와 반지름(r1, r2)의 관계가 핵심입니다
+ * - 동심원인 경우를 먼저 처리하고, 일반적인 경우를 다룹니다
  */
 public class Main {
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int t = sc.nextInt();
-
-		for (int i = 0; i < t; i++) {
-			int x1 = sc.nextInt();
-			int y1 = sc.nextInt();
-			int r1 = sc.nextInt();
-			int x2 = sc.nextInt();
-			int y2 = sc.nextInt();
-			int r2 = sc.nextInt();
-
-			System.out.println(turret(x1, y1, r1, x2, y2, r2));
-		}
-	}
-
-	/**
-	 * 두 원의 교점 개수를 구하는 함수
-	 * 
-	 * 기하학적 분석:
-	 * - 두 원의 중심이 같은 경우: 반지름이 같으면 무한히 많은 교점(-1), 다르면 교점 없음(0)
-	 * - 두 원의 중심이 다른 경우:
-	 *   1) 외접 또는 내접: 교점 1개 (r1 + r2 = d 또는 |r1 - r2| = d)
-	 *   2) 두 점에서 만남: 교점 2개 (|r1 - r2| < d < r1 + r2)
-	 *   3) 만나지 않음: 교점 0개 (그 외의 경우)
-	 * 
-	 * @param x1, y1, r1 첫 번째 원의 중심 좌표와 반지름
-	 * @param x2, y2, r2 두 번째 원의 중심 좌표와 반지름
-	 * @return 교점의 개수 (-1: 무한개, 0: 없음, 1: 한 개, 2: 두 개)
-	 */
-	private static int turret(int x1, int y1, int r1, int x2, int y2, int r2) {
-		int result = 0;
-		
-		// 두 원의 중심이 같은 경우
-		if (x1 == x2 && y1 == y2) {
-			if (r1 == r2) {
-				result = -1; // 같은 원 -> 무한히 많은 교점
-			} else {
-				result = 0;  // 동심원이지만 반지름이 다름 -> 교점 없음
-			}
-		} else {
-			double d = dist(x1, x2, y1, y2); // 두 원의 중심 거리
-			
-			// 외접 또는 내접하는 경우 (한 점에서 만남)
-			if (r1 + r2 == d || Math.abs(r1 - r2) == d) {
-				result = 1;
-			}
-			// 두 점에서 교차하는 경우
-			if (r1 + r2 > d && Math.abs(r1 - r2) < d) {
-				result = 2;
-			}
-			// 그 외의 경우는 result = 0 (만나지 않음)
-		}
-		return result;
-	}
-
-	private static double dist(int x1, int x2, int y1, int y2) {
-		return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
-	}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt(); // 테스트 케이스 개수
+        
+        for (int i = 0; i < t; i++) {
+            // 첫 번째 원: 중심 (x1, y1), 반지름 r1
+            int x1 = sc.nextInt();
+            int y1 = sc.nextInt(); 
+            int r1 = sc.nextInt();
+            
+            // 두 번째 원: 중심 (x2, y2), 반지름 r2
+            int x2 = sc.nextInt();
+            int y2 = sc.nextInt();
+            int r2 = sc.nextInt();
+            
+            System.out.println(getIntersectionCount(x1, y1, r1, x2, y2, r2));
+        }
+        
+        sc.close();
+    }
+    
+    /**
+     * 두 원의 교점 개수를 구하는 함수
+     * 
+     * 두 원의 교점 개수는 다음과 같이 결정됩니다:
+     * 
+     * 1. 동심원 (중심이 같은 경우):
+     *    - 반지름도 같다면: 완전히 겹치는 원 → 무한개 교점 (-1)
+     *    - 반지름이 다르다면: 만나지 않음 → 0개 교점
+     * 
+     * 2. 중심이 다른 경우 (d = 두 원의 중심 간 거리):
+     *    - d > r1 + r2: 두 원이 너무 멀리 떨어져 있음 → 0개 교점
+     *    - d < |r1 - r2|: 한 원이 다른 원의 내부에 있음 → 0개 교점  
+     *    - d = r1 + r2: 외접 (바깥쪽에서 한 점에서 만남) → 1개 교점
+     *    - d = |r1 - r2|: 내접 (안쪽에서 한 점에서 만남) → 1개 교점
+     *    - |r1 - r2| < d < r1 + r2: 두 점에서 교차 → 2개 교점
+     */
+    private static int getIntersectionCount(int x1, int y1, int r1, int x2, int y2, int r2) {
+        // 1. 동심원인지 확인 (중심이 같은 경우)
+        if (x1 == x2 && y1 == y2) {
+            if (r1 == r2) {
+                return -1; // 완전히 겹치는 원 → 무한개 교점
+            } else {
+                return 0;  // 동심원이지만 반지름이 다름 → 교점 없음
+            }
+        }
+        
+        // 2. 중심이 다른 경우: 두 원의 중심 간 거리 계산
+        double d = getDistance(x1, y1, x2, y2);
+        
+        // 3. 거리와 반지름의 관계에 따라 교점 개수 결정
+        
+        // 두 원이 너무 멀리 떨어져 있거나, 한 원이 다른 원 내부에 있는 경우
+        if (d > r1 + r2 || d < Math.abs(r1 - r2)) {
+            return 0; // 교점 없음
+        }
+        
+        // 외접 또는 내접하는 경우 (한 점에서만 만남)
+        if (d == r1 + r2 || d == Math.abs(r1 - r2)) {
+            return 1; // 교점 1개
+        }
+        
+        // 두 점에서 교차하는 경우
+        // |r1 - r2| < d < r1 + r2
+        return 2; // 교점 2개
+    }
+    
+    /**
+     * 두 점 사이의 거리를 계산하는 함수
+     * 피타고라스 정리 사용: √((x1-x2)² + (y1-y2)²)
+     */
+    private static double getDistance(int x1, int y1, int x2, int y2) {
+        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+    }
 }
+
+/*
+ * 학습 가이드:
+ * 
+ * 1. 두 원의 위치 관계 시각화
+ *    그림으로 그려보면 이해하기 쉽습니다:
+ *    
+ *    a) 분리: O    O  (d > r1 + r2) → 교점 0개
+ *    b) 외접: O-O     (d = r1 + r2) → 교점 1개  
+ *    c) 교차: O∩O     (|r1-r2| < d < r1+r2) → 교점 2개
+ *    d) 내접: O⊃o     (d = |r1 - r2|) → 교점 1개
+ *    e) 포함: O⊃ o    (d < |r1 - r2|) → 교점 0개
+ *    f) 동심원: ⊕     (d = 0, r1 = r2) → 교점 무한개
+ * 
+ * 2. 거리 계산 공식
+ *    - 두 점 (x1, y1), (x2, y2) 사이의 거리
+ *    - d = √((x1-x2)² + (y1-y2)²)
+ *    - 피타고라스 정리의 응용
+ * 
+ * 3. 절댓값의 의미
+ *    - Math.abs(r1 - r2): 두 반지름의 차이
+ *    - 큰 원에서 작은 원까지의 거리
+ *    - 내접 조건에서 사용
+ * 
+ * 4. 부동소수점 비교 주의사항
+ *    - 이 문제에서는 정수 좌표와 반지름을 사용
+ *    - 하지만 거리는 실수가 될 수 있음
+ *    - 실제로는 정확한 비교가 가능한 경우가 많음
+ * 
+ * 5. 실습해보기
+ *    - 간단한 예시들을 직접 계산해보세요:
+ *      (0,0,1) (2,0,1) → 외접 → 1개
+ *      (0,0,2) (0,0,1) → 포함 → 0개  
+ *      (0,0,1) (1,0,1) → 교차 → 2개
+ * 
+ * 6. 터렛 문제의 의미
+ *    - 두 터렛이 적의 위치를 탐지
+ *    - 각 터렛으로부터 일정 거리에 적이 있음
+ *    - 가능한 적의 위치 개수를 구하는 문제
+ * 
+ * 7. 확장 학습
+ *    - 세 개 이상의 원의 교점
+ *    - 원과 직선의 교점
+ *    - 타원과 원의 교점 (더 복잡한 기하 문제)
+ */

@@ -1,78 +1,108 @@
 package p1085;
 
-/*
- * 백준 1085번: 직사각형에서 탈출
- * https://www.acmicpc.net/problem/1085
- * 
- * [문제 분류] 기하학 (Geometry) / 수학 (Mathematics)
- * [난이도] Bronze 3
- * 
- * [문제 요약]
- * 한수는 지금 (x, y)에 있다. 직사각형의 왼쪽 아래 꼭짓점은 (0, 0)이고, 
- * 오른쪽 위 꼭짓점은 (w, h)이다. 직사각형의 경계로 가는 거리의 최솟값을 구하는 프로그램을 작성하시오.
- * 
- * [제약 조건]
- * - 1 ≤ x ≤ w-1
- * - 1 ≤ y ≤ h-1
- * - 1 ≤ w, h ≤ 1,000
- * 
- * [알고리즘 설명]
- * 1. 직사각형 내부의 한 점에서 경계까지의 최단거리 문제
- * 2. 직사각형의 경계는 4개의 변으로 구성: 왼쪽, 오른쪽, 아래쪽, 위쪽
- * 3. 각 변까지의 거리를 계산하여 최솟값을 구함
- * 
- * [구현 방법]
- * - 왼쪽 경계까지의 거리: x - 0 = x
- * - 아래쪽 경계까지의 거리: y - 0 = y  
- * - 오른쪽 경계까지의 거리: w - x
- * - 위쪽 경계까지의 거리: h - y
- * - 4개 거리 중 최솟값이 답
- * 
- * [기하학적 해석]
- * - 맨해튼 거리(Manhattan Distance) 개념 적용
- * - 직사각형 경계는 수평선 또는 수직선이므로 최단거리는 수직으로 이동
- * - 대각선 이동은 고려하지 않음 (문제에서 경계로의 거리를 요구)
- * 
- * [수학적 공식]
- * min_distance = min(x, y, w-x, h-y)
- * 
- * [시각적 이해]
- * (0,h) -------- (w,h)
- *   |              |
- *   |    (x,y)     |  ← 점 (x,y)에서 가장 가까운 경계 찾기
- *   |              |
- * (0,0) -------- (w,0)
- * 
- * [최적화]
- * - List 대신 Math.min() 체이닝 사용 가능:
- *   Math.min(Math.min(x, y), Math.min(w-x, h-y))
- * - 하지만 현재 구현이 가독성 면에서 더 좋음
- * 
- * [시간복잡도] O(1) - 상수 시간 계산
- * [공간복잡도] O(1) - 고정된 크기의 리스트 사용
- */
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
+/**
+ * 백준 1085번 - 직사각형에서 탈출
+ * https://www.acmicpc.net/problem/1085
+ * 
+ * 난이도: Bronze III
+ * 분류: 수학, 기하학
+ * 
+ * 프로그래밍 기초 개념:
+ * 1. 좌표계와 거리 계산
+ * 2. 최솟값 구하기 (Math.min 사용)
+ * 3. 기하학적 사고 - 직사각형과 점의 관계
+ * 4. 조건문을 사용한 경우 비교
+ * 
+ * 문제 이해:
+ * - 직사각형 내부의 점 (x, y)에서 경계까지의 최단거리 구하기
+ * - 직사각형: 왼쪽 아래 (0,0), 오른쪽 위 (w,h)
+ * - 점은 직사각형 내부에 있음 (경계는 포함하지 않음)
+ * 
+ * 초보자를 위한 팁:
+ * - 좌표평면에서 점과 선분 사이의 거리는 수직거리입니다
+ * - 직사각형의 4개 변 중 가장 가까운 변까지의 거리를 구해야 합니다
+ * - 그림을 그려서 이해해보세요!
+ */
 public class Main {
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int x = sc.nextInt();
-		int y = sc.nextInt();
-		int w = sc.nextInt();
-		int h = sc.nextInt();
-
-		// 4개 경계까지의 거리를 계산
-		List<Integer> k = new ArrayList<>();
-		k.add(x);        // 왼쪽 경계까지의 거리
-		k.add(y);        // 아래쪽 경계까지의 거리
-		k.add(w - x);    // 오른쪽 경계까지의 거리
-		k.add(h - y);    // 위쪽 경계까지의 거리
-
-		// 최솟값이 경계로 가는 최단거리
-		System.out.println(k.stream().min(Integer::compare).get());
-	}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // 현재 위치 (x, y)와 직사각형 크기 (w, h) 입력
+        int x = sc.nextInt(); // 현재 x 좌표
+        int y = sc.nextInt(); // 현재 y 좌표  
+        int w = sc.nextInt(); // 직사각형의 너비
+        int h = sc.nextInt(); // 직사각형의 높이
+        
+        // 4개의 경계까지의 거리를 각각 계산
+        int leftDistance = x;       // 왼쪽 경계까지: x - 0 = x
+        int rightDistance = w - x;  // 오른쪽 경계까지: w - x  
+        int bottomDistance = y;     // 아래쪽 경계까지: y - 0 = y
+        int topDistance = h - y;    // 위쪽 경계까지: h - y
+        
+        // 4개 거리 중 최솟값 구하기
+        // Math.min을 연쇄적으로 사용하여 최솟값 계산
+        int minDistance = Math.min(
+            Math.min(leftDistance, rightDistance),    // 좌우 중 최솟값
+            Math.min(bottomDistance, topDistance)     // 상하 중 최솟값
+        );
+        
+        System.out.println(minDistance);
+        
+        sc.close();
+    }
 }
+
+/*
+ * 더 간단한 방법:
+ * int minDistance = Math.min(Math.min(x, w-x), Math.min(y, h-y));
+ * 
+ * 혹은 한 줄로:
+ * System.out.println(Math.min(Math.min(x, w-x), Math.min(y, h-y)));
+ */
+
+/*
+ * 학습 가이드:
+ * 
+ * 1. 좌표계 이해하기
+ *    - (0,0)이 왼쪽 아래 모서리
+ *    - (w,h)가 오른쪽 위 모서리
+ *    - x축은 오른쪽으로 갈수록 커짐
+ *    - y축은 위로 갈수록 커짐
+ * 
+ * 2. 거리 계산 원리
+ *    직사각형 내부의 점에서 각 경계까지의 거리:
+ *    - 왼쪽 경계 (x=0): 점의 x좌표 만큼
+ *    - 오른쪽 경계 (x=w): w에서 점의 x좌표를 뺀 값
+ *    - 아래쪽 경계 (y=0): 점의 y좌표 만큼  
+ *    - 위쪽 경계 (y=h): h에서 점의 y좌표를 뺀 값
+ * 
+ * 3. 시각적 이해
+ *    (0,h) -------- (w,h)
+ *      |              |
+ *      |    *(x,y)    |  ← 이 점에서 가장 가까운 경계는?
+ *      |              |
+ *    (0,0) -------- (w,0)
+ * 
+ * 4. 예시로 이해하기
+ *    - 직사각형: (0,0) ~ (6,4)
+ *    - 점의 위치: (2,1)
+ *    - 거리들: 왼쪽=2, 오른쪽=4, 아래=1, 위=3
+ *    - 최솟값: 1 (아래쪽 경계가 가장 가까움)
+ * 
+ * 5. Math.min() 사용법
+ *    - Math.min(a, b): 두 값 중 작은 값 반환
+ *    - 세 개 이상의 값 중 최솟값을 구하려면 여러 번 사용
+ *    - Math.min(Math.min(a, b), c) 형태로 중첩 가능
+ * 
+ * 6. 실습해보기
+ *    - 여러 점의 위치에서 테스트해보세요
+ *    - 직사각형의 중앙에 가까운 점은 어떨까요?
+ *    - 모서리에 가까운 점은 어떨까요?
+ * 
+ * 7. 실생활 응용
+ *    - 게임에서 캐릭터가 맵 경계에서 얼마나 떨어져 있는지
+ *    - 건물 내에서 가장 가까운 출구 찾기
+ *    - 안전지대에서 위험지대까지의 거리
+ */

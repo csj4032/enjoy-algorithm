@@ -1,9 +1,7 @@
 package levelTwo;
 
-import java.util.Arrays;
-
 /**
- * Link : https://school.programmers.co.kr/learn/courses/30/lessons/169198
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/169198">...</a>
  * Category : 완전탐색
  * Describe :
  */

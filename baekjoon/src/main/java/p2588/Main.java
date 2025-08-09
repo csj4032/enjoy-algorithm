@@ -2,21 +2,78 @@ package p2588;
 
 import java.util.Scanner;
 
+/**
+ * 백준 2588번 - 곱셈
+ * <a href="https://www.acmicpc.net/problem/2588">...</a>
+ *
+ * 난이도: Bronze III
+ * 분류: 수학, 구현, 사칙연산
+ *
+ * 프로그래밍 기초 개념:
+ * 1. 자릿수 분리 (각 자리 숫자 추출)
+ * 2. 나머지 연산(%)을 이용한 자릿수 계산
+ * 3. 세로형 곱셈 알고리즘의 구현
+ *
+ * 문제 이해:
+ * 472 × 385를 세로 곱셈으로 계산할 때
+ * - 472 × 5 = 2360  (3번째 출력)
+ * - 472 × 8 = 3776  (4번째 출력) 
+ * - 472 × 3 = 1416  (5번째 출력)
+ * - 전체 결과 = 181720 (6번째 출력)
+ *
+ * 초보자를 위한 팁:
+ * - 숫자의 각 자릿수를 분리하는 방법을 익혀보세요
+ * - 10으로 나눈 나머지(% 10)는 일의 자리를 구합니다
+ * - 10으로 나눈 몫(/ 10)은 맨 뒤 자릿수를 제거합니다
+ */
 public class Main {
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-
-		int n = sc.nextInt();
-		int m = sc.nextInt();
-		int l = 0;
-
-		for (int i = 1; i < 4; i++) {
-			int k = m % (int) Math.pow(10, i);
-			m = m - k;
-			l = l + n * k;
-			System.out.println(n * k / (int) Math.pow(10, i - 1));
-		}
-		System.out.println(l);
-	}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // 세 자리 수 두 개를 입력받습니다
+        int A = sc.nextInt(); // 첫 번째 세 자리 수 (472)
+        int B = sc.nextInt(); // 두 번째 세 자리 수 (385)
+        
+        // 더 이해하기 쉬운 방법으로 각 자릿수 분리
+        // B의 각 자릿수를 분리합니다
+        int ones = B % 10;        // 일의 자리 (5)
+        int tens = (B / 10) % 10; // 십의 자리 (8) 
+        int hundreds = B / 100;   // 백의 자리 (3)
+        
+        // 세로 곱셈의 각 단계별 결과 출력
+        System.out.println(A * ones);     // A × 일의자리 (472 × 5 = 2360)
+        System.out.println(A * tens);     // A × 십의자리 (472 × 8 = 3776)  
+        System.out.println(A * hundreds); // A × 백의자리 (472 × 3 = 1416)
+        
+        // 최종 결과 (전체 곱셈 결과)
+        System.out.println(A * B);        // 472 × 385 = 181720
+        
+        sc.close();
+    }
 }
+
+/*
+ * 학습 가이드:
+ * 
+ * 1. 자릿수 분리 원리
+ *    - 385에서 각 자릿수 구하기:
+ *      일의 자리: 385 % 10 = 5
+ *      십의 자리: (385 / 10) % 10 = 38 % 10 = 8  
+ *      백의 자리: 385 / 100 = 3
+ * 
+ * 2. 세로 곱셈 이해
+ *    - 손으로 계산하는 방식을 프로그램으로 구현
+ *    - 각 자릿수별로 곱한 후 더하는 과정
+ * 
+ * 3. 다른 접근법 (원래 코드 분석)
+ *    - Math.pow(10, i)를 사용하여 10의 거듭제곱 계산
+ *    - 더 복잡하지만 일반화된 방법
+ * 
+ * 4. 실습해보기
+ *    - 다른 세 자리 수로도 테스트해보세요
+ *    - 각 단계별 결과가 손 계산과 같은지 확인하세요
+ * 
+ * 5. 확장 학습
+ *    - 네 자리 수, 다섯 자리 수로 확장할 수 있을까요?
+ *    - while문을 사용하여 일반화할 수 있을까요?
+ */
