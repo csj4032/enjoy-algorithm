@@ -3,7 +3,7 @@ package levelThree;
 import java.util.*;
 
 /**
- * Link : https://school.programmers.co.kr/learn/courses/30/lessons/17678
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/17678">...</a>
  * Category :
  * Description :
  */
