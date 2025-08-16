@@ -1,7 +1,7 @@
 package levelTwo;
 
 /**
- * Link : https://school.programmers.co.kr/learn/courses/30/lessons/340212
+ * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/340212">...</a>
  * Category : 이분탐색, Binary Search
  */
 public class PuzzleGameChallenge {

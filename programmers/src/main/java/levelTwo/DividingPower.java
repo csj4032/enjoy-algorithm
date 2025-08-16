@@ -3,7 +3,7 @@ package levelTwo;
 import java.util.*;
 
 /**
- * https://school.programmers.co.kr/learn/courses/30/lessons/86971
+ * <a href="https://school.programmers.co.kr/learn/courses/30/lessons/86971">...</a>
  */
 public class DividingPower {
 
