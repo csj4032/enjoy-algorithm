@@ -1,7 +1,5 @@
 package levelTwo;
 
-import java.util.Arrays;
-
 /**
  * Link : <a href="https://school.programmers.co.kr/learn/courses/30/lessons/150369">택배 배달과 수거하기</a>
  * Category : 그리디 알고리즘과 투 포인터
@@ -22,25 +20,20 @@ public class ParcelDelivery {
             if (delivery < 0 && pickup < 0) break;
             int maxDistance = Math.max(delivery, pickup) + 1;
             answer += maxDistance * 2L;
-
-            int load = cap;
-            for (int i = delivery; i >= 0 && load > 0; i--) {
-                if (deliveries[i] > 0) {
-                    int delivered = Math.min(deliveries[i], load);
-                    deliveries[i] -= delivered;
-                    load -= delivered;
-                }
-            }
-
-            load = cap;
-            for (int i = pickup; i >= 0 && load > 0; i--) {
-                if (pickups[i] > 0)  {
-                    int picked = Math.min(pickups[i], load);
-                    pickups[i] -= picked;
-                    load -= picked;
-                }
-            }
+            process(deliveries, delivery, cap);
+            process(pickups, pickup, cap);
         }
         return answer;
+    }
+
+    private void process(int[] arr, int idx, int cap) {
+        int load = cap;
+        for (int i = idx; i >= 0 && load > 0; i--) {
+            if (arr[i] > 0) {
+                int moved = Math.min(arr[i], load);
+                arr[i] -= moved;
+                load -= moved;
+            }
+        }
     }
 }
