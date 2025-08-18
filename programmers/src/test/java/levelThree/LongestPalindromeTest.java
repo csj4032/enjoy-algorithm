@@ -8,8 +8,9 @@ class LongestPalindromeTest {
 	@Test
 	public void test() {
 		LongestPalindrome longestPalindrome = new LongestPalindrome();
-		Assertions.assertEquals(1, longestPalindrome.solution("aba"));
-//		Assertions.assertEquals(7, longestPalindrome.solution("abcdcba"));
-//		Assertions.assertEquals(3, longestPalindrome.solution("abacde"));
+		Assertions.assertEquals(3, longestPalindrome.solution("aaa"));
+		//Assertions.assertEquals(1, longestPalindrome.solution("aba"));
+		//Assertions.assertEquals(7, longestPalindrome.solution("abcdcba"));
+		//Assertions.assertEquals(3, longestPalindrome.solution("abacde"));
 	}
 }
