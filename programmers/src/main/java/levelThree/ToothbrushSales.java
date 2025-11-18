@@ -10,14 +10,17 @@ import java.util.Map;
  */
 public class ToothbrushSales {
 
+    int[] profit;
+    int[] parent;
+
     public int[] solution(String[] enroll, String[] referral, String[] seller, int[] amount) {
         int n = enroll.length;
-        int[] answer = {};
+        parent = new int[n];
+        profit = new int[n];
 
         Map<String, Integer> indexMap = new HashMap<>();
         for (int i = 0; i < n; i++) indexMap.put(enroll[i], i);
 
-        int[] parent = new int[n];
         Arrays.fill(parent, -1);
         for (int i = 0; i < n; i++) {
             if (!referral[i].equals("-")) {
@@ -32,11 +35,16 @@ public class ToothbrushSales {
             int index = indexMap.get(s);
             distribute(index, money);
         }
-
-        return answer;
+        System.out.println(Arrays.toString(profit));
+        return profit;
     }
 
     private void distribute(int index, int money) {
-
+        if (index == -1 || money == 0) return;
+        int commission = money / 10;
+        int remain = money - commission;
+        profit[index] += remain;
+        if (commission < 1) return;
+        distribute(parent[index], commission);
     }
 }
