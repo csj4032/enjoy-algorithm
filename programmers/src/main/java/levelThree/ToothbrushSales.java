@@ -22,11 +22,7 @@ public class ToothbrushSales {
         for (int i = 0; i < n; i++) indexMap.put(enroll[i], i);
 
         Arrays.fill(parent, -1);
-        for (int i = 0; i < n; i++) {
-            if (!referral[i].equals("-")) {
-                parent[i] = indexMap.get(referral[i]);
-            }
-        }
+        for (int i = 0; i < n; i++) if (!referral[i].equals("-")) parent[i] = indexMap.get(referral[i]);
 
         for (int i = 0; i < seller.length; i++) {
             String s = seller[i];
@@ -35,7 +31,6 @@ public class ToothbrushSales {
             int index = indexMap.get(s);
             distribute(index, money);
         }
-        System.out.println(Arrays.toString(profit));
         return profit;
     }
 
