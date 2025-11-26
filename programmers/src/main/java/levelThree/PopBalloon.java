@@ -6,19 +6,25 @@ package levelThree;
 public class PopBalloon {
 
     public int solution(int[] a) {
-        int answer = 0;
         int n = a.length;
-        for (int i = 0; i < n; i++) {
-            boolean canPop = true;
-            for (int j = 0; j < n; j++) {
-                if (i == j) continue;
-                if (a[i] > a[j]) {
-                    canPop = false;
-                    break;
-                }
-            }
-            if (canPop) answer++;
+        if (n == 2) return 2;
+
+        int leftMin[] = new int[n];
+        int left = a[0];
+        leftMin[0] = a[0];
+        for (int i = 1; i < n; i++) {
+            if (left > a[i]) left = a[i];
+            leftMin[i] = left;
         }
+
+        int rightMin[] = new int[n];
+        int right = a[n - 1];
+        rightMin[n - 1] = a[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            if (right > a[i]) right = a[i];
+            rightMin[i] = right;
+        }
+        int answer = 0;
         return answer;
     }
 }
