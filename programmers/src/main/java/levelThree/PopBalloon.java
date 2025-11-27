@@ -24,7 +24,14 @@ public class PopBalloon {
             if (right > a[i]) right = a[i];
             rightMin[i] = right;
         }
+
         int answer = 0;
+        for (int i = 0; i < n; i++) {
+            if (leftMin[i] < a[i] && rightMin[i] < a[i]) {
+                continue;
+            }
+            answer++;
+        }
         return answer;
     }
 }
