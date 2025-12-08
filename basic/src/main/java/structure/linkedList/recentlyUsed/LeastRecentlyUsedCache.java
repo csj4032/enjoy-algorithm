@@ -1,22 +1,22 @@
-package structure.linkedList.LeastRecentlyUsed;
+package structure.linkedList.recentlyUsed;
 
 import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cache<K, V> {
+public class LeastRecentlyUsedCache<K, V> {
 
     @Getter
     private final int capacity;
-    private final Map<K, Node<K, V>> map;
+    private final Map<K, DoublyLinkedNode<K, V>> map;
     private final DoublyLinkedList<K, V> linkedList;
 
-    public Cache() {
+    public LeastRecentlyUsedCache() {
         this(10);
     }
 
-    public Cache(int capacity) {
+    public LeastRecentlyUsedCache(int capacity) {
         this.capacity = capacity;
         this.map = new HashMap<>();
         this.linkedList = new DoublyLinkedList<>();
@@ -24,23 +24,23 @@ public class Cache<K, V> {
 
     public void put(K key, V value) {
         if (map.containsKey(key)) {
-            Node<K, V> node = map.get(key);
+            DoublyLinkedNode<K, V> node = map.get(key);
             node.value = value;
             linkedList.toFront(node);
         } else {
             if (map.size() >= capacity) {
-                Node<K, V> node = linkedList.remove();
+                DoublyLinkedNode<K, V> node = linkedList.removeTailPrev();
                 map.remove(node.key);
             }
-            Node<K, V> node = new Node<>(key, value);
+            DoublyLinkedNode<K, V> node = new DoublyLinkedNode<>(key, value);
             linkedList.add(node);
             map.put(key, node);
         }
     }
 
-    public Node<K, V> get(K key) {
+    public DoublyLinkedNode<K, V> get(K key) {
         if (!map.containsKey(key)) throw new IllegalArgumentException("Key not found");
-        Node<K, V> node = map.get(key);
+        DoublyLinkedNode<K, V> node = map.get(key);
         linkedList.toFront(node);
         return node;
     }

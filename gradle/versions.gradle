@@ -1,5 +1,5 @@
 ext {
-    lombokVersion = '1.18.20'
+    lombokVersion = '1.18.34'
     logbackVersion = '1.2.3'
     junitJupiterVersion='5.4.1'
     junitPlatformVersion='1.4.1'
