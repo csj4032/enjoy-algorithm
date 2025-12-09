@@ -20,6 +20,7 @@ class DequeTest {
         deque.addFront(1);
         deque.addFront(2);
         deque.addFront(3);
+        System.out.println(deque);
         printer.print(deque, StructurePrinter.PrintOrder.FIFO);
     }
 
