@@ -25,4 +25,8 @@ public class Graph {
     public int getSize() {
         return n;
     }
+
+    public String toString(){
+        return adj.toString();
+    }
 }

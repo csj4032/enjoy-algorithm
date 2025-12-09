@@ -17,7 +17,7 @@ public class BreadthFirstSearchTest {
         graph.addEdge(2, 4);
         graph.addEdge(2, 5);
         graph.addEdge(3, 6);
-
+        System.out.println(graph.toString());
         BreadthFirstSearch breadthFirstSearch = new BreadthFirstSearch();
         breadthFirstSearch.bfs(graph, 1);
 
